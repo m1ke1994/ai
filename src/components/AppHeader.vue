@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 const navItems = [
   { label: 'Преимущества', href: '#advantages' },
@@ -19,6 +19,7 @@ const mobileItems = computed(() => [...navItems, ...authItems])
 const isMobileMenuOpen = ref(false)
 const activeHash = ref('')
 let previousBodyOverflow = ''
+let pendingAnchorScrollTimeout = null
 
 const syncHash = () => {
   if (typeof window === 'undefined') return
@@ -37,10 +38,86 @@ const handleMenuItemClick = () => {
   closeMobileMenu()
 }
 
+const isAnchorHref = (href) => typeof href === 'string' && href.startsWith('#')
+
+const scrollToAnchor = (href, options = {}) => {
+  if (typeof window === 'undefined' || typeof document === 'undefined') return false
+  if (!isAnchorHref(href)) return false
+
+  const { behavior = 'smooth', updateHistory = true } = options
+  const target = document.querySelector(href)
+
+  if (updateHistory && window.location.hash !== href) {
+    window.history.pushState(null, '', href)
+  }
+
+  if (!target) {
+    syncHash()
+    return false
+  }
+
+  target.scrollIntoView({ behavior, block: 'start' })
+  activeHash.value = href
+  return true
+}
+
+const clearPendingAnchorScroll = () => {
+  if (pendingAnchorScrollTimeout !== null && typeof window !== 'undefined') {
+    window.clearTimeout(pendingAnchorScrollTimeout)
+    pendingAnchorScrollTimeout = null
+  }
+}
+
+const scheduleAnchorScroll = async (href, closeMenuFirst = false, options = {}) => {
+  if (!isAnchorHref(href)) return
+
+  clearPendingAnchorScroll()
+
+  if (closeMenuFirst && isMobileMenuOpen.value) {
+    closeMobileMenu()
+    await nextTick()
+
+    pendingAnchorScrollTimeout = window.setTimeout(() => {
+      pendingAnchorScrollTimeout = null
+      scrollToAnchor(href, options)
+    }, 180)
+    return
+  }
+
+  scrollToAnchor(href, options)
+}
+
+const handleNavLinkClick = (event, href) => {
+  if (!isAnchorHref(href)) return
+  event.preventDefault()
+  void scheduleAnchorScroll(href, false)
+}
+
+const handleMobileLinkClick = (event, href) => {
+  if (!isAnchorHref(href)) {
+    handleMenuItemClick()
+    return
+  }
+
+  event.preventDefault()
+  void scheduleAnchorScroll(href, true)
+}
+
 const isMobileItemActive = (href) => {
   if (!href.startsWith('#')) return false
   const current = activeHash.value || '#contacts'
   return current === href
+}
+
+const handleHashChange = () => {
+  if (typeof window === 'undefined') return
+  syncHash()
+
+  if (window.location.hash) {
+    void scheduleAnchorScroll(window.location.hash, false, {
+      updateHistory: false,
+    })
+  }
 }
 
 const handleKeydown = (event) => {
@@ -73,7 +150,17 @@ onMounted(() => {
   if (typeof window !== 'undefined') {
     window.addEventListener('keydown', handleKeydown)
     window.addEventListener('resize', handleResize)
-    window.addEventListener('hashchange', syncHash)
+    window.addEventListener('hashchange', handleHashChange)
+
+    if (window.location.hash) {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          void scheduleAnchorScroll(window.location.hash, false, {
+            updateHistory: false,
+          })
+        })
+      })
+    }
   }
 })
 
@@ -81,7 +168,8 @@ onBeforeUnmount(() => {
   if (typeof window !== 'undefined') {
     window.removeEventListener('keydown', handleKeydown)
     window.removeEventListener('resize', handleResize)
-    window.removeEventListener('hashchange', syncHash)
+    window.removeEventListener('hashchange', handleHashChange)
+    clearPendingAnchorScroll()
   }
 
   if (typeof document !== 'undefined') {
@@ -118,6 +206,7 @@ onBeforeUnmount(() => {
             :key="item.href"
             :href="item.href"
             class="text-[15px] font-medium text-[#A8ABC3] transition-colors duration-200 hover:text-[#736CFF] xl:text-[17px] 2xl:text-[20px]"
+            @click="handleNavLinkClick($event, item.href)"
           >
             {{ item.label }}
           </a>
@@ -243,7 +332,7 @@ onBeforeUnmount(() => {
                     ? 'font-semibold text-white'
                     : 'font-medium text-white/60 hover:text-white'
                 "
-                @click="handleMenuItemClick"
+                @click="handleMobileLinkClick($event, item.href)"
               >
                 {{ item.label }}
               </a>

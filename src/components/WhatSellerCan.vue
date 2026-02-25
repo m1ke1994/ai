@@ -58,7 +58,7 @@ const features = [
 </script>
 
 <template>
-  <section class="relative z-10 bg-[#F3F4F7] pt-0 pb-12 ">
+  <section id="advantages" class="relative z-10 scroll-mt-[92px] bg-[#F3F4F7] pt-0 pb-12 lg:scroll-mt-[104px]">
     <div class="overflow-x-hidden">
       <div class="mx-auto w-full max-w-[1880px] px-4 sm:px-6 lg:px-10">
         <div class="relative overflow-hidden rounded-t-[20px] bg-white">

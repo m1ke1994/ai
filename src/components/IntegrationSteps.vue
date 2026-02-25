@@ -42,7 +42,7 @@ const integrationSteps = [
 </script>
 
 <template>
-  <section class="relative isolate rounded-none bg-[#F3F4F7] py-14 sm:rounded-[28px] sm:py-20 lg:rounded-[40px] lg:py-28">
+  <section id="steps" class="relative isolate scroll-mt-[92px] rounded-none bg-[#F3F4F7] py-14 sm:rounded-[28px] sm:py-20 lg:scroll-mt-[104px] lg:rounded-[40px] lg:py-28">
     <!-- Заголовок -->
     <div class="text-center px-4">
       <h2 class="text-[30px] font-semibold tracking-[-0.02em] !text-black sm:text-[34px] md:text-[40px] lg:text-[42px] xl:text-[48px]">

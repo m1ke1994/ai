@@ -5,6 +5,10 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply m-0 min-w-[320px] bg-slate-950 ;
     font-family: 'Inter', system-ui, sans-serif;
