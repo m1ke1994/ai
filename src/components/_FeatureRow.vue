@@ -1,32 +1,41 @@
-<template>
-  <div class="bg-[#EDEFF4] rounded-2xl px-10 py-8 flex flex-col md:flex-row items-center justify-between gap-10">
-    
-    <!-- Left -->
-    <div class="w-full md:w-1/3">
-      <h4 class="text-2xl font-medium text-black">
-        {{ title }}
-      </h4>
-    </div>
-
-    <!-- Divider -->
-    <div class="hidden md:block w-px bg-gray-300 h-20"></div>
-
-    <!-- Middle -->
-    <div class="w-full md:w-1/3 text-gray-600 text-lg">
-      {{ description }}
-    </div>
-
-    <!-- Right slot -->
-    <div class="w-full md:w-1/3 flex justify-end">
-      <slot />
-    </div>
-
-  </div>
-</template>
-
 <script setup>
 defineProps({
-  title: String,
-  description: String
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  visualTop: {
+    type: Boolean,
+    default: false,
+  },
 })
 </script>
+
+<template>
+  <div class="min-w-[1680px] rounded-[30px] bg-[#EDECF6] px-[88px] py-[18px]">
+    <div class="flex min-h-[174px] items-center gap-0">
+      <div class="w-[460px] shrink-0">
+        <h4 class="text-[34px] font-medium leading-[1.1] tracking-[-0.02em] text-[#090A12]">
+          {{ title }}
+        </h4>
+      </div>
+
+      <div class="mx-[72px] h-[118px] w-px shrink-0 bg-[#D6D7E5]" />
+
+      <p class="max-w-[560px] flex-1 whitespace-pre-line text-[24px] leading-[1.26] tracking-[-0.01em] text-[#666A7C]">
+        {{ description }}
+      </p>
+
+      <div
+        class="ml-[60px] flex w-[520px] shrink-0 justify-end"
+        :class="visualTop ? 'items-start' : 'items-center'"
+      >
+        <slot />
+      </div>
+    </div>
+  </div>
+</template>
