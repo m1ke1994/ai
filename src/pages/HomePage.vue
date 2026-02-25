@@ -5,6 +5,8 @@
       <HeroSection />
       <WhatSellerCan />
       <AutomationBusinessSection />
+      <IntegrationSteps />
+      <ReviewsSection />
     </div>
   </div>
 </template>
@@ -14,4 +16,6 @@ import AppHeader from '@/components/AppHeader.vue'
 import AutomationBusinessSection from '@/components/AutomationBusinessSection.vue'
 import HeroSection from '@/components/HeroSection.vue'
 import WhatSellerCan from '@/components/WhatSellerCan.vue'
+import IntegrationSteps from '@/components/IntegrationSteps.vue'
+import ReviewsSection from '@/components/ReviewsSection.vue'
 </script>
