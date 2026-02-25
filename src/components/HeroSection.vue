@@ -67,7 +67,7 @@ const logos = ['/1.svg', '/2.svg', '/3.svg', '/4.svg', '/5.svg']
           </div>
         </div>
 
-        <div class="relative min-h-[360px] sm:min-h-[460px] lg:min-h-[730px] lg:self-end">
+        <div class="relative flex min-h-[360px] flex-col justify-end sm:min-h-[460px] lg:min-h-[730px] lg:self-end">
           <div
             class="absolute left-[14%] top-[37%] z-20 hidden items-center gap-2 rounded-[18px] border border-white/10 bg-[#2A2E58]/88 px-5 py-3 text-[18px] font-medium text-white shadow-[0_14px_36px_rgba(0,0,0,0.35)] backdrop-blur lg:flex"
           >
@@ -92,7 +92,7 @@ const logos = ['/1.svg', '/2.svg', '/3.svg', '/4.svg', '/5.svg']
           <img
             src="/hiro.png"
             alt="Интерфейс переписки в мессенджере на смартфоне"
-            class="relative z-100 ml-auto mt-4 w-[390px] max-w-none object-contain sm:w-[520px] md:w-[620px] lg:absolute lg:bottom-0 lg:right-[-58px] lg:mt-0 lg:w-[900px] xl:right-[-28px] xl:bottom-0 xl:w-[880px]"
+            class="relative z-100 ml-auto mt-4 w-[390px] max-w-none translate-y-[7%] object-contain sm:w-[520px] md:w-[620px] lg:absolute lg:bottom-0 lg:right-0 lg:mt-0 lg:w-[840px] xl:right-0 xl:bottom-0 xl:w-[860px]"
             draggable="false"
           />
         </div>
