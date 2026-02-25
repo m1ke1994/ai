@@ -113,7 +113,7 @@ const features = [
           :description="feature.description"
           :visual-top="feature.visualTop"
         >
-            <div class="flex h-[136px] w-[520px] items-center justify-end">
+            <div class="flex h-[136px] w-[440px] items-center justify-start">
               <div
                 v-if="feature.viewportClass"
                 :class="feature.viewportClass"
