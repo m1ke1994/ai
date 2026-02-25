@@ -110,27 +110,27 @@ onBeforeUnmount(() => {
 
         <!-- Desktop nav -->
         <nav
-          class="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-8 lg:flex xl:gap-14"
+          class="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-4 lg:flex xl:gap-8 2xl:gap-14"
           aria-label="Основная навигация"
         >
           <a
             v-for="item in navItems"
             :key="item.href"
             :href="item.href"
-            class="text-[20px] font-medium text-[#A8ABC3] transition-colors duration-200 hover:text-[#736CFF]"
+            class="text-[15px] font-medium text-[#A8ABC3] transition-colors duration-200 hover:text-[#736CFF] xl:text-[17px] 2xl:text-[20px]"
           >
             {{ item.label }}
           </a>
         </nav>
 
         <!-- Desktop auth -->
-        <div class="hidden items-center gap-8 lg:flex">
-          <a href="/login" class="text-[20px] font-medium text-[#B4B7CD] transition-colors duration-200 hover:text-white">
+        <div class="hidden items-center gap-3 lg:flex xl:gap-5 2xl:gap-8">
+          <a href="/login" class="text-[15px] font-medium text-[#B4B7CD] transition-colors duration-200 hover:text-white xl:text-[17px] 2xl:text-[20px]">
             Логин
           </a>
           <a
             href="/register"
-            class="inline-flex h-10 items-center rounded-xl px-4 text-[20px] font-medium text-[#ECEEFA] transition duration-200 hover:text-white"
+            class="inline-flex h-10 items-center rounded-xl px-2 text-[15px] font-medium text-[#ECEEFA] transition duration-200 hover:text-white xl:px-3 xl:text-[17px] 2xl:px-4 2xl:text-[20px]"
           >
             Регистрация
           </a>

@@ -60,7 +60,7 @@
               <article
                 v-for="review in page"
                 :key="review.id"
-                class="flex h-[520px] flex-col rounded-[28px] border border-white/5 bg-[#1F2230] p-8 text-left shadow-[0_20px_60px_rgba(0,0,0,0.28)] lg:p-10"
+                class="flex min-h-[460px] flex-col rounded-[28px] border border-white/5 bg-[#1F2230] p-6 text-left shadow-[0_20px_60px_rgba(0,0,0,0.28)] sm:min-h-[500px] sm:p-8 lg:h-[520px] lg:p-10"
               >
                 <div class="min-h-0 flex-1 overflow-hidden">
                   <h3 class="text-[28px] font-medium leading-tight tracking-[-0.02em] text-white">
@@ -89,7 +89,7 @@
 
                 <button
                   type="button"
-                  class="mt-auto inline-flex h-[50px] w-[192px] shrink-0 items-center justify-center rounded-[14px] border border-white/60 bg-transparent text-[18px] font-semibold tracking-[-0.01em] text-white transition hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+                  class="mt-auto inline-flex h-[50px] w-full max-w-[192px] shrink-0 items-center justify-center rounded-[14px] border border-white/60 bg-transparent text-[18px] font-semibold tracking-[-0.01em] text-white transition hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
                   @click="openReview(review)"
                 >
                   Читать далее

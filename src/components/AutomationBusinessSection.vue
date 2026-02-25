@@ -52,7 +52,7 @@ const openContactFormModal = () => {
         />
 
         <p
-          class="pointer-events-none absolute inset-x-0 top-[88px] z-30 px-20 text-center text-[20px] font-normal leading-[1.35] tracking-[-0.02em] text-white/90"
+          class="pointer-events-none absolute inset-x-0 top-[72px] z-30 px-6 text-center text-[13px] font-normal leading-[1.35] tracking-[-0.02em] text-white/90 sm:top-[88px] sm:px-10 sm:text-[15px] md:px-16 md:text-[18px]"
         >
           После работы с нами, среднее время ответа<br />
           клиентам становится 7 секунд
@@ -60,7 +60,7 @@ const openContactFormModal = () => {
 
         <div class="pointer-events-none absolute inset-x-0 top-1/2 z-30 -translate-y-1/2 px-5 text-center">
           <p
-            class="mx-auto max-w-[430px] text-[44px] font-semibold leading-[0.9] tracking-[-0.08em] text-white"
+            class="mx-auto max-w-[430px] text-[44px] font-semibold leading-[0.9] tracking-[-0.08em] text-white sm:max-w-[520px] sm:text-[52px] md:max-w-[620px] md:text-[64px]"
           >
             АВТОМАТИЗАЦИЯ<br />
             ВАШЕГО БИЗНЕСА
@@ -79,8 +79,8 @@ const openContactFormModal = () => {
     </div>
 
     <div class="hidden lg:block">
-      <div class="overflow-x-auto">
-        <div class="relative mx-auto h-[792px] min-w-[1860px] overflow-hidden rounded-none sm:rounded-[40px]">
+      <div class="overflow-x-visible">
+        <div class="relative mx-auto h-[620px] w-full max-w-[1860px] overflow-hidden rounded-none sm:rounded-[40px] xl:h-[700px] 2xl:h-[792px]">
           <img
             src="/bg-fon.png"
             alt=""
@@ -115,17 +115,17 @@ const openContactFormModal = () => {
           ></div>
 
           <p
-            class="absolute inset-x-0 top-[78px] z-30 mx-auto max-w-[820px] text-center text-[22px] font-normal leading-[1.35] tracking-[-0.02em] text-white"
+            class="absolute inset-x-0 top-[52px] z-30 mx-auto max-w-[620px] px-6 text-center text-[16px] font-normal leading-[1.35] tracking-[-0.02em] text-white xl:top-[64px] xl:max-w-[760px] xl:text-[18px] 2xl:top-[78px] 2xl:max-w-[820px] 2xl:px-0 2xl:text-[22px]"
           >
             После работы с нами, среднее время ответа<br />
             клиентам становится 7 секунд
           </p>
 
-          <div class="pointer-events-none absolute inset-x-0 top-[318px] z-10 select-none text-center">
-            <div class="text-[112px] font-semibold leading-[0.95] tracking-[-0.05em] text-white">
+          <div class="pointer-events-none absolute inset-x-0 top-[220px] z-10 select-none text-center xl:top-[270px] 2xl:top-[318px]">
+            <div class="text-[70px] font-semibold leading-[0.95] tracking-[-0.05em] text-white xl:text-[88px] 2xl:text-[112px]">
               АВТОМАТИЗАЦИЯ
             </div>
-            <div class="mt-8 text-[112px] font-semibold leading-[0.95] tracking-[-0.05em] text-white">
+            <div class="mt-5 text-[70px] font-semibold leading-[0.95] tracking-[-0.05em] text-white xl:mt-6 xl:text-[88px] 2xl:mt-8 2xl:text-[112px]">
               ВАШЕГО БИЗНЕСА
             </div>
           </div>
@@ -133,13 +133,13 @@ const openContactFormModal = () => {
           <img
             src="/hiro2.png"
             alt="Смартфон с перепиской клиента"
-            class="pointer-events-none absolute bottom-0 left-1/2 z-20 w-[950px] -translate-x-1/2 select-none"
+            class="pointer-events-none absolute bottom-0 left-1/2 z-20 w-[620px] max-w-full -translate-x-1/2 select-none xl:w-[760px] xl:max-w-none 2xl:w-[950px]"
             draggable="false"
           />
 
-          <div class="absolute bottom-[40px] left-1/2 z-30 -translate-x-1/2">
+          <div class="absolute bottom-[24px] left-1/2 z-30 -translate-x-1/2 xl:bottom-[32px] 2xl:bottom-[40px]">
             <button
-              class="rounded-[16px] border border-white/40 bg-white/10 px-10 py-4 text-lg font-medium text-white backdrop-blur-md transition duration-300 hover:bg-white/20"
+              class="rounded-[16px] border border-white/40 bg-white/10 px-8 py-3 text-base font-medium text-white backdrop-blur-md transition duration-300 hover:bg-white/20 xl:px-9 xl:py-3.5 xl:text-lg 2xl:px-10 2xl:py-4"
               @click="openContactFormModal"
             >
               Начать работу

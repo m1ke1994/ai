@@ -29,14 +29,14 @@
 
     <div class="relative z-10 mx-auto max-w-[1840px] px-4">
       <div
-        class="relative overflow-hidden rounded-[36px] bg-[rgba(9,12,41,0.18)] min-h-[420px] lg:min-h-[560px]"
+        class="relative min-h-[420px] overflow-hidden rounded-[36px] bg-[rgba(9,12,41,0.18)] xl:min-h-[560px]"
       >
         <div
-          class="relative z-10 grid items-start gap-8 p-6 pb-0 sm:p-10 sm:pb-0 lg:min-h-[560px] lg:grid-cols-[minmax(0,1fr)_760px] lg:items-stretch lg:px-20 lg:pt-20 lg:pb-0"
+          class="relative z-10 grid items-start gap-8 p-6 pb-0 sm:p-10 sm:pb-0 lg:min-h-0 lg:grid-cols-1 lg:items-start lg:px-10 lg:pt-12 lg:pb-0 xl:min-h-[560px] xl:grid-cols-[minmax(0,1fr)_760px] xl:items-stretch xl:px-20 xl:pt-20 xl:pb-0"
         >
-          <div class="pt-2 lg:self-start lg:pt-14">
+          <div class="pt-2 lg:self-start lg:pt-4 xl:pt-14">
             <h2
-              class="max-w-[700px] text-[38px] font-semibold leading-[0.96] tracking-[-0.035em] text-white sm:text-[52px] lg:text-[72px]"
+              class="max-w-[700px] text-[38px] font-semibold leading-[0.96] tracking-[-0.035em] text-white sm:text-[52px] lg:text-[58px] xl:text-[72px]"
             >
               Получите бесплатное
               <span
@@ -48,9 +48,9 @@
             </h2>
           </div>
 
-          <div class="lg:flex lg:h-full lg:items-end lg:justify-end">
+          <div class="lg:flex lg:h-full lg:items-end lg:justify-start xl:justify-end">
             <div
-              class="relative w-full overflow-hidden rounded-[32px] shadow-[0_30px_80px_rgba(34,24,89,0.38)] lg:w-[760px]"
+              class="relative w-full max-w-full overflow-hidden rounded-[32px] shadow-[0_30px_80px_rgba(34,24,89,0.38)] lg:max-w-[760px] xl:w-[760px]"
             >
               <img
                 src="/bg.png"
@@ -79,16 +79,16 @@
                 "
               ></div>
 
-              <div class="relative z-10 px-6 py-7 sm:px-8 sm:py-8 lg:px-14 lg:py-16">
+              <div class="relative z-10 px-6 py-7 sm:px-8 sm:py-8 lg:px-10 lg:py-12 xl:px-14 xl:py-16">
                 <h3
-                  class="max-w-[520px] text-[30px] font-semibold leading-[1.1] tracking-[-0.03em] text-white sm:text-[36px] lg:text-[52px]"
+                  class="max-w-[520px] text-[30px] font-semibold leading-[1.1] tracking-[-0.03em] text-white sm:text-[36px] lg:text-[44px] xl:text-[52px]"
                 >
                   Оставьте заявку, и мы
                   <span class="block">свяжемся с вами</span>
                 </h3>
 
                 <p
-                  class="mt-6 max-w-[560px] text-[15px] leading-[1.35] tracking-[-0.02em] text-[#ECEAFF] sm:text-[18px] lg:mt-8 lg:text-[26px]"
+                  class="mt-6 max-w-[560px] text-[15px] leading-[1.35] tracking-[-0.02em] text-[#ECEAFF] sm:text-[18px] lg:text-[22px] xl:mt-8 xl:text-[26px]"
                 >
                   Эксперт учтёт все бизнес-аспекты и тонкости — вы платите только за диалоги
                 </p>
@@ -96,7 +96,7 @@
                 <div class="mt-8 flex flex-wrap gap-3 sm:gap-4 lg:mt-10 lg:flex-nowrap">
                   <button
                     type="button"
-                    class="inline-flex h-16 w-full items-center justify-center rounded-[20px] border border-white/10 bg-[#1E2030] px-6 text-[18px] font-medium tracking-[-0.02em] text-white shadow-[0_16px_40px_rgba(11,12,19,0.35)] transition hover:bg-[#23263b] sm:h-[72px] lg:h-[92px] lg:w-[378px] lg:rounded-[24px] lg:text-[22px]"
+                    class="inline-flex h-16 w-full items-center justify-center rounded-[20px] border border-white/10 bg-[#1E2030] px-6 text-[18px] font-medium tracking-[-0.02em] text-white shadow-[0_16px_40px_rgba(11,12,19,0.35)] transition hover:bg-[#23263b] sm:h-[72px] lg:h-[82px] lg:w-[320px] lg:rounded-[22px] lg:text-[20px] xl:h-[92px] xl:w-[378px] xl:rounded-[24px] xl:text-[22px]"
                     @click="openForm"
                   >
                     Оставить заявку
@@ -104,7 +104,7 @@
 
                   <a
                     href="#"
-                    class="group inline-flex h-16 w-16 items-center justify-center rounded-[18px] border border-white/10 bg-white/10 text-white backdrop-blur-sm transition hover:bg-white/15 sm:h-[72px] sm:w-[72px] lg:h-[92px] lg:w-[92px] lg:rounded-[22px]"
+                    class="group inline-flex h-16 w-16 items-center justify-center rounded-[18px] border border-white/10 bg-white/10 text-white backdrop-blur-sm transition hover:bg-white/15 sm:h-[72px] sm:w-[72px] lg:h-[82px] lg:w-[82px] lg:rounded-[20px] xl:h-[92px] xl:w-[92px] xl:rounded-[22px]"
                     aria-label="Instagram"
                     @click.prevent
                   >
@@ -117,7 +117,7 @@
 
                   <a
                     href="#"
-                    class="group inline-flex h-16 w-16 items-center justify-center rounded-[18px] border border-white/10 bg-white/10 text-white backdrop-blur-sm transition hover:bg-white/15 sm:h-[72px] sm:w-[72px] lg:h-[92px] lg:w-[92px] lg:rounded-[22px]"
+                    class="group inline-flex h-16 w-16 items-center justify-center rounded-[18px] border border-white/10 bg-white/10 text-white backdrop-blur-sm transition hover:bg-white/15 sm:h-[72px] sm:w-[72px] lg:h-[82px] lg:w-[82px] lg:rounded-[20px] xl:h-[92px] xl:w-[92px] xl:rounded-[22px]"
                     aria-label="WhatsApp"
                     @click.prevent
                   >
@@ -129,7 +129,7 @@
 
                   <a
                     href="#"
-                    class="group inline-flex h-16 w-16 items-center justify-center rounded-[18px] border border-white/10 bg-white/10 text-white backdrop-blur-sm transition hover:bg-white/15 sm:h-[72px] sm:w-[72px] lg:h-[92px] lg:w-[92px] lg:rounded-[22px]"
+                    class="group inline-flex h-16 w-16 items-center justify-center rounded-[18px] border border-white/10 bg-white/10 text-white backdrop-blur-sm transition hover:bg-white/15 sm:h-[72px] sm:w-[72px] lg:h-[82px] lg:w-[82px] lg:rounded-[20px] xl:h-[92px] xl:w-[92px] xl:rounded-[22px]"
                     aria-label="Telegram"
                     @click.prevent
                   >
