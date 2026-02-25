@@ -1,5 +1,5 @@
 <template>
-  <section id="contacts" class="relative scroll-mt-[110px] overflow-hidden bg-[#01020a] py-8 sm:py-10 lg:py-12 rounded-[40px]">
+  <section id="contacts" class="relative scroll-mt-[110px] overflow-hidden rounded-[40px] bg-[#01020a] pt-8 pb-0 sm:pt-10 sm:pb-0 lg:pt-12 lg:pb-0">
     <img
       src="/bg-fon.png"
       alt=""
@@ -32,9 +32,9 @@
         class="relative overflow-hidden rounded-[36px] bg-[rgba(9,12,41,0.18)] min-h-[420px] lg:min-h-[560px]"
       >
         <div
-          class="relative z-10 grid items-start gap-8 p-6 sm:p-10 lg:grid-cols-[minmax(0,1fr)_760px] lg:px-20 lg:pt-20"
+          class="relative z-10 grid items-start gap-8 p-6 pb-0 sm:p-10 sm:pb-0 lg:min-h-[560px] lg:grid-cols-[minmax(0,1fr)_760px] lg:items-stretch lg:px-20 lg:pt-20 lg:pb-0"
         >
-          <div class="pt-2 lg:pt-14">
+          <div class="pt-2 lg:self-start lg:pt-14">
             <h2
               class="max-w-[700px] text-[38px] font-semibold leading-[0.96] tracking-[-0.035em] text-white sm:text-[52px] lg:text-[72px]"
             >
@@ -48,9 +48,9 @@
             </h2>
           </div>
 
-          <div class="lg:flex lg:justify-end">
+          <div class="lg:flex lg:h-full lg:items-end lg:justify-end">
             <div
-              class="relative w-full overflow-hidden rounded-[32px] shadow-[0_30px_80px_rgba(34,24,89,0.38)] lg:w-[760px] lg:translate-y-[56px]"
+              class="relative w-full overflow-hidden rounded-[32px] shadow-[0_30px_80px_rgba(34,24,89,0.38)] lg:w-[760px]"
             >
               <img
                 src="/bg.png"
@@ -239,6 +239,7 @@
 <script setup>
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
+const CONTACT_FORM_OPEN_EVENT = 'contact-feedback-form:open'
 const isFormOpen = ref(false)
 let previousBodyOverflow = ''
 const form = ref({
@@ -257,6 +258,10 @@ const closeForm = () => {
 
 const submitForm = () => {
   closeForm()
+}
+
+const handleOpenFormEvent = () => {
+  openForm()
 }
 
 const handleKeydown = (event) => {
@@ -281,12 +286,14 @@ watch(isFormOpen, (opened) => {
 onMounted(() => {
   if (typeof window !== 'undefined') {
     window.addEventListener('keydown', handleKeydown)
+    window.addEventListener(CONTACT_FORM_OPEN_EVENT, handleOpenFormEvent)
   }
 })
 
 onBeforeUnmount(() => {
   if (typeof window !== 'undefined') {
     window.removeEventListener('keydown', handleKeydown)
+    window.removeEventListener(CONTACT_FORM_OPEN_EVENT, handleOpenFormEvent)
   }
   if (typeof document !== 'undefined') {
     document.body.style.overflow = previousBodyOverflow

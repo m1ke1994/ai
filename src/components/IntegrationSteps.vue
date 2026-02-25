@@ -108,8 +108,9 @@
           <button
             type="button"
             class="relative z-10 inline-flex h-[56px] w-[230px] items-center justify-center rounded-[16px] border border-white/60 bg-white/10 text-[18px] font-medium tracking-[-0.01em] text-white backdrop-blur-md transition hover:bg-white/20"
+            @click="openContactFormModal"
           >
-            Начать работу
+            Оставить заявку
           </button>
         </div>
       </div>
@@ -119,6 +120,14 @@
 </template>
 
 <script setup>
+const CONTACT_FORM_OPEN_EVENT = 'contact-feedback-form:open'
+
+const openContactFormModal = () => {
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new Event(CONTACT_FORM_OPEN_EVENT))
+  }
+}
+
 const integrationSteps = [
   {
     day: "День 1",
