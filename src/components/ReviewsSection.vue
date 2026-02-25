@@ -1,7 +1,7 @@
 <template>
   <section
     id="reviews"
-    class="scroll-mt-[110px] bg-[#020205] py-20 sm:py-24 lg:py-28"
+    class="scroll-mt-[110px] bg-[#020205] py-20 sm:py-24 lg:py-28 rounded-[40px]"
     aria-labelledby="reviews-title"
   >
     <div class="mx-auto max-w-[1720px] px-4 sm:px-6 lg:px-10">
@@ -62,7 +62,7 @@
                 :key="review.id"
                 class="flex h-[520px] flex-col rounded-[28px] border border-white/5 bg-[#1F2230] p-8 text-left shadow-[0_20px_60px_rgba(0,0,0,0.28)] lg:p-10"
               >
-                <div>
+                <div class="min-h-0 flex-1 overflow-hidden">
                   <h3 class="text-[28px] font-medium leading-tight tracking-[-0.02em] text-white">
                     {{ review.company }}
                   </h3>
@@ -89,7 +89,7 @@
 
                 <button
                   type="button"
-                  class="mt-8 inline-flex h-[50px] w-[192px] items-center justify-center rounded-[14px] border border-white/60 bg-transparent text-[18px] font-semibold tracking-[-0.01em] text-white transition hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+                  class="mt-auto inline-flex h-[50px] w-[192px] shrink-0 items-center justify-center rounded-[14px] border border-white/60 bg-transparent text-[18px] font-semibold tracking-[-0.01em] text-white transition hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
                   @click="openReview(review)"
                 >
                   Читать далее
