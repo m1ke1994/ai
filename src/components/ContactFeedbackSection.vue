@@ -1,5 +1,5 @@
 <template>
-  <section id="contacts" class="relative scroll-mt-[110px] overflow-hidden rounded-[40px] bg-[#01020a] pt-8 pb-0 sm:pt-10 sm:pb-0 lg:pt-12 lg:pb-0">
+  <section id="contacts" class="relative scroll-mt-[110px] overflow-hidden rounded-none sm:rounded-[40px] bg-[#01020a] pt-8 pb-0 sm:pt-10 sm:pb-0 lg:pt-12 lg:pb-0">
     <img
       src="/bg-fon.png"
       alt=""

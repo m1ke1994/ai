@@ -16,23 +16,44 @@ defineProps({
 </script>
 
 <template>
-  <div class="min-w-[1680px] rounded-[30px] bg-[#EDECF6] px-[88px] py-[18px]">
-    <div class="flex min-h-[174px] items-center gap-0">
-      <div class="w-[460px] shrink-0">
-        <h4 class="text-[34px] font-medium leading-[1.1] tracking-[-0.02em] text-[#090A12]">
+  <div
+    class="w-full rounded-[22px] bg-[#EDECF6] px-4 py-4 sm:px-6 sm:py-5
+           lg:min-w-[1680px] lg:rounded-[30px] lg:px-[88px] lg:py-[18px]"
+  >
+    <div
+      class="flex flex-col gap-4
+             lg:min-h-[174px] lg:flex-row lg:items-center lg:gap-0"
+    >
+      <!-- Title -->
+      <div class="w-full lg:w-[460px] lg:shrink-0">
+        <h4
+          class="text-[22px] font-medium leading-[1.15] tracking-[-0.02em] text-[#090A12]
+                 sm:text-[26px]
+                 lg:text-[34px] lg:leading-[1.1]"
+        >
           {{ title }}
         </h4>
       </div>
 
-      <div class="mx-[72px] h-[118px] w-px shrink-0 bg-[#D6D7E5]" />
+      <!-- Divider (desktop only) -->
+      <div class="hidden lg:mx-[72px] lg:block lg:h-[118px] lg:w-px lg:shrink-0 lg:bg-[#D6D7E5]" />
 
-      <p class="max-w-[560px] flex-1 whitespace-pre-line text-[24px] leading-[1.26] tracking-[-0.01em] text-[#666A7C]">
+      <!-- Description -->
+      <p
+        class="w-full whitespace-pre-line text-[15px] leading-[1.45] tracking-[-0.01em] text-[#666A7C]
+               sm:text-[16px]
+               lg:max-w-[560px] lg:flex-1 lg:text-[24px] lg:leading-[1.26]"
+      >
         {{ description }}
       </p>
 
+      <!-- Visual -->
       <div
-        class="ml-[60px] flex w-[520px] shrink-0 justify-end"
-        :class="visualTop ? 'items-start' : 'items-center'"
+        class="w-full pt-2"
+        :class="[
+          visualTop ? 'items-start' : 'items-center',
+          'flex justify-center lg:ml-[60px] lg:w-[520px] lg:shrink-0 lg:justify-end lg:pt-0',
+        ]"
       >
         <slot />
       </div>
