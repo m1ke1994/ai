@@ -10,7 +10,7 @@ const navItems = [
 
 <template>
   <header
-    class="fixed left-0 top-0 z-[100] w-full border-b border-white/10 bg-[#02030A] shadow-[0_8px_28px_rgba(0,0,0,0.24)]"
+    class="fixed left-0 top-0 z-[100] w-full bg-[#02030A] shadow-[0_8px_28px_rgba(0,0,0,0.24)]"
   >
     <div class="mx-auto max-w-[1720px] px-4 sm:px-6 lg:px-10">
       <div class="relative flex h-[74px] items-center justify-between lg:h-[88px]">
@@ -31,7 +31,7 @@ const navItems = [
             v-for="item in navItems"
             :key="item.href"
             :href="item.href"
-            class="text-[15px] font-medium text-[#A8ABC3] transition-colors duration-200 hover:text-white"
+            class="text-[20px] font-medium text-[#A8ABC3] transition-colors duration-200 hover:text-[#736CFF]"
           >
             {{ item.label }}
           </a>
@@ -40,13 +40,13 @@ const navItems = [
         <div class="hidden items-center gap-5 md:flex lg:gap-8">
           <a
             href="/login"
-            class="text-[15px] font-medium text-[#B4B7CD] transition-colors duration-200 hover:text-white"
+            class="text-[20px] font-medium text-[#B4B7CD] transition-colors duration-200 hover:text-white"
           >
             Логин
           </a>
           <a
             href="/register"
-            class="inline-flex h-10 items-center rounded-xl border border-white/15 bg-white/[0.02] px-4 text-[15px] font-medium text-[#ECEEFA] transition duration-200 hover:border-white/25 hover:bg-white/5"
+            class="inline-flex h-10 items-center rounded-xl px-4 text-[20px] font-medium text-[#ECEEFA] transition duration-200 hover:text-white"
           >
             Регистрация
           </a>
