@@ -1,28 +1,31 @@
+<script setup>
+const CONTACT_FORM_OPEN_EVENT = 'contact-feedback-form:open'
+
+const openContactFormModal = () => {
+  if (typeof window === 'undefined') return
+  window.dispatchEvent(new CustomEvent(CONTACT_FORM_OPEN_EVENT))
+}
+</script>
+
 <template>
   <section class="bg-[#01020a]">
-    <!-- ===================== -->
-    <!-- MOBILE -->
-    <!-- ===================== -->
     <div class="relative mx-auto overflow-hidden rounded-none lg:hidden">
       <div class="relative h-[760px] w-full overflow-hidden">
-        <!-- БАЗОВЫЙ фон -->
         <img
           src="/bg-fon.png"
           alt=""
           aria-hidden="true"
-          class="absolute inset-0 h-full w-full object-cover pointer-events-none select-none"
+          class="pointer-events-none absolute inset-0 h-full w-full select-none object-cover"
           draggable="false"
         />
 
-        <!-- КАРТИНКА (с телефоном) НА ВСЮ СЕКЦИЮ -->
         <img
           src="/hiro2.png"
           alt="Смартфон с перепиской клиента"
-          class="absolute inset-0 z-10 h-full w-full object-cover pointer-events-none select-none"
+          class="pointer-events-none absolute inset-0 z-10 h-full w-full select-none object-cover"
           draggable="false"
         />
 
-        <!-- Градиент поверх (чтобы текст читался) -->
         <div
           class="absolute inset-0 z-20"
           style="
@@ -34,7 +37,6 @@
           aria-hidden="true"
         />
 
-        <!-- Диагональная текстура -->
         <div
           class="absolute inset-0 z-20 opacity-[0.18]"
           style="
@@ -49,32 +51,33 @@
           aria-hidden="true"
         />
 
-        <!-- Верхний текст -->
         <p
-          class="absolute inset-x-0 top-[84px] z-30 mx-auto max-w-[320px] px-5 text-center
-                 text-[14px] font-normal leading-[1.45] tracking-[-0.02em] text-white/90"
+          class="pointer-events-none absolute inset-x-0 top-[88px] z-30 px-20 text-center text-[20px] font-normal leading-[1.35] tracking-[-0.02em] text-white/90"
         >
-          После работы с нами, среднее время<br />
-          ответа клиентам становится 7 секунд
+          После работы с нами, среднее время ответа<br />
+          клиентам становится 7 секунд
         </p>
 
-        <!-- КНОПКА снизу -->
+        <div class="pointer-events-none absolute inset-x-0 top-1/2 z-30 -translate-y-1/2 px-5 text-center">
+          <p
+            class="mx-auto max-w-[430px] text-[44px] font-semibold leading-[0.9] tracking-[-0.08em] text-white"
+          >
+            АВТОМАТИЗАЦИЯ<br />
+            ВАШЕГО БИЗНЕСА
+          </p>
+        </div>
+
         <div class="absolute bottom-[18px] left-0 right-0 z-40 px-5">
           <button
-            class="flex h-[74px] w-full items-center justify-center rounded-[18px]
-                   border border-white/30 bg-white/10 text-[16px] font-medium text-white
-                   backdrop-blur-md shadow-[0_18px_60px_rgba(0,0,0,0.38)]
-                   transition hover:bg-white/15 active:scale-[0.99]"
+            class="flex h-[74px] w-full items-center justify-center rounded-[18px] border border-white/30 bg-white/10 text-[16px] font-medium text-white shadow-[0_18px_60px_rgba(0,0,0,0.38)] backdrop-blur-md transition hover:bg-white/15 active:scale-[0.99]"
+            @click="openContactFormModal"
           >
-            Начать работу
+            Оставить заявку
           </button>
         </div>
       </div>
     </div>
 
-    <!-- ===================== -->
-    <!-- DESKTOP (как было) -->
-    <!-- ===================== -->
     <div class="hidden lg:block">
       <div class="overflow-x-auto">
         <div class="relative mx-auto h-[792px] min-w-[1860px] overflow-hidden rounded-none sm:rounded-[40px]">
@@ -82,7 +85,7 @@
             src="/bg-fon.png"
             alt=""
             aria-hidden="true"
-            class="absolute inset-0 h-full w-full object-cover pointer-events-none select-none"
+            class="pointer-events-none absolute inset-0 h-full w-full select-none object-cover"
             draggable="false"
           />
 
@@ -112,8 +115,7 @@
           ></div>
 
           <p
-            class="absolute inset-x-0 top-[78px] z-30 mx-auto max-w-[820px] text-center
-                   text-[22px] font-normal leading-[1.35] tracking-[-0.02em] text-white"
+            class="absolute inset-x-0 top-[78px] z-30 mx-auto max-w-[820px] text-center text-[22px] font-normal leading-[1.35] tracking-[-0.02em] text-white"
           >
             После работы с нами, среднее время ответа<br />
             клиентам становится 7 секунд
@@ -137,9 +139,8 @@
 
           <div class="absolute bottom-[40px] left-1/2 z-30 -translate-x-1/2">
             <button
-              class="rounded-[16px] border border-white/40 bg-white/10 px-10 py-4
-                     text-lg font-medium text-white backdrop-blur-md
-                     transition duration-300 hover:bg-white/20"
+              class="rounded-[16px] border border-white/40 bg-white/10 px-10 py-4 text-lg font-medium text-white backdrop-blur-md transition duration-300 hover:bg-white/20"
+              @click="openContactFormModal"
             >
               Начать работу
             </button>
