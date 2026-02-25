@@ -7,6 +7,7 @@
       <AutomationBusinessSection />
       <IntegrationSteps />
       <ReviewsSection />
+      <ContactFeedbackSection />
     </div>
   </div>
 </template>
@@ -18,4 +19,5 @@ import HeroSection from '@/components/HeroSection.vue'
 import WhatSellerCan from '@/components/WhatSellerCan.vue'
 import IntegrationSteps from '@/components/IntegrationSteps.vue'
 import ReviewsSection from '@/components/ReviewsSection.vue'
+import ContactFeedbackSection from '@/components/ContactFeedbackSection.vue'
 </script>
