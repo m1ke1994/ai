@@ -80,7 +80,38 @@
         </div>
 
         <!-- Пустая колонка для симметрии -->
-        <div></div>
+        <div
+          class="relative flex h-[520px] flex-col justify-between overflow-hidden rounded-[32px] bg-[#1B1730] p-10"
+        >
+          <img
+            src="/bg.png"
+            alt=""
+            aria-hidden="true"
+            class="pointer-events-none absolute inset-0 h-full w-full object-cover"
+          />
+          <div
+            aria-hidden="true"
+            class="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,16,34,0.35)_0%,rgba(44,31,85,0.52)_50%,rgba(74,56,145,0.78)_100%)]"
+          ></div>
+
+          <div class="relative z-10">
+            <p class="text-lg font-medium tracking-[-0.01em] text-white/85">
+              Готовы начать ?
+            </p>
+
+            <h4 class="mt-4 text-[40px] font-semibold leading-[0.96] tracking-[-0.03em] text-white">
+              Оставьте заявку<br />
+              на консультацию
+            </h4>
+          </div>
+
+          <button
+            type="button"
+            class="relative z-10 inline-flex h-[56px] w-[230px] items-center justify-center rounded-[16px] border border-white/60 bg-white/10 text-[18px] font-medium tracking-[-0.01em] text-white backdrop-blur-md transition hover:bg-white/20"
+          >
+            Начать работу
+          </button>
+        </div>
       </div>
 
     </div>
