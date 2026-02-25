@@ -9,7 +9,7 @@
         <div class="max-w-[640px]">
           <h2
             id="reviews-title"
-            class="text-[42px] font-semibold leading-[0.95] tracking-[-0.03em] text-white sm:text-[56px] lg:text-[74px]"
+            class="text-[42px] font-semibold leading-[0.95] tracking-[-0.03em] text-white sm:text-[56px] lg:text-[54px]"
           >
             Нам доверили.
             <span class="mt-2 block text-[#A8ADC4]">И не пожалели.</span>
