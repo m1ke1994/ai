@@ -1,8 +1,10 @@
 <template>
   <div>
     <AppHeader />
-    <HeroSection />
-    <WhatSellerCan />
+    <div class="pt-[74px] lg:pt-[88px]">
+      <HeroSection />
+      <WhatSellerCan />
+    </div>
   </div>
 </template>
 

@@ -76,7 +76,7 @@ const logos = ['/1.svg', '/2.svg', '/3.svg', '/4.svg', '/5.svg', '/6.svg', '/7.s
           </div>
 
           <img
-            src="/hiro3.png"
+            src="/hiro.png"
             alt="Интерфейс переписки в мессенджере на смартфоне"
             class="relative z-10 ml-auto mt-4 w-[360px] max-w-full object-contain sm:w-[470px] md:w-[560px] lg:absolute lg:bottom-[-92px] lg:right-[-70px] lg:mt-0 lg:w-[760px] xl:right-[-48px] xl:w-[820px]"
             draggable="false"
