@@ -23,7 +23,7 @@ const features = [
     image: '/messege.png',
     imageAlt: 'Пример сообщения для upsell',
     imageClass: 'w-[1188px] max-w-none',
-    viewportClass: 'h-[133px] w-[325px] overflow-hidden rounded-[14px]',
+    viewportClass: 'h-[133px] w-[300px] overflow-hidden rounded-[14px]',
     imageTranslateClass: '-translate-x-[13px] -translate-y-[1px]',
     visualTop: true,
   },
@@ -32,41 +32,41 @@ const features = [
     description: 'Двигает этапы сделки, заполняет\nполя и ставит задачи',
     image: '/banner 3.png',
     imageAlt: 'Интеграция с amoCRM и Bitrix24',
-    imageClass: 'w-[325px]',
+    imageClass: 'w-[200px]',
   },
   {
     title: 'Запись клиентов',
     description: 'Назначает клиентам встречи\nи записи',
     image: '/banner.png',
     imageAlt: 'Интеграция с календарями',
-    imageClass: 'w-[318px]',
+    imageClass: 'w-[200px]',
   },
   {
     title: 'Работа с файлами',
     description: 'Читает любые файлы',
     image: '/banner 2.png',
     imageAlt: 'Поддерживаемые типы файлов',
-    imageClass: 'w-[392px]',
+    imageClass: 'w-[200px]',
   },
   {
     title: 'Мультиязычность',
     description: 'Идеально говорит на русском,\nанглийском и даже шала-казахском',
     image: '/lang.png',
     imageAlt: 'Поддержка множества языков',
-    imageClass: 'w-[440px]',
+    imageClass: 'w-[200px]',
   },
   {
     title: 'Интеграция с Мойсклад',
     description: 'Знает какой товар есть в наличии',
     image: '/in_nalichii.png',
     imageAlt: 'Статус товара в наличии',
-    imageClass: 'w-[513px]',
+    imageClass: 'w-[200px]',
   },
 ]
 </script>
 
 <template>
-  <section class="relative z-10 bg-[#F3F4F7] pt-0 pb-12">
+  <section class="relative z-10 bg-[#F3F4F7] pt-0 pb-12 rounded-[40px]">
     <div class="overflow-x-auto">
       <div class="mx-auto min-w-[1860px] max-w-[1880px] px-[6px]">
         <div class="relative h-[615px] overflow-hidden rounded-t-[20px] bg-white">
@@ -113,28 +113,30 @@ const features = [
           :description="feature.description"
           :visual-top="feature.visualTop"
         >
-            <div
-              v-if="feature.viewportClass"
-              :class="feature.viewportClass"
-            >
+            <div class="flex h-[136px] w-[520px] items-center justify-end">
+              <div
+                v-if="feature.viewportClass"
+                :class="feature.viewportClass"
+              >
+                <img
+                  :src="feature.image"
+                  :alt="feature.imageAlt"
+                  :class="[feature.imageClass, feature.imageTranslateClass]"
+                  class="h-auto object-contain"
+                  loading="lazy"
+                  draggable="false"
+                />
+              </div>
               <img
+                v-else
                 :src="feature.image"
                 :alt="feature.imageAlt"
-                :class="[feature.imageClass, feature.imageTranslateClass]"
+                :class="feature.imageClass"
                 class="h-auto object-contain"
                 loading="lazy"
                 draggable="false"
               />
             </div>
-            <img
-              v-else
-              :src="feature.image"
-              :alt="feature.imageAlt"
-              :class="feature.imageClass"
-              class="h-auto object-contain"
-              loading="lazy"
-              draggable="false"
-            />
         </FeatureRow>
         </div>
       </div>
