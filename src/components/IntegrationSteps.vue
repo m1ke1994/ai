@@ -42,13 +42,20 @@ const integrationSteps = [
 </script>
 
 <template>
-  <section id="steps" class="relative isolate scroll-mt-[92px] rounded-none bg-[#F3F4F7] py-14 sm:rounded-[28px] sm:py-20 lg:scroll-mt-[104px] lg:rounded-[40px] lg:py-28">
+  <section
+    id="steps"
+    class="relative isolate scroll-mt-[92px] rounded-none bg-[#F3F4F7] py-14 sm:rounded-[28px] sm:py-20 lg:scroll-mt-[104px] lg:rounded-[40px] lg:py-28"
+  >
     <!-- Заголовок -->
     <div class="text-center px-4">
-      <h2 class="text-[30px] font-semibold tracking-[-0.02em] !text-black sm:text-[34px] md:text-[40px] lg:text-[42px] xl:text-[48px]">
+      <h2
+        class="text-[30px] font-semibold tracking-[-0.02em] !text-black sm:text-[34px] md:text-[40px] lg:text-[42px] xl:text-[48px]"
+      >
         Этапы интеграции
       </h2>
-      <h3 class="mt-3 text-[30px] font-semibold tracking-[-0.02em] !text-gray-400 sm:text-[34px] md:text-[40px] lg:mt-4 lg:text-[42px] xl:text-[48px]">
+      <h3
+        class="mt-3 text-[30px] font-semibold tracking-[-0.02em] !text-gray-400 sm:text-[34px] md:text-[40px] lg:mt-4 lg:text-[42px] xl:text-[48px]"
+      >
         AI-продавца
       </h3>
     </div>
@@ -104,13 +111,11 @@ const integrationSteps = [
           ></div>
 
           <div class="relative z-10">
-            <p class="text-[15px] font-medium tracking-[-0.01em] text-white/85 sm:text-lg">
-              Готовы начать ?
-            </p>
-
-            <h4 class="mt-3 text-[28px] font-semibold leading-[0.98] tracking-[-0.03em] text-white sm:mt-4 sm:text-[34px]">
-              Оставьте заявку<br />
-              на консультацию
+            <h4
+              class="text-[28px] font-semibold leading-[0.98] tracking-[-0.03em] text-white sm:text-[34px]"
+            >
+              От брифинга до<br />
+              ИИ-продаж за 7 дней
             </h4>
           </div>
 
@@ -196,7 +201,9 @@ const integrationSteps = [
           </div>
 
           <!-- CTA -->
-          <div class="relative flex min-h-[520px] flex-col justify-between overflow-hidden rounded-[32px] bg-[#1B1730] p-8 xl:h-[520px] xl:p-10">
+          <div
+            class="relative flex min-h-[520px] flex-col justify-between overflow-hidden rounded-[32px] bg-[#1B1730] p-8 xl:h-[520px] xl:p-10"
+          >
             <img
               src="/bg.png"
               alt=""
@@ -210,13 +217,9 @@ const integrationSteps = [
             ></div>
 
             <div class="relative z-10">
-              <p class="text-base font-medium tracking-[-0.01em] text-white/85 xl:text-lg">
-                Готовы начать ?
-              </p>
-
-              <h4 class="mt-4 text-[30px] font-semibold leading-[0.96] tracking-[-0.03em] text-white xl:text-[40px]">
-                Оставьте заявку<br />
-                на консультацию
+              <h4 class="text-[30px] font-semibold leading-[0.96] tracking-[-0.03em] text-white xl:text-[40px]">
+                От брифинга до<br />
+                ИИ-продаж за 7 дней
               </h4>
             </div>
 

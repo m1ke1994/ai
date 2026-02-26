@@ -83,41 +83,7 @@ const toggleCompare = () => {
     <div class="overflow-x-hidden">
       <div class="mx-auto w-full max-w-[1880px] px-4 sm:px-6 lg:px-10">
         <div class="relative overflow-hidden rounded-t-[20px] bg-white">
-          <!-- ✅ СТАТЫ (верх секции) -->
-          <div class="px-4 pt-6 sm:px-6 lg:px-10 lg:pt-8">
-            <div
-              class="relative overflow-hidden rounded-[20px] border border-[#E8EBF4] bg-[linear-gradient(180deg,#FFFFFF_0%,#F7F8FC_100%)] p-3 shadow-[0_18px_60px_rgba(20,27,58,0.06)] sm:rounded-[24px] sm:p-4 lg:rounded-[28px] lg:p-5"
-            >
-              <div
-                class="pointer-events-none absolute inset-0 opacity-80"
-                style="
-                  background:
-                    radial-gradient(34rem 18rem at 8% 10%, rgba(75, 57, 255, 0.08), transparent 72%),
-                    radial-gradient(30rem 18rem at 92% 88%, rgba(125, 108, 255, 0.08), transparent 72%);
-                "
-                aria-hidden="true"
-              />
-              <div class="relative grid gap-2 sm:grid-cols-3 sm:gap-3 lg:gap-4">
-                <div
-                  v-for="(s, i) in stats"
-                  :key="i"
-                  class="rounded-[16px] border border-[#E6EAF4] bg-white/70 px-3 py-3 text-center shadow-[0_10px_26px_rgba(18,26,52,0.05)] backdrop-blur sm:rounded-[18px] sm:px-4 sm:py-4"
-                >
-                  <div
-                    class="text-[18px] font-semibold leading-[1] tracking-[-0.03em] text-[#141633] sm:text-[20px] lg:text-[22px]"
-                  >
-                    {{ s.value }}
-                  </div>
-                  <div
-                    class="mt-2 whitespace-pre-line text-[11px] leading-[1.2] tracking-[-0.01em] text-[#4A4F6A] sm:text-[12px] lg:text-[13px]"
-                  >
-                    {{ s.text }}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+         
           <!-- ✅ Блок с описанием обучения AI (оставляем) -->
           <div class="px-4 pb-8 pt-6 sm:px-6 lg:px-10 lg:pb-12 lg:pt-10">
             <div
