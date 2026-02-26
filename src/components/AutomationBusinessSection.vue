@@ -5,10 +5,17 @@ const openContactFormModal = () => {
   if (typeof window === 'undefined') return
   window.dispatchEvent(new CustomEvent(CONTACT_FORM_OPEN_EVENT))
 }
+
+const stats = [
+  { value: '260%', label: 'Рост конверсии веб-сайта' },
+  { value: '72%', label: 'Конверсия из чата в горячий лид' },
+  { value: '210%', label: 'Улучшение качества входящих лидов' },
+]
 </script>
 
 <template>
   <section class="bg-[#01020a]">
+    <!-- MOBILE -->
     <div class="relative mx-auto overflow-hidden rounded-none lg:hidden">
       <div class="relative h-[760px] w-full overflow-hidden">
         <img
@@ -51,12 +58,33 @@ const openContactFormModal = () => {
           aria-hidden="true"
         />
 
-        <p
-          class="pointer-events-none absolute inset-x-0 top-[72px] z-30 px-6 text-center text-[13px] font-normal leading-[1.35] tracking-[-0.02em] text-white/90 sm:top-[88px] sm:px-10 sm:text-[15px] md:px-16 md:text-[18px]"
-        >
-          После работы с нами, среднее время ответа<br />
-          клиентам становится 7 секунд
-        </p>
+        <!-- NEW: STATS (MOBILE) -->
+        <div class="absolute inset-x-0 top-[64px] z-30 px-5">
+          <div
+            class="mx-auto max-w-[560px] rounded-[18px] border border-white/12 bg-white/6 p-4 shadow-[0_18px_60px_rgba(0,0,0,0.35)] backdrop-blur-md"
+          >
+            <div class="grid grid-cols-3 gap-2">
+              <div
+                v-for="(s, i) in stats"
+                :key="i"
+                class="rounded-[14px] border border-white/10 bg-white/5 px-3 py-3 text-center"
+              >
+                <div
+                  class="text-[22px] font-semibold leading-[1] tracking-[-0.03em] text-white"
+                >
+                  {{ s.value }}
+                </div>
+                <div class="mt-2 text-[11px] leading-[1.2] tracking-[-0.01em] text-white/80">
+                  {{ s.label }}
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-3 text-center text-[11px] leading-[1.25] text-white/70">
+              Средние показатели конверсии основаны на анализе более 3&nbsp;000 веб-сайтов, использующих наш AI Chatbot.
+            </div>
+          </div>
+        </div>
 
         <div class="pointer-events-none absolute inset-x-0 top-1/2 z-30 -translate-y-1/2 px-5 text-center">
           <p
@@ -78,9 +106,12 @@ const openContactFormModal = () => {
       </div>
     </div>
 
+    <!-- DESKTOP -->
     <div class="hidden lg:block">
       <div class="overflow-x-visible">
-        <div class="relative mx-auto h-[620px] w-full max-w-[1860px] overflow-hidden rounded-none sm:rounded-[40px] xl:h-[700px] 2xl:h-[792px]">
+        <div
+          class="relative mx-auto h-[620px] w-full max-w-[1860px] overflow-hidden rounded-none sm:rounded-[40px] xl:h-[700px] 2xl:h-[792px]"
+        >
           <img
             src="/bg-fon.png"
             alt=""
@@ -114,12 +145,31 @@ const openContactFormModal = () => {
             aria-hidden="true"
           ></div>
 
-          <p
-            class="absolute inset-x-0 top-[52px] z-30 mx-auto max-w-[620px] px-6 text-center text-[16px] font-normal leading-[1.35] tracking-[-0.02em] text-white xl:top-[64px] xl:max-w-[760px] xl:text-[18px] 2xl:top-[78px] 2xl:max-w-[820px] 2xl:px-0 2xl:text-[22px]"
-          >
-            После работы с нами, среднее время ответа<br />
-            клиентам становится 7 секунд
-          </p>
+          <!-- NEW: STATS (DESKTOP) -->
+          <div class="absolute inset-x-0 top-[44px] z-30 mx-auto max-w-[980px] px-6">
+            <div
+              class="rounded-[20px] border border-white/12 bg-white/6 px-6 py-4 shadow-[0_20px_70px_rgba(0,0,0,0.34)] backdrop-blur-md"
+            >
+              <div class="grid grid-cols-3 gap-3">
+                <div
+                  v-for="(s, i) in stats"
+                  :key="i"
+                  class="rounded-[16px] border border-white/10 bg-white/5 px-5 py-4 text-center"
+                >
+                  <div class="text-[34px] font-semibold leading-[1] tracking-[-0.03em] text-white">
+                    {{ s.value }}
+                  </div>
+                  <div class="mt-2 text-[13px] leading-[1.25] tracking-[-0.01em] text-white/80">
+                    {{ s.label }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-3 text-center text-[12px] leading-[1.35] text-white/70">
+                Средние показатели конверсии основаны на анализе более 3&nbsp;000 веб-сайтов, использующих наш AI Chatbot.
+              </div>
+            </div>
+          </div>
 
           <div class="pointer-events-none absolute inset-x-0 top-[220px] z-10 select-none text-center xl:top-[270px] 2xl:top-[318px]">
             <div class="text-[70px] font-semibold leading-[0.95] tracking-[-0.05em] text-white xl:text-[88px] 2xl:text-[112px]">
