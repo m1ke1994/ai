@@ -5,16 +5,62 @@ const stats = [
   { value: '24/7', text: 'поддержка от проектных\nменеджеров' },
 ]
 
-
+const compareRows = [
+  {
+    label: 'Консультация',
+    ai: 'Обучен на всей базе знаний компании и отвечает точно по любому товару или услуге с первой минуты.',
+    human: 'Знает только основные позиции и отвечает в рамках своего опыта.',
+  },
+  {
+    label: 'Прогрев клиента',
+    ai: 'Системно выявляет потребность, после ответа всегда задаёт вопрос и подводит к целевому действию. Готов бесконечно разговаривать с клиентом.',
+    human: 'Ведёт диалог по скрипту и зависит от настроения и загрузки. Выдыхается после 10 диалогов.',
+  },
+  {
+    label: 'Дожим и возражения',
+    ai: 'Дожимает до сделки: не «ну-у-у…», не «давайте потом». Обучен практикам продаж и найдёт 1001 способ обойти возражение.',
+    human: 'Дожимает по настроению: спорит, давит, «выдыхается», уводит в «хорошо, давайте позже» и переносит.',
+  },
+  {
+    label: 'Доппродажа',
+    ai: 'Автоматически предлагает сопутствующие товары и увеличивает средний чек.',
+    human: 'Предлагает дополнительные товары, если вспомнит.',
+  },
+  {
+    label: 'Скорость ответа',
+    ai: 'Отвечает за 1–5 секунд, 24/7.',
+    human: 'Отвечает, когда освободится.',
+  },
+  {
+    label: 'Одновременные диалоги',
+    ai: 'Тысячи диалогов одновременно без потери качества.',
+    human: '1–3 активных клиента одновременно.',
+  },
+  {
+    label: 'Знание языков',
+    ai: 'Тысячи языков — на каком пишет клиент, на таком и отвечает.',
+    human: '1–3 языка максимум.',
+  },
+  {
+    label: 'Этапы сделки',
+    ai: 'Передаёт горячего клиента вашему менеджеру для закрытия сделки, поднимая мотивацию.',
+    human: 'Устаёт от квалификации, тратит энергию на прогрев, не остаётся сил на дожим и закрытие сделки.',
+  },
+]
 </script>
 
 <template>
-  <section id="advantages" class="relative z-10 scroll-mt-[92px] bg-[#F3F4F7] pt-0 pb-12 lg:scroll-mt-[104px]">
+  <section
+    id="advantages"
+    class="relative z-10 scroll-mt-[92px] bg-[#F3F4F7] pt-0 pb-12 lg:scroll-mt-[104px]"
+  >
     <div class="overflow-x-hidden">
       <div class="mx-auto w-full max-w-[1880px] px-4 sm:px-6 lg:px-10">
         <div class="relative overflow-hidden rounded-t-[20px] bg-white">
-          <!-- ✅ СТАТЫ (возвращаем как было) -->
-        
+          <!-- ✅ СТАТЫ (верх секции) -->
+          <div class="px-4 pt-6 sm:px-6 lg:px-10 lg:pt-8">
+            
+          </div>
 
           <!-- ✅ Блок с описанием обучения AI (оставляем) -->
           <div class="px-4 pb-8 pt-6 sm:px-6 lg:px-10 lg:pb-12 lg:pt-10">
@@ -39,7 +85,12 @@ const stats = [
                     <span
                       class="grid h-6 w-6 place-items-center rounded-full bg-[linear-gradient(135deg,#4B39FF_0%,#8A7DFF_100%)] shadow-[0_8px_20px_rgba(89,75,255,0.35)]"
                     >
-                      <img src="/vecor.svg" alt="" class="h-3.5 w-3.5 brightness-[5] saturate-0" aria-hidden="true" />
+                      <img
+                        src="/vecor.svg"
+                        alt=""
+                        class="h-3.5 w-3.5 brightness-[5] saturate-0"
+                        aria-hidden="true"
+                      />
                     </span>
                     <span class="text-[12px] font-medium tracking-[-0.01em] text-[#2F3452] sm:text-[13px]">
                       Обучение AI на ваших данных
@@ -119,7 +170,7 @@ const stats = [
           </div>
 
           <!-- ✅ Заголовок (как было) -->
-          <div class="px-4 pb-12 pt-12 text-center sm:px-6 sm:pt-16 lg:px-10 lg:pt-20 lg:pb-14">
+          <div class="px-4 pb-10 pt-12 text-center sm:px-6 sm:pt-16 lg:px-10 lg:pt-20 lg:pb-10">
             <h2 class="text-[34px] font-semibold leading-[1.06] tracking-[-0.03em] text-[#111218] sm:text-[44px] lg:text-[66px] lg:leading-[1.04]">
               Что умеет
             </h2>
@@ -127,73 +178,271 @@ const stats = [
               AI продавец
             </p>
           </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- ✅ НОВЫЙ ПРЕМИАЛЬНЫЙ БЛОК КАРТОЧЕК (вместо длинных полос) -->
-    <div class="mt-[18px] overflow-x-hidden">
-      <div class="mx-auto w-full max-w-[1760px] px-4 sm:px-6 lg:px-10">
-        <div class="grid gap-5 sm:grid-cols-2 lg:gap-6 xl:grid-cols-3">
-          <article
-            v-for="feature in features"
-            :key="feature.title"
-            class="group relative overflow-hidden rounded-[26px] border border-[#E6E8F3] bg-white p-5
-                   shadow-[0_10px_34px_rgba(18,26,52,0.06)]
-                   transition-all duration-500
-                   hover:-translate-y-1 hover:shadow-[0_26px_60px_rgba(18,26,52,0.16)]
-                   sm:rounded-[28px] sm:p-6"
-          >
-            <!-- мягкий премиальный glow -->
+          <!-- ✅ NEW: премиальный сравнение-блок -->
+          <div class="px-4 pb-12 sm:px-6 lg:px-10 lg:pb-16">
             <div
-              class="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100"
-              style="background: radial-gradient(700px circle at 40% 0%, rgba(75,57,255,0.07), transparent 70%);"
-              aria-hidden="true"
-            />
+              class="compare-shell relative overflow-hidden rounded-[24px] border border-[#E6EAF4] bg-[linear-gradient(180deg,#FFFFFF_0%,#F7F8FC_100%)] shadow-[0_30px_90px_rgba(18,26,52,0.12)] sm:rounded-[28px]"
+            >
+              <!-- премиальные блики -->
+              <div
+                class="pointer-events-none absolute inset-0 opacity-100"
+                style="
+                  background:
+                    radial-gradient(38rem 18rem at 12% 0%, rgba(75, 57, 255, 0.10), transparent 60%),
+                    radial-gradient(34rem 22rem at 100% 80%, rgba(125, 108, 255, 0.10), transparent 62%),
+                    linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.0));
+                "
+                aria-hidden="true"
+              />
+              <div
+                class="pointer-events-none absolute -top-24 left-1/2 h-56 w-[540px] -translate-x-1/2 rounded-full bg-[linear-gradient(90deg,rgba(75,57,255,0.18),rgba(138,125,255,0.10))] blur-3xl"
+                aria-hidden="true"
+              />
 
-            <div class="relative z-10 flex h-full flex-col">
-              <!-- верх: заголовок + текст -->
-              <div class="min-w-0">
-                <h3 class="text-[18px] font-semibold tracking-[-0.02em] text-[#0F1220] sm:text-[20px] lg:text-[22px]">
-                  {{ feature.title }}
-                </h3>
-                <p class="mt-2 whitespace-pre-line text-[14px] leading-[1.5] tracking-[-0.01em] text-[#6A7085] sm:text-[15px]">
-                  {{ feature.description }}
-                </p>
-              </div>
+              <!-- Desktop / Tablet: настоящая «богатая» таблица -->
+              <div class="relative hidden lg:block">
+                <!-- Header -->
+                <div class="grid grid-cols-[minmax(260px,0.34fr)_minmax(0,0.33fr)_minmax(0,0.33fr)] px-8 pt-8">
+                  <div class="pr-6">
+                    <div class="text-[14px] font-semibold tracking-[-0.01em] text-[#2F3452]">
+                      Эффективные растут, неэффективные исчезают
+                    </div>
+                    <div class="mt-2 max-w-[520px] text-[14px] leading-[1.45] text-[#616782]">
+                      Сравнение по ключевым этапам продаж: скорость, качество, устойчивость и масштабирование.
+                    </div>
+                  </div>
 
-              <!-- разделитель -->
-              <div class="mt-5 h-px w-full bg-gradient-to-r from-transparent via-[#E6E8F3] to-transparent" />
+                  <div class="px-2">
+                    <div
+                      class="compare-pill compare-pill--ai inline-flex w-full items-center justify-center gap-3 rounded-[18px] border border-white/40 bg-[linear-gradient(135deg,rgba(75,57,255,0.10)_0%,rgba(138,125,255,0.08)_100%)] px-5 py-4 shadow-[0_18px_50px_rgba(89,75,255,0.18)] backdrop-blur"
+                    >
+                      <span
+                        class="grid h-9 w-9 place-items-center rounded-full bg-[linear-gradient(135deg,#4B39FF_0%,#8A7DFF_100%)] shadow-[0_10px_26px_rgba(89,75,255,0.32)]"
+                      >
+                        <img src="/vecor.svg" alt="" class="h-4 w-4 brightness-[5] saturate-0" aria-hidden="true" />
+                      </span>
+                      <div class="text-left">
+                        <div class="text-[16px] font-semibold tracking-[-0.02em] text-[#141633]">
+                          AI-отдел продаж
+                        </div>
+                        <div class="text-[13px] font-medium text-[#4B39FF]">24/7 • масштабируемый</div>
+                      </div>
+                    </div>
+                  </div>
 
-              <!-- низ: визуал -->
-              <div class="mt-5 flex flex-1 items-center justify-center">
-                <!-- спец-кейс (как раньше) -->
-                <div v-if="feature.viewportClass" :class="feature.viewportClass">
-                  <img
-                    :src="feature.image"
-                    :alt="feature.imageAlt"
-                    :class="[feature.imageClass, feature.imageTranslateClass]"
-                    class="h-auto w-full object-contain transition duration-500 group-hover:scale-[1.02]"
-                    loading="lazy"
-                    draggable="false"
-                  />
+                  <div class="pl-2">
+                    <div
+                      class="compare-pill inline-flex w-full items-center justify-center gap-3 rounded-[18px] border border-[#E6EAF4] bg-white/70 px-5 py-4 shadow-[0_16px_44px_rgba(18,26,52,0.06)] backdrop-blur"
+                    >
+                      <span class="grid h-9 w-9 place-items-center rounded-full bg-[#111827]/5">
+                        <span class="text-[16px] font-semibold text-[#2F3452]">👤</span>
+                      </span>
+                      <div class="text-left">
+                        <div class="text-[16px] font-semibold tracking-[-0.02em] text-[#141633]">
+                          Менеджер
+                        </div>
+                        <div class="text-[13px] font-medium text-[#616782]">человек • ограниченный ресурс</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                <!-- обычные -->
-                <img
-                  v-else
-                  :src="feature.image"
-                  :alt="feature.imageAlt"
-                  :class="feature.imageClass"
-                  class="h-auto max-w-full object-contain transition duration-500 group-hover:scale-[1.04]"
-                  loading="lazy"
-                  draggable="false"
-                />
+                <!-- Rows -->
+                <div class="mt-6 px-8 pb-8">
+                  <div class="compare-table overflow-hidden rounded-[22px] border border-[#E6EAF4] bg-white/55 shadow-[0_22px_70px_rgba(18,26,52,0.08)]">
+                    <div class="divide-y divide-[#E8EBF4]">
+                      <div
+                        v-for="(r, i) in compareRows"
+                        :key="i"
+                        class="grid grid-cols-[minmax(260px,0.34fr)_minmax(0,0.33fr)_minmax(0,0.33fr)]"
+                      >
+                        <!-- label -->
+                        <div class="px-6 py-6">
+                          <div class="text-[16px] font-semibold tracking-[-0.02em] text-[#141633]">
+                            {{ r.label }}
+                          </div>
+                          <div class="mt-1 text-[13px] leading-[1.35] text-[#7A809A]">
+                            Ключевое отличие по этому этапу
+                          </div>
+                        </div>
+
+                        <!-- AI -->
+                        <div class="px-6 py-6">
+                          <div
+                            class="compare-cell compare-cell--ai rounded-[18px] border border-white/40 bg-[linear-gradient(135deg,rgba(75,57,255,0.08)_0%,rgba(138,125,255,0.05)_100%)] p-5 shadow-[0_18px_52px_rgba(89,75,255,0.12)]"
+                          >
+                            <div class="flex items-start gap-3">
+                              <span
+                                class="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[linear-gradient(135deg,#4B39FF_0%,#8A7DFF_100%)] shadow-[0_10px_22px_rgba(89,75,255,0.26)]"
+                              >
+                                <span class="text-[14px] text-white">✓</span>
+                              </span>
+                              <div class="text-[15px] leading-[1.55] tracking-[-0.01em] text-[#141633]">
+                                {{ r.ai }}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Human -->
+                        <div class="px-6 py-6">
+                          <div
+                            class="compare-cell rounded-[18px] border border-[#E6EAF4] bg-white/75 p-5 shadow-[0_16px_44px_rgba(18,26,52,0.06)]"
+                          >
+                            <div class="flex items-start gap-3">
+                              <span class="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#111827]/5">
+                                <span class="text-[14px] font-semibold text-[#2F3452]">—</span>
+                              </span>
+                              <div class="text-[15px] leading-[1.55] tracking-[-0.01em] text-[#2B2E3A]">
+                                {{ r.human }}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- bottom note -->
+                  <div class="mt-5 text-center text-[13px] leading-[1.45] text-[#6B7190]">
+                    Итог: AI не устаёт, не теряет качество и масштабируется — менеджер остаётся на закрытие сделок.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Mobile: дорогие карточки -->
+              <div class="relative lg:hidden">
+                <div class="px-4 pt-6 sm:px-6">
+                  <div class="text-[14px] font-semibold tracking-[-0.02em] text-[#141633] sm:text-[15px]">
+                    Эффективные растут, неэффективные исчезают
+                  </div>
+                  <div class="mt-2 text-[13px] leading-[1.5] text-[#616782]">
+                    Сравнение AI-отдела продаж и менеджера по ключевым этапам.
+                  </div>
+
+                  <div class="mt-4 grid grid-cols-1 gap-2.5 sm:grid-cols-2 sm:gap-3">
+                    <div
+                      class="compare-pill compare-pill--ai flex items-center gap-3 rounded-[18px] border border-white/40 bg-[linear-gradient(135deg,rgba(75,57,255,0.10)_0%,rgba(138,125,255,0.08)_100%)] px-4 py-3 shadow-[0_18px_50px_rgba(89,75,255,0.18)] backdrop-blur"
+                    >
+                      <span
+                        class="grid h-9 w-9 place-items-center rounded-full bg-[linear-gradient(135deg,#4B39FF_0%,#8A7DFF_100%)] shadow-[0_10px_26px_rgba(89,75,255,0.32)]"
+                      >
+                        <img src="/vecor.svg" alt="" class="h-4 w-4 brightness-[5] saturate-0" aria-hidden="true" />
+                      </span>
+                      <div>
+                        <div class="text-[15px] font-semibold tracking-[-0.02em] text-[#141633]">AI-отдел продаж</div>
+                        <div class="text-[12px] font-medium text-[#4B39FF]">24/7 • масштабируемый</div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="compare-pill flex items-center gap-3 rounded-[18px] border border-[#E6EAF4] bg-white/75 px-4 py-3 shadow-[0_16px_44px_rgba(18,26,52,0.06)] backdrop-blur"
+                    >
+                      <span class="grid h-9 w-9 place-items-center rounded-full bg-[#111827]/5">
+                        <span class="text-[16px] font-semibold text-[#2F3452]">👤</span>
+                      </span>
+                      <div>
+                        <div class="text-[15px] font-semibold tracking-[-0.02em] text-[#141633]">Менеджер</div>
+                        <div class="text-[12px] font-medium text-[#616782]">человек • ограничен</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-5 space-y-4 px-4 pb-6 sm:px-6 sm:pb-8">
+                  <div
+                    v-for="(r, i) in compareRows"
+                    :key="i"
+                    class="rounded-[22px] border border-[#E8EBF4] bg-white/75 p-4 shadow-[0_18px_60px_rgba(18,26,52,0.08)]"
+                  >
+                    <div class="text-[15px] font-semibold tracking-[-0.02em] text-[#141633]">
+                      {{ r.label }}
+                    </div>
+
+                    <div class="mt-3 grid gap-3">
+                      <div
+                        class="rounded-[18px] border border-white/40 bg-[linear-gradient(135deg,rgba(75,57,255,0.10)_0%,rgba(138,125,255,0.06)_100%)] p-4 shadow-[0_18px_52px_rgba(89,75,255,0.14)]"
+                      >
+                        <div class="flex items-center gap-2 text-[12px] font-semibold text-[#4B39FF]">
+                          <span class="grid h-6 w-6 place-items-center rounded-full bg-[linear-gradient(135deg,#4B39FF_0%,#8A7DFF_100%)] text-white">✓</span>
+                          AI-отдел продаж
+                        </div>
+                        <div class="mt-2 text-[14px] leading-[1.55] tracking-[-0.01em] text-[#141633]">
+                          {{ r.ai }}
+                        </div>
+                      </div>
+
+                      <div
+                        class="rounded-[18px] border border-[#E6EAF4] bg-white/80 p-4 shadow-[0_14px_44px_rgba(18,26,52,0.06)]"
+                      >
+                        <div class="flex items-center gap-2 text-[12px] font-semibold text-[#2F3452]">
+                          <span class="grid h-6 w-6 place-items-center rounded-full bg-[#111827]/5 text-[#2F3452]">—</span>
+                          Менеджер
+                        </div>
+                        <div class="mt-2 text-[14px] leading-[1.55] tracking-[-0.01em] text-[#2B2E3A]">
+                          {{ r.human }}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="pt-1 text-center text-[13px] leading-[1.45] text-[#6B7190]">
+                    Итог: AI масштабируется и не устаёт — менеджер остаётся на закрытие.
+                  </div>
+                </div>
+              </div>
+
+              <!-- супер-тонкая «дорогая» рамка -->
+              <div class="pointer-events-none absolute inset-0 rounded-[24px] sm:rounded-[28px]" aria-hidden="true">
+                <div class="absolute inset-0 rounded-[24px] sm:rounded-[28px] border border-white/70 opacity-45"></div>
+                <div class="absolute inset-[1px] rounded-[23px] sm:rounded-[27px] border border-[#E6EAF4] opacity-80"></div>
               </div>
             </div>
-          </article>
+          </div>
+          <!-- /NEW -->
         </div>
       </div>
     </div>
   </section>
 </template>
+
+<style scoped>
+/* Чуть «премиальности» за счёт микро-текстуры и градиентной подсветки */
+.compare-shell {
+  background-image:
+    radial-gradient(1200px 280px at 50% 0%, rgba(75, 57, 255, 0.06), transparent 60%),
+    radial-gradient(900px 260px at 85% 70%, rgba(138, 125, 255, 0.06), transparent 62%),
+    linear-gradient(180deg, #ffffff 0%, #f7f8fc 100%);
+}
+
+.compare-table {
+  backdrop-filter: blur(10px);
+}
+
+.compare-pill--ai {
+  position: relative;
+}
+.compare-pill--ai::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 18px;
+  background: radial-gradient(420px 120px at 50% 0%, rgba(75, 57, 255, 0.18), transparent 60%);
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.compare-cell--ai {
+  position: relative;
+}
+.compare-cell--ai::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 18px;
+  background: radial-gradient(520px 180px at 20% 0%, rgba(75, 57, 255, 0.14), transparent 55%);
+  pointer-events: none;
+  opacity: 0.55;
+}
+</style>
