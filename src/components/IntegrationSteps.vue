@@ -44,7 +44,7 @@ const integrationSteps = [
 <template>
   <section
     id="steps"
-    class="relative isolate scroll-mt-[92px] rounded-none bg-[#F3F4F7] py-14 sm:rounded-[28px] sm:py-20 lg:scroll-mt-[104px] lg:rounded-[40px] lg:py-28"
+    class="relative isolate scroll-mt-[92px] bg-[#F3F4F7] py-14 sm:py-20 lg:scroll-mt-[104px] lg:py-28"
   >
     <!-- Заголовок -->
     <div class="text-center px-4">

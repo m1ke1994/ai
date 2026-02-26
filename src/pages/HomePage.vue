@@ -7,6 +7,7 @@
      
       <IntegrationSteps />
       <ReviewsSection />
+      <PricingSection />
       <ContactFeedbackSection />
       <AppFooter />
     </div>
@@ -20,6 +21,7 @@ import HeroSection from '@/components/HeroSection.vue'
 import WhatSellerCan from '@/components/WhatSellerCan.vue'
 import IntegrationSteps from '@/components/IntegrationSteps.vue'
 import ReviewsSection from '@/components/ReviewsSection.vue'
+import PricingSection from '@/components/PricingSection.vue'
 import ContactFeedbackSection from '@/components/ContactFeedbackSection.vue'
 import AppFooter from '@/components/AppFooter.vue'
 </script>

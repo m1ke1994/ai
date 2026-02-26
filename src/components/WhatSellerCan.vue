@@ -82,7 +82,7 @@ const toggleCompare = () => {
   >
     <div class="overflow-x-hidden">
       <div class="mx-auto w-full max-w-[1880px] px-4 sm:px-6 lg:px-10">
-        <div class="relative overflow-hidden rounded-t-[20px] bg-white">
+        <div class="relative overflow-hidden bg-white">
          
           <!-- ✅ Блок с описанием обучения AI (оставляем) -->
           <div class="px-4 pb-8 pt-6 sm:px-6 lg:px-10 lg:pb-12 lg:pt-10">

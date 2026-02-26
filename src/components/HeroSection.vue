@@ -28,7 +28,7 @@ const stats = [
 </script>
 
 <template>
-  <section class="relative isolate overflow-hidden rounded-none lg:rounded-[40px]">
+  <section class="relative isolate overflow-hidden">
     <!-- фон -->
     <div
       class="absolute inset-0 z-0 bg-[linear-gradient(180deg,#02030D_0%,#04061A_24%,#0B0F34_58%,#1C225A_100%)]"
