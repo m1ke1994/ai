@@ -155,7 +155,7 @@ const pricingPlans = [
                     class="mt-3 inline-flex items-center rounded-full border px-3 py-1.5 text-[11px] font-medium tracking-[-0.01em]"
                     :class="
                       plan.darkCard
-                        ? 'border-white/12 bg-white/5 text-white/85'
+                        ? 'border-white/12 bg-white/5 text-white'
                         : 'border-[#E0E5F5] bg-white/90 text-[#414868] shadow-[0_8px_20px_rgba(18,26,52,0.04)]'
                     "
                   >
@@ -168,7 +168,7 @@ const pricingPlans = [
                   class="shrink-0 rounded-full border px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.06em]"
                   :class="
                     plan.darkCard
-                      ? 'border-[#7F79FF]/35 bg-[rgba(111,99,255,0.14)] text-[#D7D4FF]'
+                      ? 'border-[#7F79FF]/35 bg-[rgba(111,99,255,0.14)] text-white'
                       : 'border-[#CFC8FF] bg-[rgba(111,99,255,0.08)] text-[#5B50CF]'
                   "
                 >
@@ -179,7 +179,7 @@ const pricingPlans = [
               <p
                 v-if="plan.inheritLine"
                 class="mt-4 text-[13px] font-medium tracking-[-0.01em]"
-                :class="plan.darkCard ? 'text-white/70' : 'text-[#6F7692]'"
+                :class="plan.darkCard ? 'text-white' : 'text-[#6F7692]'"
               >
                 {{ plan.inheritLine }}
               </p>
@@ -191,17 +191,17 @@ const pricingPlans = [
 
               <ul class="mt-4 space-y-2.5">
                 <li
-                  v-for="feature in plan.features"
-                  :key="feature"
-                  class="flex items-start gap-2.5 text-[13px] leading-[1.45] tracking-[-0.01em] sm:text-[14px]"
-                  :class="plan.darkCard ? 'text-white/86' : 'text-[#2E334A]'"
-                >
+                v-for="feature in plan.features"
+                :key="feature"
+                class="flex items-start gap-2.5 text-[13px] leading-[1.45] tracking-[-0.01em] sm:text-[14px]"
+                :class="plan.darkCard ? 'text-white' : 'text-[#2E334A]'"
+              >
                   <span
                     aria-hidden="true"
                     class="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center rounded-full border"
                     :class="
                       plan.darkCard
-                        ? 'border-white/15 bg-white/5 text-white/90'
+                        ? 'border-white/15 bg-white/5 text-white'
                         : 'border-[#D9DDF0] bg-white text-[#6A5EFD]'
                     "
                   >
@@ -225,7 +225,7 @@ const pricingPlans = [
                 class="rounded-[16px] border px-3.5 py-3 text-[12px] leading-[1.35] tracking-[-0.01em] sm:text-[13px]"
                 :class="
                   plan.darkCard
-                    ? 'border-white/10 bg-white/5 text-white/80'
+                    ? 'border-white/10 bg-white/5 text-white'
                     : 'border-[#E4E8F4] bg-white/80 text-[#59607D]'
                 "
               >
