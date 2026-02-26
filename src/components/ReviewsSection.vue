@@ -1,7 +1,7 @@
 <template>
   <section
     id="reviews"
-    class="scroll-mt-[92px] bg-[#020205] py-20 sm:py-24 lg:scroll-mt-[104px] lg:py-28"
+    class="scroll-mt-[92px] bg-[#020205] py-8 sm:py-10 lg:scroll-mt-[104px] lg:py-12"
     aria-labelledby="reviews-title"
   >
     <div class="mx-auto max-w-[1720px] px-4 sm:px-6 lg:px-10">

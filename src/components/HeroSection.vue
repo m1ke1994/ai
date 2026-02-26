@@ -65,7 +65,7 @@ const stats = [
     <!-- Контент -->
     <div class="relative z-10 mx-auto max-w-[1720px] px-4 sm:px-6 lg:px-10">
       <!-- МОБИЛКА -->
-      <div class="relative flex flex-col items-center pt-12 pb-12 text-center lg:hidden">
+      <div class="relative flex flex-col items-center pt-12 pb-6 text-center lg:hidden">
         <h1
           class="max-w-[360px] text-[30px] font-semibold leading-[1.15] tracking-[-0.03em] text-white sm:max-w-[440px] sm:text-[34px]"
         >
@@ -122,7 +122,7 @@ const stats = [
         class="hidden lg:grid lg:min-h-[680px] lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start lg:gap-6 xl:min-h-[730px] xl:gap-8"
       >
         <!-- левый блок -->
-        <div class="relative pt-14 pb-24 xl:pt-20 xl:pb-28 2xl:pt-24 2xl:pb-32">
+        <div class="relative pt-14 pb-12 xl:pt-20 xl:pb-14 2xl:pt-24 2xl:pb-16">
           <h1
             class="max-w-[640px] text-[48px] font-semibold leading-[1.12] tracking-[-0.03em] text-white xl:max-w-[820px] xl:text-[64px] 2xl:text-[72px]"
           >

@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { nextTick, ref } from 'vue'
 
 const stats = [
   { value: '0 тг', text: 'за установку ИИ' },
@@ -70,15 +70,38 @@ const humanLimits = [
 ]
 
 const isCompareOpen = ref(false)
-const toggleCompare = () => {
-  isCompareOpen.value = !isCompareOpen.value
+const compareDetailsRef = ref(null)
+
+const scrollToExpandedCompare = () => {
+  if (typeof window === 'undefined') return
+  const element = compareDetailsRef.value
+  if (!element) return
+
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+    })
+  })
+}
+
+const toggleCompare = async () => {
+  const nextState = !isCompareOpen.value
+  isCompareOpen.value = nextState
+
+  if (!nextState) return
+
+  await nextTick()
+  scrollToExpandedCompare()
 }
 </script>
 
 <template>
   <section
     id="advantages"
-    class="relative z-10 scroll-mt-[92px] bg-[#F3F4F7] pt-0 pb-12 lg:scroll-mt-[104px]"
+    class="relative z-10 scroll-mt-[92px] bg-[#F3F4F7] pt-0 pb-5 lg:scroll-mt-[104px] lg:pb-6"
   >
     <div class="overflow-x-hidden">
       <div class="mx-auto w-full max-w-[1880px] px-4 sm:px-6 lg:px-10">
@@ -376,7 +399,8 @@ const toggleCompare = () => {
 
                 <!-- раскрытие деталей -->
                 <div
-                  class="mt-6 overflow-hidden rounded-[22px] border border-[#E6EAF4] bg-white/60 shadow-[0_22px_70px_rgba(18,26,52,0.08)] transition-all duration-300"
+                  ref="compareDetailsRef"
+                  class="mt-6 overflow-hidden rounded-[22px] border border-[#E6EAF4] bg-white/60 shadow-[0_22px_70px_rgba(18,26,52,0.08)] transition-all duration-300 scroll-mt-[110px]"
                   :class="isCompareOpen ? 'max-h-[9999px] opacity-100' : 'max-h-0 opacity-0'"
                 >
                   <!-- desktop compare -->
