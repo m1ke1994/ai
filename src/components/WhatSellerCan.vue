@@ -63,35 +63,16 @@ const features = [
       <div class="mx-auto w-full max-w-[1880px] px-4 sm:px-6 lg:px-10">
         <div class="relative overflow-hidden rounded-t-[20px] bg-white">
           <!-- Статы -->
-          <div class="px-4 pt-16 pb-8 sm:px-6 lg:px-0 lg:pt-[48px] lg:pb-[22px]">
-            <div class="grid grid-cols-1 gap-8 sm:gap-10 md:grid-cols-3 md:gap-0">
-              <div
-                v-for="(item, index) in stats"
-                :key="item.value"
-                class="relative px-0 text-center md:px-6 lg:px-[44px]"
-              >
-                <div
-                  v-if="index < stats.length - 1"
-                  class="absolute right-0 top-[4px] hidden h-[220px] w-px bg-[#E4E6EE] md:block lg:h-[258px]"
-                  aria-hidden="true"
-                />
+        <!-- Блок с описанием обучения AI -->
+<div class="px-4 pb-6 pt-6 text-center sm:px-6 lg:px-10 lg:pt-10 lg:pb-10">
+  <p class="mx-auto max-w-[980px] text-[18px] leading-[1.45] tracking-[-0.01em] text-[#2B2E3A] sm:text-[20px] lg:text-[26px] lg:leading-[1.4]">
+    Обучаем AI на ваших данных (сайт, прайс-листы, описание товаров и услуг, лучшие диалоги, скрипты, FAQ, товарные фиды и тд).
+  </p>
 
-                <p class="text-[44px] font-semibold leading-none tracking-[-0.03em] text-[#10101A] sm:text-[54px] lg:text-[70px]">
-                  {{ item.value }}
-                </p>
-
-                <p class="mt-5 whitespace-pre-line text-[16px] leading-[1.35] tracking-[-0.01em] text-[#666A7B] sm:text-[18px] lg:mt-8 lg:text-[24px] lg:leading-[1.28]">
-                  {{ item.text }}
-                </p>
-
-                <div
-                  v-if="index < stats.length - 1"
-                  class="mx-auto mt-8 h-px w-[92%] bg-[#E4E6EE] md:hidden"
-                  aria-hidden="true"
-                />
-              </div>
-            </div>
-          </div>
+  <p class="mx-auto mt-4 max-w-[980px] text-[18px] font-medium leading-[1.45] tracking-[-0.01em] text-[#111218] sm:text-[20px] lg:text-[26px] lg:leading-[1.4]">
+    AI продажник с первой минуты работы знает про вашу компанию и продукт больше и лучше любого вашего самого опытного менеджера.
+  </p>
+</div>
 
           <!-- Увеличили расстояние между статами и заголовком -->
           <div class="px-4 pb-12 pt-12 text-center sm:px-6 sm:pt-16 lg:px-10 lg:pt-20 lg:pb-14">
