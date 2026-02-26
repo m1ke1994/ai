@@ -5,54 +5,7 @@ const stats = [
   { value: '24/7', text: 'поддержка от проектных\nменеджеров' },
 ]
 
-const features = [
-  {
-    title: 'Upsell и дожим',
-    description: 'Дожимает клиентов, используя\nсобранную информацию',
-    image: '/messege.png',
-    imageAlt: 'Пример сообщения для upsell',
-    imageClass: 'w-full max-w-[520px] sm:max-w-[620px] lg:max-w-none lg:w-[1188px]',
-    viewportClass:
-      'h-[140px] w-full max-w-[340px] overflow-hidden rounded-[16px] sm:max-w-[380px] lg:h-[150px] lg:w-full',
-    imageTranslateClass: '-translate-x-[13px] -translate-y-[1px]',
-    visualTop: true,
-  },
-  {
-    title: 'Интеграция с CRM',
-    description: 'Двигает этапы сделки, заполняет\nполя и ставит задачи',
-    image: '/banner 3.png',
-    imageAlt: 'Интеграция с amoCRM и Bitrix24',
-    imageClass: 'w-[170px] sm:w-[190px] lg:w-[210px]',
-  },
-  {
-    title: 'Запись клиентов',
-    description: 'Назначает клиентам встречи\nи записи',
-    image: '/banner.png',
-    imageAlt: 'Интеграция с календарями',
-    imageClass: 'w-[170px] sm:w-[190px] lg:w-[210px]',
-  },
-  {
-    title: 'Работа с файлами',
-    description: 'Читает любые файлы',
-    image: '/banner 2.png',
-    imageAlt: 'Поддерживаемые типы файлов',
-    imageClass: 'w-[170px] sm:w-[190px] lg:w-[210px]',
-  },
-  {
-    title: 'Мультиязычность',
-    description: 'Идеально говорит на русском,\nанглийском и даже шала-казахском',
-    image: '/lang.png',
-    imageAlt: 'Поддержка множества языков',
-    imageClass: 'w-[170px] sm:w-[190px] lg:w-[210px]',
-  },
-  {
-    title: 'Интеграция с Мойсклад',
-    description: 'Знает какой товар есть в наличии',
-    image: '/in_nalichii.png',
-    imageAlt: 'Статус товара в наличии',
-    imageClass: 'w-[170px] sm:w-[190px] lg:w-[210px]',
-  },
-]
+
 </script>
 
 <template>
