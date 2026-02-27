@@ -2,13 +2,16 @@
   <footer class="bg-black">
     <div class="mx-auto max-w-[1840px] px-4 py-10 sm:py-12 lg:py-14">
       <div class="flex flex-col gap-8 lg:grid lg:grid-cols-[minmax(220px,520px)_1fr] lg:items-start lg:gap-x-10">
-        <a href="/" class="inline-flex items-center">
+        <a href="/" class="inline-flex items-center gap-3 text-white" aria-label="Ai4Business">
           <img
             src="/logo.svg"
-            alt="MoonAI"
-            class="h-9 w-auto sm:h-11 lg:h-[48px]"
+            alt="Ai4Business"
+            class="h-11 w-auto rounded-full sm:h-[52px] lg:h-[58px]"
             draggable="false"
           />
+          <span class="text-[20px] font-semibold leading-none tracking-[-0.02em] sm:text-[24px] lg:text-[26px]">
+            Ai4Business
+          </span>
         </a>
 
         <div class="flex flex-col gap-4 lg:gap-5">
