@@ -1,5 +1,5 @@
 <script setup>
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
 const navItems = [
   { label: 'Преимущества', href: '#advantages' },
@@ -8,13 +8,6 @@ const navItems = [
   { label: 'Контакты', href: '#contacts' },
   { label: 'Тарифы', href: '#pricing' },
 ]
-
-const authItems = [
-  { label: 'Логин', href: '/login' },
-  { label: 'Регистрация', href: '/register' },
-]
-
-const mobileItems = computed(() => [...navItems, ...authItems])
 
 const isMobileMenuOpen = ref(false)
 const activeHash = ref('')
@@ -212,19 +205,6 @@ onBeforeUnmount(() => {
           </a>
         </nav>
 
-        <!-- Desktop auth -->
-        <div class="hidden items-center gap-3 lg:flex xl:gap-5 2xl:gap-8">
-          <a href="/login" class="text-[15px] font-medium text-[#B4B7CD] transition-colors duration-200 hover:text-white xl:text-[17px] 2xl:text-[20px]">
-            Логин
-          </a>
-          <a
-            href="/register"
-            class="inline-flex h-10 items-center rounded-xl px-2 text-[15px] font-medium text-[#ECEEFA] transition duration-200 hover:text-white xl:px-3 xl:text-[17px] 2xl:px-4 2xl:text-[20px]"
-          >
-            Регистрация
-          </a>
-        </div>
-
         <!-- Mobile burger -->
         <button
           type="button"
@@ -323,7 +303,7 @@ onBeforeUnmount(() => {
           <div class="flex flex-1 items-center justify-center px-6">
             <nav class="-mt-6 flex flex-col items-center gap-5 text-center" aria-label="Мобильная навигация">
               <a
-                v-for="item in mobileItems"
+                v-for="item in navItems"
                 :key="item.href"
                 :href="item.href"
                 class="text-[18px] leading-[1.2] tracking-[-0.02em] transition-colors"
