@@ -162,34 +162,7 @@ const stats = [
         </div>
 
         <!-- правый блок -->
-        <div class="relative flex min-h-[680px] flex-col justify-end self-end xl:min-h-[730px]">
-          <div
-            :style="heroFloatingBadgesVars"
-            class="pointer-events-none absolute left-[var(--hero-badges-left)] top-[var(--hero-badges-top)] z-[6] hidden -translate-y-1/2 lg:flex lg:flex-col lg:gap-3 xl:gap-4"
-            aria-hidden="true"
-          >
-            <div
-              class="hero-float-badge hero-float-badge--1 ml-8 inline-flex w-fit items-center gap-3 whitespace-nowrap rounded-[16px] border border-white/10 bg-[#2A2E58]/88 px-4 py-2.5 text-[15px] font-medium text-white shadow-[0_14px_36px_rgba(0,0,0,0.35)] backdrop-blur xl:ml-12 xl:rounded-[18px] xl:px-5 xl:py-3 xl:text-[18px]"
-            >
-              <span class="grid h-6 w-6 place-items-center rounded-full border border-emerald-300/30 bg-emerald-300/10 text-[13px] text-emerald-300">&#10003;</span>
-              <span>Не теряет заявки</span>
-            </div>
-
-            <div
-              class="hero-float-badge hero-float-badge--2 inline-flex w-fit items-center gap-3 whitespace-nowrap rounded-[16px] border border-white/10 bg-[#2A2E58]/88 px-4 py-2.5 text-[15px] font-medium text-white shadow-[0_14px_36px_rgba(0,0,0,0.35)] backdrop-blur xl:rounded-[18px] xl:px-5 xl:py-3 xl:text-[18px]"
-            >
-              <span class="grid h-6 w-6 place-items-center rounded-full border border-emerald-300/30 bg-emerald-300/10 text-[13px] text-emerald-300">&#10003;</span>
-              <span>Работает 24/7</span>
-            </div>
-
-            <div
-              class="hero-float-badge hero-float-badge--3 ml-4 inline-flex w-fit items-center gap-3 whitespace-nowrap rounded-[18px] border border-[#8E84FF]/30 bg-[linear-gradient(90deg,rgba(75,57,255,0.28)_0%,rgba(125,108,255,0.18)_100%)] px-5 py-3 text-[16px] font-medium text-white shadow-[0_20px_50px_rgba(89,75,255,0.28)] backdrop-blur xl:ml-8 xl:rounded-[20px] xl:px-6 xl:py-4 xl:text-[20px]"
-            >
-              <span class="grid h-6 w-6 place-items-center rounded-full border border-emerald-300/35 bg-emerald-300/12 text-[13px] text-emerald-300">&#10003;</span>
-              <span>Интеграция с CRM</span>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </div>
   </section>
