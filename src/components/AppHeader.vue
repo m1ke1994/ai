@@ -1,13 +1,13 @@
 <script setup>
 import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { siteData } from '@/assets/data'
 
-const navItems = [
-  { label: 'Преимущества', href: '#advantages' },
-  { label: 'Этапы', href: '#steps' },
-  { label: 'Отзывы', href: '#reviews' },
-  { label: 'Контакты', href: '#contacts' },
-  { label: 'Тарифы', href: '#pricing' },
-]
+const headerData = siteData.header
+const { navItems } = headerData
+
+const socialLinksById = Object.fromEntries(
+  headerData.mobileSocialItems.map((item) => [item.id, item]),
+)
 
 const isMobileMenuOpen = ref(false)
 const activeHash = ref('')
@@ -176,22 +176,22 @@ onBeforeUnmount(() => {
   <header class="fixed left-0 top-0 z-[1000] w-full bg-[#02030A] shadow-[0_8px_28px_rgba(0,0,0,0.24)]">
     <div class="mx-auto max-w-[1720px] px-4 sm:px-6 lg:px-10">
       <div class="relative flex h-[74px] items-center justify-between lg:h-[88px]">
-        <a href="/" class="flex shrink-0 items-center gap-3 text-white" aria-label="Ai4Business">
+        <a :href="headerData.brandHref" class="flex shrink-0 items-center gap-3 text-white" :aria-label="headerData.brandName">
           <img
-            src="/logo.svg"
-            alt="Ai4Business"
+            :src="siteData.assets.images.logo"
+            :alt="headerData.brandName"
             class="h-11 w-auto rounded-full sm:h-[52px] lg:h-[58px]"
             draggable="false"
           />
           <span class="text-[20px] font-semibold leading-none tracking-[-0.02em] sm:text-[24px] lg:text-[26px]">
-            Ai4Business
+            {{ headerData.brandName }}
           </span>
         </a>
 
         <!-- Desktop nav -->
         <nav
           class="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-4 lg:flex xl:gap-8 2xl:gap-14"
-          aria-label="Основная навигация"
+          :aria-label="headerData.aria.desktopNav"
         >
           <a
             v-for="item in navItems"
@@ -208,7 +208,7 @@ onBeforeUnmount(() => {
         <button
           type="button"
           class="relative z-[1001] inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.03] text-white transition hover:bg-white/5 active:scale-[0.98] lg:hidden"
-          :aria-label="isMobileMenuOpen ? 'Закрыть меню' : 'Открыть меню'"
+          :aria-label="isMobileMenuOpen ? headerData.aria.closeMenu : headerData.aria.openMenu"
           :aria-expanded="isMobileMenuOpen"
           aria-controls="mobile-menu"
           @click="toggleMobileMenu"
@@ -260,32 +260,32 @@ onBeforeUnmount(() => {
         class="fixed inset-0 z-[1100] bg-black lg:hidden"
         role="dialog"
         aria-modal="true"
-        aria-label="Мобильное меню"
+        :aria-label="headerData.aria.mobileDialog"
       >
         <!-- Верхняя панель (логотип + крестик), как на изображении -->
         <div class="mx-auto max-w-[1720px] px-4 sm:px-6">
           <div class="flex h-[74px] items-center justify-between">
             <a
-              href="/"
+              :href="headerData.brandHref"
               class="flex shrink-0 items-center gap-3 text-white"
-              aria-label="Ai4Business"
+              :aria-label="headerData.brandName"
               @click="handleMenuItemClick"
             >
               <img
-                src="/logo.svg"
-                alt="Ai4Business"
+                :src="siteData.assets.images.logo"
+                :alt="headerData.brandName"
                 class="h-11 w-auto rounded-full"
                 draggable="false"
               />
               <span class="text-[20px] font-semibold leading-none tracking-[-0.02em]">
-                Ai4Business
+                {{ headerData.brandName }}
               </span>
             </a>
 
             <button
               type="button"
               class="inline-flex h-11 w-11 items-center justify-center text-white"
-              aria-label="Закрыть меню"
+              :aria-label="headerData.aria.closeMenu"
               @click="closeMobileMenu"
             >
               <svg viewBox="0 0 24 24" class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
@@ -299,7 +299,7 @@ onBeforeUnmount(() => {
         <!-- Меню по центру -->
         <div class="flex h-[calc(100vh-74px)] flex-col">
           <div class="flex flex-1 items-center justify-center px-6">
-            <nav class="-mt-6 flex flex-col items-center gap-5 text-center" aria-label="Мобильная навигация">
+            <nav class="-mt-6 flex flex-col items-center gap-5 text-center" :aria-label="headerData.aria.mobileNav">
               <a
                 v-for="item in navItems"
                 :key="item.href"
@@ -321,8 +321,8 @@ onBeforeUnmount(() => {
           <div class="pb-10">
             <div class="flex items-center justify-center gap-4">
               <a
-                href="#"
-                aria-label="WhatsApp"
+                :href="socialLinksById.whatsapp?.href || '#'"
+                :aria-label="socialLinksById.whatsapp?.label || 'WhatsApp'"
                 class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#6A5EFD] text-black shadow-[0_10px_24px_rgba(106,94,253,0.35)]"
                 @click.prevent
               >
@@ -343,8 +343,8 @@ onBeforeUnmount(() => {
               </a>
 
               <a
-                href="#"
-                aria-label="Instagram"
+                :href="socialLinksById.instagram?.href || '#'"
+                :aria-label="socialLinksById.instagram?.label || 'Instagram'"
                 class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#6A5EFD] text-black shadow-[0_10px_24px_rgba(106,94,253,0.35)]"
                 @click.prevent
               >
@@ -364,8 +364,8 @@ onBeforeUnmount(() => {
               </a>
 
               <a
-                href="#"
-                aria-label="Telegram"
+                :href="socialLinksById.telegram?.href || '#'"
+                :aria-label="socialLinksById.telegram?.label || 'Telegram'"
                 class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#6A5EFD] text-black shadow-[0_10px_24px_rgba(106,94,253,0.35)]"
                 @click.prevent
               >

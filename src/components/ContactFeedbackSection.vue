@@ -4,7 +4,7 @@
     class="relative scroll-mt-[92px] overflow-hidden bg-[#01020a] pt-4 pb-0 sm:pt-5 sm:pb-0 lg:scroll-mt-[104px] lg:pt-6 lg:pb-0"
   >
     <img
-      src="/bg-fon.png"
+      :src="siteData.assets.images.sectionBackground"
       alt=""
       aria-hidden="true"
       class="pointer-events-none absolute inset-0 h-full w-full object-cover"
@@ -40,19 +40,19 @@
             <h2
               class="max-w-[820px] text-[34px] font-semibold leading-[0.96] tracking-[-0.035em] text-white sm:text-[48px] lg:text-[56px] xl:text-[68px]"
             >
-              Готовы увеличить эффективность
+              {{ contactsData.heading.line1 }}
               <span
                 class="block bg-[linear-gradient(90deg,#7A6EFF_0%,#9D96FF_100%)] bg-clip-text text-transparent"
               >
-                и опередить конкурентов?
+                {{ contactsData.heading.accent }}
               </span>
-              <span class="block">Свяжитесь с нами</span>
+              <span class="block">{{ contactsData.heading.line3 }}</span>
             </h2>
 
             <p
               class="mt-6 max-w-[620px] text-[15px] leading-[1.45] tracking-[-0.02em] text-[#ECEAFF] sm:text-[18px] lg:text-[20px] xl:mt-8 xl:text-[22px]"
             >
-              Напишите нам в WhatsApp или Telegram — быстро ответим, уточним задачу и предложим лучший вариант внедрения.
+              {{ contactsData.description }}
             </p>
           </div>
 
@@ -62,7 +62,7 @@
               class="relative w-full max-w-full overflow-hidden rounded-[32px] shadow-[0_30px_80px_rgba(34,24,89,0.38)] lg:max-w-[760px] xl:w-[760px]"
             >
               <img
-                src="/bg.png"
+                :src="siteData.assets.images.ctaBackground"
                 alt=""
                 aria-hidden="true"
                 class="pointer-events-none absolute inset-0 h-full w-full object-cover"
@@ -92,14 +92,14 @@
                 <h3
                   class="max-w-[560px] text-[26px] font-semibold leading-[1.1] tracking-[-0.03em] text-white sm:text-[32px] lg:text-[38px] xl:text-[44px]"
                 >
-                  Выберите удобный
-                  <span class="block">канал связи</span>
+                  {{ contactsData.card.titleLine1 }}
+                  <span class="block">{{ contactsData.card.titleLine2 }}</span>
                 </h3>
 
                 <p
                   class="mt-5 max-w-[560px] text-[14px] leading-[1.45] tracking-[-0.02em] text-[#ECEAFF] sm:text-[16px] lg:text-[18px] xl:mt-6 xl:text-[20px]"
                 >
-                  Открываем чат в один клик — без форм и ожиданий.
+                  {{ contactsData.card.description }}
                 </p>
 
                 <div class="mt-8 grid gap-3 sm:gap-4 lg:mt-10 sm:grid-cols-2">
@@ -113,7 +113,7 @@
                            backdrop-blur-md shadow-[0_16px_40px_rgba(11,12,19,0.30)] transition
                            hover:bg-white/15 active:scale-[0.99]
                            sm:h-[72px] lg:h-[82px] lg:rounded-[22px] lg:text-[18px] xl:h-[92px] xl:rounded-[24px] xl:text-[20px]"
-                    aria-label="Написать в WhatsApp"
+                    :aria-label="contactsData.links.whatsapp.ariaLabel"
                   >
                     <span
                       class="inline-flex h-11 w-11 items-center justify-center rounded-[16px] border border-white/12 bg-[#1E2030]/55 transition group-hover:bg-[#1E2030]/70 sm:h-12 sm:w-12"
@@ -125,7 +125,7 @@
                         <path d="M9.2 9.1c.2-.5.4-.5.7-.5h.5c.1 0 .4.1.5.4l.8 1.8c.1.2 0 .4-.1.6l-.4.5c-.1.1-.2.2-.1.4.2.4.8 1.3 1.8 1.8.2.1.3 0 .4-.1l.5-.6c.2-.2.4-.2.6-.1l1.7.8c.3.1.4.4.4.5v.5c0 .3-.2.5-.4.6-.5.2-1.1.4-1.8.2-1-.3-2.1-.9-3.1-1.9-1-1-1.6-2.1-1.9-3.1-.2-.8 0-1.4.2-1.8Z" />
                       </svg>
                     </span>
-                    <span>WhatsApp</span>
+                    <span>{{ contactsData.links.whatsapp.label }}</span>
                   </a>
 
                   <!-- Telegram -->
@@ -138,7 +138,7 @@
                            backdrop-blur-md shadow-[0_16px_40px_rgba(11,12,19,0.30)] transition
                            hover:bg-white/15 active:scale-[0.99]
                            sm:h-[72px] lg:h-[82px] lg:rounded-[22px] lg:text-[18px] xl:h-[92px] xl:rounded-[24px] xl:text-[20px]"
-                    aria-label="Написать в Telegram"
+                    :aria-label="contactsData.links.telegram.ariaLabel"
                   >
                     <span
                       class="inline-flex h-11 w-11 items-center justify-center rounded-[16px] border border-white/12 bg-[#1E2030]/55 transition group-hover:bg-[#1E2030]/70 sm:h-12 sm:w-12"
@@ -149,12 +149,12 @@
                         <path d="M20.8 4.6c.4-.2.8.2.7.6l-2.8 13c-.1.5-.7.7-1.1.5l-4.1-3-2.1 2c-.2.2-.4.3-.7.3l.4-4.3 7.8-7.1-9.7 6.1-3.9-1.2c-.6-.2-.6-1 .1-1.3l15.4-5.6Z" />
                       </svg>
                     </span>
-                    <span>Telegram</span>
+                    <span>{{ contactsData.links.telegram.label }}</span>
                   </a>
                 </div>
 
                 <p class="mt-6 text-xs text-white/70 sm:text-sm">
-                  Отвечаем обычно в течение 5–15 минут в рабочее время.
+                  {{ contactsData.card.responseTime }}
                 </p>
               </div>
             </div>
@@ -187,17 +187,17 @@
             <div class="flex items-start justify-between gap-4 border-b border-white/10 px-5 py-5 sm:px-7">
               <div>
                 <h3 id="contact-form-title" class="text-xl font-semibold tracking-[-0.02em] text-white sm:text-2xl">
-                  Оставить заявку
+                  {{ contactsData.form.title }}
                 </h3>
                 <p class="mt-2 text-sm text-[#BDC1E2] sm:text-base">
-                  Мы свяжемся с вами и подберём оптимальный формат внедрения.
+                  {{ contactsData.form.subtitle }}
                 </p>
               </div>
 
               <button
                 type="button"
                 class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
-                aria-label="Закрыть форму"
+                :aria-label="contactsData.form.closeAriaLabel"
                 @click="closeForm"
               >
                 <svg viewBox="0 0 20 20" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -208,34 +208,34 @@
 
             <form class="space-y-4 px-5 py-5 sm:px-7 sm:py-6" @submit.prevent="submitForm">
               <label class="block">
-                <span class="mb-2 block text-sm font-medium text-[#E5E7FF]">Имя</span>
+                <span class="mb-2 block text-sm font-medium text-[#E5E7FF]">{{ contactsData.form.labels.name }}</span>
                 <input
                   v-model.trim="form.name"
                   type="text"
                   class="w-full rounded-[14px] border border-white/10 bg-white/5 px-4 py-3 text-white outline-none placeholder:text-[#9AA0C8] focus:border-white/25 focus-visible:ring-2 focus-visible:ring-white/15"
-                  placeholder="Введите имя"
+                  :placeholder="contactsData.form.placeholders.name"
                   required
                 />
               </label>
 
               <label class="block">
-                <span class="mb-2 block text-sm font-medium text-[#E5E7FF]">Телефон / Email</span>
+                <span class="mb-2 block text-sm font-medium text-[#E5E7FF]">{{ contactsData.form.labels.contact }}</span>
                 <input
                   v-model.trim="form.contact"
                   type="text"
                   class="w-full rounded-[14px] border border-white/10 bg-white/5 px-4 py-3 text-white outline-none placeholder:text-[#9AA0C8] focus:border-white/25 focus-visible:ring-2 focus-visible:ring-white/15"
-                  placeholder="+7 (...) или email"
+                  :placeholder="contactsData.form.placeholders.contact"
                   required
                 />
               </label>
 
               <label class="block">
-                <span class="mb-2 block text-sm font-medium text-[#E5E7FF]">Комментарий</span>
+                <span class="mb-2 block text-sm font-medium text-[#E5E7FF]">{{ contactsData.form.labels.comment }}</span>
                 <textarea
                   v-model.trim="form.comment"
                   rows="4"
                   class="w-full resize-none rounded-[14px] border border-white/10 bg-white/5 px-4 py-3 text-white outline-none placeholder:text-[#9AA0C8] focus:border-white/25 focus-visible:ring-2 focus-visible:ring-white/15"
-                  placeholder="Кратко опишите задачу"
+                  :placeholder="contactsData.form.placeholders.comment"
                 ></textarea>
               </label>
 
@@ -244,7 +244,7 @@
                   type="submit"
                   class="inline-flex h-12 w-full items-center justify-center rounded-[14px] border border-white/20 bg-[linear-gradient(90deg,#6F63FF_0%,#8B7FFF_100%)] px-5 text-base font-medium text-white shadow-[0_14px_36px_rgba(92,80,255,0.35)] transition hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
                 >
-                  Отправить заявку
+                  {{ contactsData.form.submitLabel }}
                 </button>
               </div>
             </form>
@@ -257,14 +257,13 @@
 
 <script setup>
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { siteData } from '@/assets/data'
 
-const CONTACT_FORM_OPEN_EVENT = 'contact-feedback-form:open'
-
-// ВАЖНО: вставь сюда свои реальные контакты.
-// Сейчас стоят безопасные заглушки, чтобы ничего случайно не "утекло" в прод.
-const WHATSAPP_PHONE_E164 = '' // пример: '79991234567' (без +)
-const WHATSAPP_TEXT = 'Здравствуйте! Хочу увеличить эффективность продаж с помощью AI. Подскажите, что нужно для старта?'
-const TELEGRAM_USERNAME = '' // пример: 'moonai_support' (без @)
+const contactsData = siteData.contacts
+const CONTACT_FORM_OPEN_EVENT = siteData.events.contactFormOpen
+const WHATSAPP_PHONE_E164 = contactsData.links.whatsapp.phoneE164
+const WHATSAPP_TEXT = contactsData.links.whatsapp.message
+const TELEGRAM_USERNAME = contactsData.links.telegram.username
 
 const whatsappHref = computed(() => {
   if (!WHATSAPP_PHONE_E164) return '#'

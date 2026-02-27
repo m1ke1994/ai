@@ -1,5 +1,7 @@
 <script setup>
-const logos = ['/1.svg', '/2.svg', '/3.svg', '/4.svg', '/5.svg']
+import { siteData } from '@/assets/data'
+
+const logos = siteData.heroLogos.logos
 </script>
 
 <template>

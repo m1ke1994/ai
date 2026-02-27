@@ -1,30 +1,11 @@
 <script setup>
-// hiro.png tuning (size + offsets)
-const hiroMobileImageVars = {
-  '--hiro-mobile-w': '320px',
-  '--hiro-mobile-max-w': '86vw',
-  '--hiro-mobile-w-sm': '360px',
-  '--hiro-mobile-max-w-sm': '80vw',
-}
+import { siteData } from '@/assets/data'
 
-const hiroDesktopImageVars = {
-  '--hiro-desktop-right': '50px',
-  '--hiro-desktop-bottom': '-100px',
-  '--hiro-desktop-w': '600px',
-  '--hiro-desktop-w-xl': '600px',
-  '--hiro-desktop-w-2xl': '600px',
-}
-
-const heroFloatingBadgesVars = {
-  '--hero-badges-left': '2%',
-  '--hero-badges-top': '49%',
-}
-
-const stats = [
-  { value: '260%', label: 'Рост конверсии веб-сайта' },
-  { value: '72%', label: 'Конверсия из чата в горячий лид' },
-  { value: '210%', label: 'Улучшение качества входящих лидов' },
-]
+const heroData = siteData.hero
+const hiroMobileImageVars = heroData.imageVars.mobile
+const hiroDesktopImageVars = heroData.imageVars.desktop
+const heroFloatingBadgesVars = heroData.imageVars.floatingBadges
+const stats = heroData.stats
 </script>
 
 <template>
@@ -46,7 +27,7 @@ const stats = [
     />
 
     <img
-      src="/tilda.png"
+      :src="siteData.assets.images.heroTexture"
       alt=""
       aria-hidden="true"
       class="pointer-events-none absolute bottom-[-250px] left-1/2 z-[1] w-[88%] min-w-[620px] -translate-x-1/2 select-none opacity-5 sm:min-w-[760px]"
@@ -55,8 +36,8 @@ const stats = [
 
     <!-- desktop phone -->
     <img
-      src="/hiro.png"
-      alt="Интерфейс переписки в мессенджере на смартфоне"
+      :src="siteData.assets.images.heroPhone"
+      :alt="heroData.phoneAlt"
       :style="hiroDesktopImageVars"
       class="pointer-events-none absolute right-[var(--hiro-desktop-right)] bottom-[var(--hiro-desktop-bottom)] z-[5] hidden w-[var(--hiro-desktop-w)] max-w-full object-contain select-none lg:block xl:w-[var(--hiro-desktop-w-xl)] xl:max-w-none 2xl:w-[var(--hiro-desktop-w-2xl)]"
       draggable="false"
@@ -69,12 +50,12 @@ const stats = [
         <h1
           class="max-w-[360px] text-[30px] font-semibold leading-[1.15] tracking-[-0.03em] text-white sm:max-w-[440px] sm:text-[34px]"
         >
-          <span class="block">ИИ отдел продаж</span>
-          <span class="block">для вашего бизнеса</span>
+          <span class="block">{{ heroData.titleLines[0] }}</span>
+          <span class="block">{{ heroData.titleLines[1] }}</span>
         </h1>
 
         <p class="mt-5 max-w-[360px] text-[14px] leading-[1.5] text-[#A9AEC8] sm:max-w-[460px] sm:text-[15px]">
-          Отвечает мгновенно 24/7 на всех языках тысячам клиентов одновременно
+          {{ heroData.description }}
         </p>
 
         <!-- STATS (как на скрине) — сразу под описанием -->
@@ -100,7 +81,7 @@ const stats = [
             </div>
 
             <div class="mt-3 text-center text-[11px] leading-[1.35] text-white/60 sm:mt-4 sm:text-[12px]">
-              Средние показатели конверсии основаны на анализе более 3&nbsp;000 веб-сайтов, использующих наш AI Chatbot.
+              {{ heroData.statsDisclaimer }}
             </div>
           </div>
         </div>
@@ -108,8 +89,8 @@ const stats = [
         <!-- телефон по центру -->
         <div class="mt-7 w-full">
           <img
-            src="/hiro.png"
-            alt="Интерфейс переписки в мессенджере на смартфоне"
+            :src="siteData.assets.images.heroPhone"
+            :alt="heroData.phoneAlt"
             :style="hiroMobileImageVars"
             class="mx-auto w-[var(--hiro-mobile-w)] max-w-[var(--hiro-mobile-max-w)] object-contain sm:w-[var(--hiro-mobile-w-sm)] sm:max-w-[var(--hiro-mobile-max-w-sm)]"
             draggable="false"
@@ -126,12 +107,12 @@ const stats = [
           <h1
             class="max-w-[640px] text-[48px] font-semibold leading-[1.12] tracking-[-0.03em] text-white xl:max-w-[820px] xl:text-[64px] 2xl:text-[72px]"
           >
-            <span class="block">ИИ отдел продаж</span>
-            <span class="mt-3 block">для вашего бизнеса</span>
+            <span class="block">{{ heroData.titleLines[0] }}</span>
+            <span class="mt-3 block">{{ heroData.titleLines[1] }}</span>
           </h1>
 
           <p class="mt-6 max-w-[560px] text-[18px] leading-[1.42] text-[#A9AEC8] xl:mt-8 xl:max-w-[680px] xl:text-[22px]">
-            Отвечает мгновенно 24/7 на всех языках тысячам клиентов одновременно
+            {{ heroData.description }}
           </p>
 
           <!-- STATS (как на скрине) — под описанием, адаптивно -->
@@ -155,7 +136,7 @@ const stats = [
               </div>
 
               <div class="mt-4 text-center text-[12px] leading-[1.35] text-white/60 xl:text-[13px]">
-                Средние показатели конверсии основаны на анализе более 3&nbsp;000 веб-сайтов, использующих наш AI Chatbot.
+                {{ heroData.statsDisclaimer }}
               </div>
             </div>
           </div>

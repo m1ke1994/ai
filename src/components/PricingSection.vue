@@ -1,88 +1,14 @@
 <script setup>
-const CONTACT_FORM_OPEN_EVENT = 'contact-feedback-form:open'
+import { siteData } from '@/assets/data'
+
+const CONTACT_FORM_OPEN_EVENT = siteData.events.contactFormOpen
+const pricingData = siteData.pricing
+const pricingPlans = pricingData.plans
 
 const openContactFormModal = () => {
   if (typeof window === 'undefined') return
   window.dispatchEvent(new Event(CONTACT_FORM_OPEN_EVENT))
 }
-
-const pricingPlans = [
-  {
-    key: 'smart',
-    name: 'SMART AI',
-    topBadge: 'Для сайта',
-    channels: 'Сайт',
-    ctaLabel: 'Оставить заявку',
-    features: [
-      'До 250 страниц сканирования сайта',
-      'Настройка кнопки виджета',
-      'Email-отчёт по лидам',
-      'Лиды в Telegram',
-      'Панель управления',
-      'Настраиваемые ответы AI',
-    ],
-  },
-  {
-    key: 'pro',
-    name: 'PRO AI',
-    topBadge: 'Сайт + Meta',
-    accentBadge: 'Популярный',
-    inheritLine: '(всё из SMART +)',
-    channels: 'Сайт + Meta',
-    ctaLabel: 'Оставить заявку',
-    featured: true,
-    features: [
-      'До 500 страниц сканирования сайта',
-      'История бесед с клиентом',
-      'Полная аналитика',
-      'Интеграция Google Analytics + GTM',
-      'Встроенная CRM',
-      'Интеграция с популярными CRM',
-      'Каталог товаров (1 фид, до 100 товаров)',
-      'Синхронизация с товарными остатками каждые 24 часа',
-      'Meta: инстаграм, фейсбук, ватсап',
-    ],
-  },
-  {
-    key: 'mega',
-    name: 'MEGA AI',
-    topBadge: 'Максимум каналов',
-    accentBadge: 'Лучший выбор',
-    inheritLine: '(всё из PRO +)',
-    channels: 'Сайт + Telegram, VK, Max + Avito + Meta + TikTok, YouTube',
-    ctaLabel: 'Оставить заявку',
-    features: [
-      'До 2 000 страниц сканирования сайта',
-      'До 3 товарных фидов',
-      'До 10 000 товаров',
-      'Синхронизация c товарными остатками каждые 6 часов',
-      'Интеграция с Avito',
-      'Интеграция с системами бронирования Google Календарь, YClients',
-      'Telegram, VK, Max — компаньон',
-      'YouTube, TikTok — компаньон в комментариях',
-      'Улучшенная версия ИИ',
-    ],
-  },
-  {
-    key: 'enterprise',
-    name: 'ENTERPRISE',
-    topBadge: 'Для корпораций',
-    accentBadge: 'Максимум',
-    inheritLine: '(всё из MEGA +)',
-    channels: 'Полное масштабирование под крупный бизнес',
-    ctaLabel: 'Оставить заявку',
-    darkCard: true,
-    features: [
-      'До 10 000 страниц сканирования сайта',
-      'До 10 товарных фидов',
-      'До 200 000 товаров',
-      'Синхронизация каждый 1 час',
-      'Выделенная поддержка',
-      'До 3 сайтов',
-      'Индивидуальные интеграции',
-    ],
-  },
-]
 </script>
 
 <template>
@@ -106,12 +32,12 @@ const pricingPlans = [
         <h2
           class="text-[34px] font-semibold leading-[1.06] tracking-[-0.03em] text-[#111218] sm:text-[44px] lg:text-[66px] lg:leading-[1.04]"
         >
-          Тарифы
+          {{ pricingData.title }}
         </h2>
         <h3
           class="mt-2 text-[26px] font-semibold leading-[1.08] tracking-[-0.03em] text-[#9EA4B8] sm:text-[34px] lg:mt-3 lg:text-[52px] lg:leading-[1.05]"
         >
-          Выберите пакет под ваш бизнес
+          {{ pricingData.subtitle }}
         </h3>
       </div>
 

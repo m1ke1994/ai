@@ -1,47 +1,12 @@
 <script setup>
-const CONTACT_FORM_OPEN_EVENT = 'contact-feedback-form:open'
 import Social_Media from '@/components/Social_Media.vue'
-const openContactFormModal = () => {
-  if (typeof window === 'undefined') return
-  window.dispatchEvent(new Event(CONTACT_FORM_OPEN_EVENT))
-}
+import { siteData } from '@/assets/data'
 
-const valuePoints = [
-  'Бесплатное обучение AI-продавца на ваших данных',
-  'Настройка и интеграция всех каналов и сервисов',
-  'Тестовый период 7 дней (без рисков)',
-  'Безлимитное количество диалогов',
-  'Донастройка и сопровождение на всём периоде использования',
-  'Платите только за ежемесячную подписку',
-]
-
-
-const integrations = [
-  {
-    title: 'Интеграция с CRM',
-    desc: 'Двигает этапы сделки, заполняет поля и ставит задачи',
-  },
-  {
-    title: 'Запись клиентов',
-    desc: 'Назначает клиентам встречи и записи',
-  },
-  {
-    title: 'Товарные фиды',
-    desc: 'Знает остатки по товарам на складе',
-  },
-  {
-    title: 'Slack',
-    desc: 'Уведомления, управление беседами, совместная работа',
-  },
-  {
-    title: 'Google Analytics и Яндекс Метрика/Аналитика',
-    desc: 'События, цели и отчёты по эффективности каналов',
-  },
-  {
-    title: 'Пользовательские вебхуки и API-интеграции',
-    desc: 'Подключение любых систем через API и вебхуки',
-  },
-]
+const aiValueData = siteData.aiValue
+const launchData = aiValueData.launch
+const integrationsData = aiValueData.integrations
+const valuePoints = launchData.valuePoints
+const integrationsRows = integrationsData.rows
 </script>
 
 <template>
@@ -66,14 +31,14 @@ const integrations = [
         <h2
           class="text-[34px] font-semibold leading-[1.06] tracking-[-0.03em] text-[#111218] sm:text-[44px] lg:text-[66px] lg:leading-[1.04]"
         >
-          AI — не статья расходов
+          {{ aiValueData.title }}
         </h2>
         <h3
           class="mt-2 text-[30px] font-semibold leading-[1.06] tracking-[-0.03em] text-[#9EA4B8] sm:text-[40px] lg:mt-3 lg:text-[58px] lg:leading-[1.04]"
         >
-          а
+          {{ aiValueData.subtitlePrefix }}
           <span class="bg-[linear-gradient(90deg,#5E52DE_0%,#8075FF_55%,#6FA9FF_100%)] bg-clip-text text-transparent">
-            источник дохода
+            {{ aiValueData.subtitleHighlight }}
           </span>
         </h3>
       </div>
@@ -111,23 +76,23 @@ const integrations = [
       <span
         class="inline-flex items-center rounded-full border border-[#CFC8FF] bg-[rgba(111,99,255,0.08)] px-3 py-1.5 text-[11px] font-semibold tracking-[0.04em] text-[#5B50CF]"
       >
-        7 дней теста
+        {{ launchData.badgePrimary }}
       </span>
       <span
         class="inline-flex items-center rounded-full border border-[#E3E7F4] bg-white/80 px-3 py-1.5 text-[11px] font-medium tracking-[-0.01em] text-[#5B627E]"
       >
-        Без риска для бизнеса
+        {{ launchData.badgeSecondary }}
       </span>
     </div>
 
     <h4
       class="mt-4 text-[22px] font-semibold leading-[1.08] tracking-[-0.03em] text-[#141633] sm:text-[26px] lg:text-[30px]"
     >
-      Запускаем AI-продавца как рабочий канал продаж, а не как эксперимент
+      {{ launchData.title }}
     </h4>
 
     <p class="mt-3 max-w-[980px] text-[14px] leading-[1.5] tracking-[-0.01em] text-[#646C89] sm:text-[15px] lg:text-[16px]">
-      Вы получаете обучение, интеграции, поддержку и тестовый период до оплаты. Решение должно показать ценность в бизнесе, а не просто красиво выглядеть.
+      {{ launchData.description }}
     </p>
 
     <!-- ✅ ДВЕ КОЛОНКИ В ГОРИЗОНТАЛЬ (всегда рядом) -->
@@ -147,7 +112,7 @@ const integrations = [
         <div class="p-4 sm:p-5 lg:p-6">
           <div class="inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/70 px-3 py-1.5 text-[12px] font-semibold text-[#141633]">
             <span class="h-2 w-2 rounded-full bg-[#78F7C7]" aria-hidden="true"></span>
-            Бесплатная основа
+            {{ launchData.leftLabel }}
           </div>
 
           <div class="mt-4 grid gap-2.5">
@@ -161,7 +126,7 @@ const integrations = [
                 </svg>
               </span>
               <span class="text-[13px] leading-[1.38] tracking-[-0.01em] text-[#20253A] sm:text-[14px]">
-                Бесплатное обучение AI-продавца на ваших данных
+                {{ valuePoints[0] }}
               </span>
             </div>
 
@@ -175,7 +140,7 @@ const integrations = [
                 </svg>
               </span>
               <span class="text-[13px] leading-[1.38] tracking-[-0.01em] text-[#20253A] sm:text-[14px]">
-                Безлимитное количество диалогов
+                {{ valuePoints[1] }}
               </span>
             </div>
 
@@ -189,7 +154,7 @@ const integrations = [
                 </svg>
               </span>
               <span class="text-[13px] leading-[1.38] tracking-[-0.01em] text-[#20253A] sm:text-[14px]">
-                Настройка и интеграция всех каналов и сервисов
+                {{ valuePoints[2] }}
               </span>
             </div>
 
@@ -203,7 +168,7 @@ const integrations = [
                 </svg>
               </span>
               <span class="text-[13px] leading-[1.38] tracking-[-0.01em] text-[#20253A] sm:text-[14px]">
-                Донастройка с сопровождением на всём периоде использования
+                {{ valuePoints[3] }}
               </span>
             </div>
 
@@ -217,7 +182,7 @@ const integrations = [
                 </svg>
               </span>
               <span class="text-[13px] leading-[1.38] tracking-[-0.01em] text-[#20253A] sm:text-[14px]">
-                Тестовый период 7 дней без рисков
+                {{ valuePoints[4] }}
               </span>
             </div>
           </div>
@@ -227,7 +192,7 @@ const integrations = [
         <div class="p-4 sm:p-5 lg:p-6">
           <div class="inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/70 px-3 py-1.5 text-[12px] font-semibold text-[#141633]">
             <span class="h-2 w-2 rounded-full bg-[#6F63FF]" aria-hidden="true"></span>
-            Платная основа
+            {{ launchData.rightLabel }}
           </div>
 
           <div class="mt-4 rounded-[22px] border border-white/50 bg-white/75 p-4 shadow-[0_18px_55px_rgba(18,26,52,0.06)]">
@@ -243,19 +208,19 @@ const integrations = [
 
               <div>
                 <div class="text-[14px] font-semibold tracking-[-0.02em] text-[#141633] sm:text-[15px]">
-                  Платите только ежемесячную подписку
+                  {{ launchData.paidTitle }}
                 </div>
                 <div class="mt-1 text-[13px] leading-[1.5] tracking-[-0.01em] text-[#646C89] sm:text-[14px]">
-                  Оплата начинается только после теста и подтверждения результата. Никаких разовых платежей за запуск — только ежемесячная подписка за использование и сопровождение.
+                  {{ launchData.paidDescription }}
                 </div>
               </div>
             </div>
           </div>
 
           <div class="mt-4 rounded-[18px] border border-[#DCDFF3] bg-[linear-gradient(135deg,rgba(111,99,255,0.08)_0%,rgba(126,182,255,0.06)_100%)] p-4 shadow-[0_14px_34px_rgba(92,80,255,0.08)]">
-            <div class="text-[13px] font-semibold tracking-[-0.01em] text-[#2D3350]">Прозрачно и предсказуемо</div>
+            <div class="text-[13px] font-semibold tracking-[-0.01em] text-[#2D3350]">{{ launchData.noteTitle }}</div>
             <p class="mt-2 text-[12px] leading-[1.45] text-[#5E6685] sm:text-[13px]">
-              Вы платите за понятный результат и постоянную работу AI-продавца в ваших каналах, с обновлением данных и поддержкой.
+              {{ launchData.noteDescription }}
             </p>
           </div>
         </div>
@@ -277,18 +242,18 @@ const integrations = [
   <div class="relative">
     <div class="inline-flex items-center gap-2 rounded-full border border-[#E3E8F6] bg-white/85 px-3 py-1.5 text-[11px] font-medium tracking-[-0.01em] text-[#59607D]">
       <span class="h-2 w-2 rounded-full bg-[#7BB3FF]" aria-hidden="true" />
-      Интеграции и аналитика
+      {{ integrationsData.pill }}
     </div>
 
     <h4 class="mt-4 text-[20px] font-semibold tracking-[-0.03em] text-[#141633] sm:text-[22px]">
-      Подключаем данные, каналы и контроль эффективности
+      {{ integrationsData.title }}
     </h4>
 
     <!-- LIST -->
     <div class="mt-4 overflow-hidden rounded-[22px] border border-[#E4E7F2] bg-[#ECEAF2]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]">
       <div class="divide-y divide-white/80">
         <div
-          v-for="row in integrations"
+          v-for="row in integrationsRows"
           :key="row.title"
           class="grid grid-cols-1 gap-3 bg-[#ECEAF2]/95 px-4 py-4 sm:grid-cols-[minmax(210px,1fr)_minmax(260px,1.4fr)_auto] sm:items-center sm:gap-5 sm:px-5"
         >
@@ -314,7 +279,7 @@ const integrations = [
            
             <div class="flex -space-x-2.5">
               <span class="relative z-[2] grid  w-24 place-items-center overflow-hidden border border-white bg-white shadow-[0_10px_24px_rgba(18,26,52,0.12)]">
-                <img src="/banner.png" alt="" class="h-full w-full object-contain p-1.5" />
+                <img :src="siteData.assets.images.integrationsBanner" alt="" class="h-full w-full object-contain p-1.5" />
               </span>
            
             </div>

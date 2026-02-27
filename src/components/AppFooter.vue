@@ -2,15 +2,15 @@
   <footer class="bg-black">
     <div class="mx-auto max-w-[1840px] px-4 py-10 sm:py-12 lg:py-14">
       <div class="flex flex-col gap-8 lg:grid lg:grid-cols-[minmax(220px,520px)_1fr] lg:items-start lg:gap-x-10">
-        <a href="/" class="inline-flex items-center gap-3 text-white" aria-label="Ai4Business">
+        <a :href="footerData.brandHref" class="inline-flex items-center gap-3 text-white" :aria-label="footerData.brandName">
           <img
-            src="/logo.svg"
-            alt="Ai4Business"
+            :src="siteData.assets.images.logo"
+            :alt="footerData.brandName"
             class="h-11 w-auto rounded-full sm:h-[52px] lg:h-[58px]"
             draggable="false"
           />
           <span class="text-[20px] font-semibold leading-none tracking-[-0.02em] sm:text-[24px] lg:text-[26px]">
-            Ai4Business
+            {{ footerData.brandName }}
           </span>
         </a>
 
@@ -28,10 +28,10 @@
 
           <div class="flex flex-wrap items-center gap-x-6 gap-y-2 lg:gap-x-8">
             <a
-              href="mailto:support@mooonai.com"
+              :href="`mailto:${footerData.supportEmail}`"
               class="text-[15px] leading-none tracking-[-0.02em] text-[#8E91A9] transition hover:text-white sm:text-[17px] lg:text-[18px]"
             >
-              support@mooonai.com
+              {{ footerData.supportEmail }}
             </a>
 
             <a
@@ -51,17 +51,8 @@
 </template>
 
 <script setup>
-const navItems = [
-  { label: 'Преимущества', href: '#advantages' },
-  { label: 'Этапы', href: '#steps' },
-  { label: 'Отзывы', href: '#reviews' },
-  { label: 'Контакты', href: '#contacts' },
-  { label: 'Тарифы', href: '#pricing' },
-]
+import { siteData } from '@/assets/data'
 
-const legalItems = [
-  { label: 'Политика конфиденциальности', href: '#' },
-  { label: 'Публичная оферта', href: '#' },
-  { label: 'Пользовательское соглашение', href: '#' },
-]
+const footerData = siteData.footer
+const { navItems, legalItems } = footerData
 </script>

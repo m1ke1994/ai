@@ -1,44 +1,16 @@
 <script setup>
-const CONTACT_FORM_OPEN_EVENT = 'contact-feedback-form:open'
+import { siteData } from '@/assets/data'
+
+const CONTACT_FORM_OPEN_EVENT = siteData.events.contactFormOpen
+const integrationStepsData = siteData.integrationSteps
+const integrationSteps = integrationStepsData.steps
+const ctaTitleLines = integrationStepsData.ctaTitle.split('\n')
 
 const openContactFormModal = () => {
   if (typeof window !== 'undefined') {
     window.dispatchEvent(new Event(CONTACT_FORM_OPEN_EVENT))
   }
 }
-
-const integrationSteps = [
-  {
-    day: 'День 1',
-    title: 'Брифинг',
-    desc: 'Проводим интервью, узнаем все необходимое для настройки бота',
-    image: '/13.png',
-  },
-  {
-    day: 'День 2',
-    title: 'Создание бота',
-    desc: 'Технические и sales-специалисты разрабатывают логику и сценарии работы AI-продавца',
-    image: '/11.png',
-  },
-  {
-    day: 'День 3',
-    title: 'Тестирование чат-бота',
-    desc: 'Создаем прототип бота и проводим тестирование сценариев общения',
-    image: '/12.png',
-  },
-  {
-    day: 'День 4',
-    title: 'Релиз чат-бота',
-    desc: 'Подключаем чат-бота ко всем мессенджерам и интегрируем в вашу CRM',
-    image: '/icon icon.png',
-  },
-  {
-    day: 'Каждый месяц',
-    title: 'Поддержка и аналитика',
-    desc: 'Следим за качеством ответов и предоставляем отчеты о работе AI-продавца',
-    image: '/10.png',
-  },
-]
 </script>
 
 <template>
@@ -51,12 +23,12 @@ const integrationSteps = [
       <h2
         class="text-[30px] font-semibold tracking-[-0.02em] !text-black sm:text-[34px] md:text-[40px] lg:text-[42px] xl:text-[48px]"
       >
-        Этапы интеграции
+        {{ integrationStepsData.title }}
       </h2>
       <h3
         class="mt-3 text-[30px] font-semibold tracking-[-0.02em] !text-gray-400 sm:text-[34px] md:text-[40px] lg:mt-4 lg:text-[42px] xl:text-[48px]"
       >
-        AI-продавца
+        {{ integrationStepsData.subtitle }}
       </h3>
     </div>
 
@@ -99,7 +71,7 @@ const integrationSteps = [
         <!-- CTA карточка последней в колонке -->
         <div class="relative overflow-hidden rounded-[26px] bg-[#1B1730] p-6">
           <img
-            src="/bg.png"
+            :src="siteData.assets.images.ctaBackground"
             alt=""
             aria-hidden="true"
             class="pointer-events-none absolute inset-0 h-full w-full object-cover"
@@ -114,8 +86,8 @@ const integrationSteps = [
             <h4
               class="text-[28px] font-semibold leading-[0.98] tracking-[-0.03em] text-white sm:text-[34px]"
             >
-              От брифинга до<br />
-              ИИ-продаж за 7 дней
+              {{ ctaTitleLines[0] }}<br />
+              {{ ctaTitleLines[1] }}
             </h4>
           </div>
 
@@ -126,7 +98,7 @@ const integrationSteps = [
                    backdrop-blur-md transition hover:bg-white/20 active:scale-[0.99]"
             @click="openContactFormModal"
           >
-            Оставить заявку
+            {{ integrationStepsData.ctaButtonLabel }}
           </button>
         </div>
       </div>
@@ -205,7 +177,7 @@ const integrationSteps = [
             class="relative flex min-h-[520px] flex-col justify-between overflow-hidden rounded-[32px] bg-[#1B1730] p-8 xl:h-[520px] xl:p-10"
           >
             <img
-              src="/bg.png"
+              :src="siteData.assets.images.ctaBackground"
               alt=""
               aria-hidden="true"
               class="pointer-events-none absolute inset-0 h-full w-full object-cover"
@@ -218,8 +190,8 @@ const integrationSteps = [
 
             <div class="relative z-10">
               <h4 class="text-[30px] font-semibold leading-[0.96] tracking-[-0.03em] text-white xl:text-[40px]">
-                От брифинга до<br />
-                ИИ-продаж за 7 дней
+                {{ ctaTitleLines[0] }}<br />
+                {{ ctaTitleLines[1] }}
               </h4>
             </div>
 
@@ -230,7 +202,7 @@ const integrationSteps = [
                      backdrop-blur-md transition hover:bg-white/20 xl:w-[230px]"
               @click="openContactFormModal"
             >
-              Оставить заявку
+              {{ integrationStepsData.ctaButtonLabel }}
             </button>
           </div>
         </div>

@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <section
     id="reviews"
     class="scroll-mt-[92px] bg-[#020205] py-8 sm:py-10 lg:scroll-mt-[104px] lg:py-12"
@@ -11,8 +11,8 @@
             id="reviews-title"
             class="text-[42px] font-semibold leading-[0.95] tracking-[-0.03em] text-white sm:text-[56px] lg:text-[54px]"
           >
-            Нам доверили.
-            <span class="mt-2 block text-[#A8ADC4]">И не пожалели.</span>
+            {{ reviewsData.titleMain }}
+            <span class="mt-2 block text-[#A8ADC4]">{{ reviewsData.titleAccent }}</span>
           </h2>
         </div>
 
@@ -21,7 +21,7 @@
             type="button"
             class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-[#151723] text-[#D8DBEF] transition hover:border-white/25 hover:bg-[#1A1D2B] disabled:cursor-not-allowed disabled:opacity-40"
             :disabled="pageCount <= 1"
-            aria-label="Предыдущая группа отзывов"
+            :aria-label="reviewsData.actions.prevPageAria"
             @click="goPrev"
           >
             <svg viewBox="0 0 20 20" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.75">
@@ -33,7 +33,7 @@
             type="button"
             class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-[#151723] text-[#D8DBEF] transition hover:border-white/25 hover:bg-[#1A1D2B] disabled:cursor-not-allowed disabled:opacity-40"
             :disabled="pageCount <= 1"
-            aria-label="Следующая группа отзывов"
+            :aria-label="reviewsData.actions.nextPageAria"
             @click="goNext"
           >
             <svg viewBox="0 0 20 20" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.75">
@@ -86,7 +86,7 @@
                   class="mt-auto inline-flex h-[50px] w-full max-w-[192px] shrink-0 items-center justify-center rounded-[14px] border border-white/60 bg-transparent text-[18px] font-semibold tracking-[-0.01em] text-white transition hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
                   @click="openReview(review)"
                 >
-                  Читать далее
+                  {{ reviewsData.actions.readMore }}
                 </button>
               </article>
             </div>
@@ -97,7 +97,7 @@
       <div
         v-if="pageCount > 1"
         class="mt-6 flex items-center justify-center gap-2"
-        aria-label="Индикатор страниц отзывов"
+        :aria-label="reviewsData.actions.paginationAria"
       >
         <button
           v-for="page in pageCount"
@@ -105,7 +105,7 @@
           type="button"
           class="h-2 rounded-full transition"
           :class="page - 1 === currentPage ? 'w-8 bg-white' : 'w-2 bg-white/25 hover:bg-white/45'"
-          :aria-label="`Перейти к странице отзывов ${page}`"
+          :aria-label="`${reviewsData.actions.paginationGoTo} ${page}`"
           :aria-current="page - 1 === currentPage ? 'true' : 'false'"
           @click="currentPage = page - 1"
         />
@@ -161,7 +161,7 @@
                   ref="closeButtonRef"
                   type="button"
                   class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
-                  aria-label="Закрыть окно отзыва"
+                  :aria-label="reviewsData.actions.closeModalAria"
                   @click="closeReview"
                 >
                   <svg viewBox="0 0 20 20" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.75">
@@ -178,7 +178,7 @@
 
                   <div v-if="activeReview.results?.length" class="rounded-2xl border border-white/8 bg-white/3 p-4 sm:p-5">
                     <p class="text-sm font-semibold uppercase tracking-[0.08em] text-[#A8ADC4]">
-                      Результаты
+                      {{ reviewsData.modalResultsTitle }}
                     </p>
                     <ul class="mt-3 list-disc space-y-2 pl-5 marker:text-[#C4C8DD]">
                       <li v-for="(result, idx) in activeReview.results" :key="`${activeReview.id}-result-${idx}`">
@@ -198,150 +198,10 @@
 
 <script setup>
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { siteData } from '@/assets/data'
 
-const reviews = [
-  {
-    id: 'nova-invest',
-    company: 'Nova Invest',
-    person: 'Андрей, руководитель отдела продаж Nova Invest',
-    previewParagraphs: [
-      'Подключили MoonAI для первичной консультации и квалификации обращений с сайта. Поток стал обрабатываться быстрее, а менеджеры перестали тонуть в рутине.',
-    ],
-    previewBullets: [
-      'сократили время первого ответа до секунд',
-      'стало меньше «пустых» обращений в отделе продаж',
-      'клиенты чаще доходят до заявки/звонка',
-      'стали стабильнее показатели в выходные и вечером',
-    ],
-    detailsParagraphs: [
-      'Нам было важно быстро отвечать и при этом не терять качество: клиенты часто задают похожие вопросы и ждут понятного, уверенного ответа.',
-      'MoonAI взял на себя первичный диалог, уточнение потребностей и сбор контактов. Дальше менеджеры подключаются уже к «тёплым» лидам.',
-      'Понравилось, что сценарии подстроили под нашу лексику и правила общения: без воды, по делу, с корректной подачей.',
-      'В первые дни после запуска оперативно допилили ответы и формулировки — это сильно ускорило выход на стабильный результат.',
-    ],
-    results: [
-      'Быстрый первый ответ на обращения с сайта',
-      'Снижение нагрузки на менеджеров на первичном этапе',
-      'Больше квалифицированных лидов в работе',
-      'Стабильная обработка заявок вне рабочего времени',
-    ],
-  },
-  {
-    id: 'oknabutik',
-    company: 'ОкнаБутик',
-    person: 'Марина, менеджер по развитию ОкнаБутик',
-    previewParagraphs: [
-      'Запустили MoonAI, чтобы не терять заявки на расчёт и консультации. Клиенты получают ответы мгновенно, а мы — структурированные данные для расчёта.',
-    ],
-    previewBullets: [
-      'быстрее собираем параметры запроса',
-      'меньше «пропущенных» сообщений',
-      'менеджеры подключаются уже на этапе расчёта',
-    ],
-    detailsParagraphs: [
-      'Раньше значительная часть времени уходила на повторяющиеся вопросы и уточнение базовых параметров. Это тормозило расчёт и снижало конверсию.',
-      'Теперь MoonAI задаёт правильные вопросы по порядку, фиксирует ответы и передаёт менеджеру уже подготовленный запрос.',
-      'Отдельно отмечу аккуратный стиль общения: без навязчивости, при этом уверенно ведёт клиента к следующему шагу.',
-    ],
-    results: [
-      'Ускорение сбора данных для расчёта',
-      'Снижение доли потерянных обращений',
-      'Больше подготовленных заявок для менеджера',
-    ],
-  },
-  {
-    id: 'mob-md',
-    company: 'MOB.md',
-    person: 'Денис, операционный менеджер MOB.md',
-    previewParagraphs: [
-      'Подключили MoonAI для поддержки и консультаций по услугам/продукту. Стало меньше ожидания, а повторяющиеся вопросы закрываются автоматически.',
-    ],
-    previewBullets: [
-      'меньше нагрузки на поддержку',
-      'быстрее ответы по типовым запросам',
-      'люди чаще доходят до целевого действия',
-    ],
-    detailsParagraphs: [
-      'Основной запрос был простой: ускорить ответы и разгрузить команду. В часы пик поддержка не успевала, часть клиентов уходила.',
-      'MoonAI закрывает типовые вопросы и помогает пользователю сделать следующий шаг: оформить заявку, уточнить детали, оставить контакт.',
-      'Самое ценное — стабильность: качество ответа не «плывёт» от усталости, и клиент всегда получает понятную навигацию.',
-    ],
-    results: [
-      'Сокращение времени ожидания ответа',
-      'Снижение нагрузки на операторов/менеджеров',
-      'Рост доли обращений, доведённых до заявки',
-    ],
-  },
-  {
-    id: 'academkids',
-    company: 'AcademKids',
-    person: 'Ольга, администратор AcademKids',
-    previewParagraphs: [
-      'MoonAI автоматизировал первичную запись и ответы на частые вопросы родителей. Теперь заявки не теряются вечером и в выходные.',
-    ],
-    previewBullets: [
-      'запись работает 24/7',
-      'быстрее собираем данные для администратора',
-      'родители получают понятные ответы сразу',
-    ],
-    detailsParagraphs: [
-      'В сфере обучения очень важна скорость реакции: родитель написал — хочет ответ сейчас. Раньше это зависело от загруженности администратора.',
-      'MoonAI уточняет возраст, формат, интересующее направление, удобное время и передаёт нам уже готовую заявку.',
-      'После запуска мы быстро подправили формулировки под наш тон общения и получили ровный, «брендовый» стиль диалога.',
-    ],
-    results: [
-      'Стабильная запись 24/7',
-      'Больше заявок с корректными данными',
-      'Меньше ручной рутины у администратора',
-    ],
-  },
-  {
-    id: 'ru-biss',
-    company: 'RU-BISS',
-    person: 'Илья, руководитель проектов RU-BISS',
-    previewParagraphs: [
-      'Внедрили MoonAI для первичной консультации и маршрутизации обращений. Теперь клиент быстрее попадает в нужный сценарий, а менеджеры — в нужную задачу.',
-    ],
-    previewBullets: [
-      'быстрее квалификация и распределение',
-      'меньше разрозненных диалогов',
-      'понятная логика общения и фиксация данных',
-    ],
-    detailsParagraphs: [
-      'Нам важно, чтобы клиент сразу получал корректный ответ и понимал дальнейшие шаги. MoonAI помогает держать одинаковое качество коммуникации.',
-      'Сценарии настроили так, чтобы бот задавал вопросы по делу и не перегружал клиента лишними деталями.',
-      'После внедрения стало проще контролировать входящий поток: диалоги стали структурированными, а менеджеры получили фокус на закрытии.',
-    ],
-    results: [
-      'Ускорение квалификации входящих обращений',
-      'Снижение хаоса в коммуникациях',
-      'Рост доли обращений, доведённых до следующего шага',
-    ],
-  },
-  {
-    id: 'pokolenie-plus',
-    company: 'Поколение+',
-    person: 'Светлана, управляющая Поколение+',
-    previewParagraphs: [
-      'MoonAI помог закрыть первичную коммуникацию: ответы на вопросы, запись/заявки и сбор контактов. В результате меньше пропущенных обращений.',
-    ],
-    previewBullets: [
-      'клиенты получают ответ сразу',
-      'всё фиксируется и ничего не теряется',
-      'команда тратит время на важное, а не на рутину',
-    ],
-    detailsParagraphs: [
-      'Мы искали решение, которое будет вежливо и понятно общаться, но при этом вести клиента к конкретному действию.',
-      'MoonAI справился: уточняет запрос, даёт ответы, помогает записаться/оставить заявку и передаёт контакт нам.',
-      'Особенно заметен эффект вне рабочего времени — когда раньше часть обращений просто «сгорала».',
-    ],
-    results: [
-      'Сокращение пропущенных обращений',
-      'Более стабильный поток заявок в нерабочее время',
-      'Разгрузка сотрудников от повторяющихся вопросов',
-    ],
-  },
-]
+const reviewsData = siteData.reviews
+const reviews = reviewsData.items
 
 const viewportWidth = ref(typeof window !== 'undefined' ? window.innerWidth : 1440)
 const currentPage = ref(0)
@@ -450,3 +310,4 @@ onBeforeUnmount(() => {
   }
 })
 </script>
+
