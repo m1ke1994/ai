@@ -3,6 +3,26 @@ import { siteData } from '@/assets/data'
 
 const socialData = siteData.socialMedia
 const { contactChannels } = socialData
+
+const socialConfigByLabel = {
+  'Сайт': { href: '#', icon: '/icons/web.svg' },
+  Telegram: { href: '#', icon: '/icons/telegram.svg' },
+  Avito: { href: '#', icon: '/icons/avito.svg' },
+  Instagram: { href: '#', icon: '/icons/instagram.svg' },
+  Facebook: { href: '#', icon: '/icons/facebook.svg' },
+  WhatsApp: { href: '#', icon: '/icons/whatsapp.svg' },
+  YouTube: { href: '#', icon: '/icons/youtube.svg' },
+  TikTok: { href: '#', icon: '/icons/tiktok.svg' },
+  Mail: { href: '#', icon: '/icons/mail.svg' },
+  'ВКонтакте': { href: '#', icon: '/icons/vk.svg' },
+  Max: { href: '#', icon: '/icons/Max.svg' },
+}
+
+const socialItems = contactChannels.map((label) => ({
+  label,
+  href: socialConfigByLabel[label]?.href || '#',
+  icon: socialConfigByLabel[label]?.icon || siteData.assets.icons.check,
+}))
 </script>
 
 <template>
@@ -42,36 +62,38 @@ const { contactChannels } = socialData
 
     <div class="relative grid gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center">
       <!-- LEFT: text + channels -->
-      <div>
+      <div class="h-full rounded-[24px] border border-[#E6EAF4] bg-white p-4 shadow-[0_20px_50px_rgba(18,26,52,0.12)] sm:p-5 lg:p-6">
         <div
-          class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] font-medium tracking-[-0.01em] text-white/80 backdrop-blur"
+          class="inline-flex items-center gap-2 rounded-full border border-[#E3E8F6] bg-white px-3 py-1.5 text-[11px] font-medium tracking-[-0.01em] text-[#59607D]"
         >
           <span class="h-2 w-2 rounded-full bg-[#6F63FF] shadow-[0_0_14px_rgba(111,99,255,0.75)]" aria-hidden="true" />
           {{ socialData.pill }}
         </div>
 
-        <h4 class="mt-4 text-[22px] font-semibold tracking-[-0.03em] text-white sm:text-[26px]">
+        <h4 class="mt-4 text-[22px] font-semibold tracking-[-0.03em] text-[#141633] sm:text-[26px]">
           {{ socialData.title }}
         </h4>
 
-        <p class="mt-2 max-w-[720px] text-[13px] leading-[1.55] text-white/70 sm:text-[14px]">
+        <p class="mt-2 max-w-[720px] text-[13px] leading-[1.55] text-[#5F6683] sm:text-[14px]">
           {{ socialData.description }}
         </p>
 
         <div class="mt-5 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-4">
-          <div
-            v-for="channel in contactChannels"
-            :key="channel"
-            class="group flex min-h-[44px] items-center justify-center gap-2 rounded-[14px] border border-white/10 bg-white/5 px-3 py-2 text-[12px] font-medium tracking-[-0.01em] text-white/90 shadow-[0_10px_24px_rgba(0,0,0,0.18)] backdrop-blur transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/8"
+          <a
+            v-for="item in socialItems"
+            :key="item.label"
+            :href="item.href"
+            :aria-label="item.label"
+            class="group flex min-h-[44px] items-center justify-center gap-2 rounded-[14px] border border-[#E5E9F5] bg-white px-3 py-2 text-[12px] font-medium tracking-[-0.01em] text-black shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition hover:-translate-y-0.5 hover:border-[#D3DAEF] hover:bg-[#FBFCFF]"
+            @click.prevent="item.href === '#'"
           >
             <img
-              :src="siteData.assets.icons.check"
-              alt=""
-              aria-hidden="true"
-              class="h-4 w-4 shrink-0 brightness-[5] saturate-0 opacity-90 transition group-hover:opacity-100"
+              :src="item.icon"
+              :alt="item.label"
+              class="h-4 w-4 shrink-0 object-contain opacity-90 transition group-hover:opacity-100"
             />
-            <span class="truncate">{{ channel }}</span>
-          </div>
+            <span class="truncate">{{ item.label }}</span>
+          </a>
         </div>
       </div>
 
