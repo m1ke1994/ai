@@ -339,8 +339,8 @@ export const siteData = {
         imageSrc: '/briffing.png',
         // TODO: Replace with real Telegram/WhatsApp URLs.
         actions: [
-          { label: 'Telegram', href: 'https://t.me/' },
           { label: 'WhatsApp', href: 'https://wa.me/' },
+          { label: 'Telegram', href: 'https://t.me/' },
         ],
       },
     ],
@@ -394,7 +394,7 @@ export const siteData = {
         topBadge: 'Максимум каналов',
         accentBadge: 'Лучший выбор',
         inheritLine: '(всё из PRO +)',
-        channels: 'Сайт + Telegram, VK, Max + Avito + Meta + TikTok, YouTube',
+        channels: 'Сайт + Meta + Telegram, VK, Max + YouTube + TikTok',
         ctaLabel: 'Оставить заявку',
         features: [
           'До 2 000 страниц сканирования сайта',

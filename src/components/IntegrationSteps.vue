@@ -1,15 +1,14 @@
 <script setup>
-import { computed } from 'vue'
 import { siteData } from '@/assets/data'
 
 const CONTACT_FORM_OPEN_EVENT = siteData.events.contactFormOpen
 const integrationStepsData = siteData.integrationSteps
 const integrationSteps = integrationStepsData.steps
 
-const primaryIntegrationSteps = computed(() => integrationSteps.slice(0, 5))
-const ctaStep = computed(() => integrationSteps[5] || null)
-const ctaActions = computed(() => ctaStep.value?.actions || [])
-const ctaTitleLines = computed(() => (integrationStepsData.ctaTitle || '').split('\n'))
+const primaryIntegrationSteps = integrationSteps.slice(0, 5)
+const ctaStep = integrationSteps[5] || {}
+const ctaActions = ctaStep.actions || []
+const ctaTitleLines = (integrationStepsData.ctaTitle || '').split('\n')
 
 const openContactFormModal = () => {
   if (typeof window !== 'undefined') {
@@ -97,7 +96,7 @@ const openContactFormModal = () => {
                 {{ ctaTitleLines[1] }}
               </h4>
 
-              <div v-if="ctaStep?.imageSrc" class="mt-5 flex h-[300px] items-center justify-center">
+              <div v-if="ctaStep.imageSrc" class="mt-5 flex h-[300px] items-center justify-center">
                 <img
                   :src="ctaStep.imageSrc"
                   alt=""
@@ -109,7 +108,7 @@ const openContactFormModal = () => {
             </div>
 
             <!-- КНОПКИ: фиксируем позиционирование — прижимаем вниз через mt-auto -->
-            <div v-if="ctaActions.length" class="mt-auto flex flex-wrap items-center gap-2 pt-6">
+            <div v-if="ctaActions.length" class="relative z-20 mt-auto flex flex-wrap items-center gap-2 pt-6">
               <a
                 v-for="action in ctaActions"
                 :key="action.label"
@@ -232,11 +231,11 @@ const openContactFormModal = () => {
                   {{ ctaTitleLines[1] }}
                 </h4>
 
-                <div v-if="ctaStep?.imageSrc" class="mt-6 flex h-[320px] items-center justify-center">
+                <div v-if="ctaStep.imageSrc" class="mt-6 flex h-[220px] items-center justify-center">
                   <img
                     :src="ctaStep.imageSrc"
                     alt=""
-                    class="max-h-[420px] w-full object-contain"
+                    class="max-h-[220px] w-full object-contain"
                     loading="lazy"
                     draggable="false"
                   />
@@ -244,7 +243,7 @@ const openContactFormModal = () => {
               </div>
 
               <!-- КНОПКИ: гарантированно внизу карточки -->
-              <div v-if="ctaActions.length" class="mt-auto flex flex-wrap items-center gap-2 pt-6">
+              <div v-if="ctaActions.length" class="relative z-20 mt-auto flex flex-wrap items-center gap-2 pt-6">
                 <a
                   v-for="action in ctaActions"
                   :key="action.label"
