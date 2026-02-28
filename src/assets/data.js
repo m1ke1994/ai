@@ -607,6 +607,8 @@ export const siteData = {
     },
     links: {
       whatsapp: {
+        href: 'https://wa.me/',
+        icon: '/icons/whatsapp.svg',
         phoneE164: '',
         message:
           'Здравствуйте! Хочу увеличить эффективность продаж с помощью AI. Подскажите, что нужно для старта?',
@@ -614,6 +616,8 @@ export const siteData = {
         ariaLabel: 'Написать в WhatsApp',
       },
       telegram: {
+        href: 'https://t.me/',
+        icon: '/icons/telegram.svg',
         username: '',
         label: 'Telegram',
         ariaLabel: 'Написать в Telegram',

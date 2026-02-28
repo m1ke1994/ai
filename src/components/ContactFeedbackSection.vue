@@ -105,7 +105,7 @@
                 <div class="mt-8 grid gap-3 sm:gap-4 lg:mt-10 sm:grid-cols-2">
                   <!-- WhatsApp -->
                   <a
-                    :href="whatsappHref"
+                    :href="contactsData.links.whatsapp.href"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="group inline-flex h-16 w-full items-center justify-center gap-3 rounded-[20px]
@@ -119,18 +119,20 @@
                       class="inline-flex h-11 w-11 items-center justify-center rounded-[16px] border border-white/12 bg-[#1E2030]/55 transition group-hover:bg-[#1E2030]/70 sm:h-12 sm:w-12"
                       aria-hidden="true"
                     >
-                      <!-- WhatsApp icon -->
-                      <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M20 11.5A8 8 0 0 1 8.6 18.7L4.5 20l1.4-3.9A8 8 0 1 1 20 11.5Z" />
-                        <path d="M9.2 9.1c.2-.5.4-.5.7-.5h.5c.1 0 .4.1.5.4l.8 1.8c.1.2 0 .4-.1.6l-.4.5c-.1.1-.2.2-.1.4.2.4.8 1.3 1.8 1.8.2.1.3 0 .4-.1l.5-.6c.2-.2.4-.2.6-.1l1.7.8c.3.1.4.4.4.5v.5c0 .3-.2.5-.4.6-.5.2-1.1.4-1.8.2-1-.3-2.1-.9-3.1-1.9-1-1-1.6-2.1-1.9-3.1-.2-.8 0-1.4.2-1.8Z" />
-                      </svg>
+                      <img
+                        :src="contactsData.links.whatsapp.icon"
+                        alt=""
+                        class="h-6 w-6 object-contain"
+                        loading="lazy"
+                        draggable="false"
+                      />
                     </span>
                     <span>{{ contactsData.links.whatsapp.label }}</span>
                   </a>
 
                   <!-- Telegram -->
                   <a
-                    :href="telegramHref"
+                    :href="contactsData.links.telegram.href"
                     target="_blank"
                     rel="noopener noreferrer"
                     class="group inline-flex h-16 w-full items-center justify-center gap-3 rounded-[20px]
@@ -144,10 +146,13 @@
                       class="inline-flex h-11 w-11 items-center justify-center rounded-[16px] border border-white/12 bg-[#1E2030]/55 transition group-hover:bg-[#1E2030]/70 sm:h-12 sm:w-12"
                       aria-hidden="true"
                     >
-                      <!-- Telegram icon -->
-                      <svg viewBox="0 0 24 24" class="h-6 w-6" fill="currentColor">
-                        <path d="M20.8 4.6c.4-.2.8.2.7.6l-2.8 13c-.1.5-.7.7-1.1.5l-4.1-3-2.1 2c-.2.2-.4.3-.7.3l.4-4.3 7.8-7.1-9.7 6.1-3.9-1.2c-.6-.2-.6-1 .1-1.3l15.4-5.6Z" />
-                      </svg>
+                      <img
+                        :src="contactsData.links.telegram.icon"
+                        alt=""
+                        class="h-6 w-6 object-contain"
+                        loading="lazy"
+                        draggable="false"
+                      />
                     </span>
                     <span>{{ contactsData.links.telegram.label }}</span>
                   </a>
@@ -256,25 +261,11 @@
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { siteData } from '@/assets/data'
 
 const contactsData = siteData.contacts
 const CONTACT_FORM_OPEN_EVENT = siteData.events.contactFormOpen
-const WHATSAPP_PHONE_E164 = contactsData.links.whatsapp.phoneE164
-const WHATSAPP_TEXT = contactsData.links.whatsapp.message
-const TELEGRAM_USERNAME = contactsData.links.telegram.username
-
-const whatsappHref = computed(() => {
-  if (!WHATSAPP_PHONE_E164) return '#'
-  const text = encodeURIComponent(WHATSAPP_TEXT)
-  return `https://wa.me/${WHATSAPP_PHONE_E164}?text=${text}`
-})
-
-const telegramHref = computed(() => {
-  if (!TELEGRAM_USERNAME) return '#'
-  return `https://t.me/${TELEGRAM_USERNAME}`
-})
 
 const isFormOpen = ref(false)
 let previousBodyOverflow = ''

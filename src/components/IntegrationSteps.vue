@@ -1,13 +1,15 @@
 <script setup>
+import { computed } from 'vue'
 import { siteData } from '@/assets/data'
 
 const CONTACT_FORM_OPEN_EVENT = siteData.events.contactFormOpen
 const integrationStepsData = siteData.integrationSteps
 const integrationSteps = integrationStepsData.steps
-const primaryIntegrationSteps = integrationSteps.slice(0, 5)
-const ctaStep = integrationSteps[5] || null
-const ctaActions = ctaStep?.actions || []
-const ctaTitleLines = integrationStepsData.ctaTitle.split('\n')
+
+const primaryIntegrationSteps = computed(() => integrationSteps.slice(0, 5))
+const ctaStep = computed(() => integrationSteps[5] || null)
+const ctaActions = computed(() => ctaStep.value?.actions || [])
+const ctaTitleLines = computed(() => (integrationStepsData.ctaTitle || '').split('\n'))
 
 const openContactFormModal = () => {
   if (typeof window !== 'undefined') {
@@ -85,54 +87,53 @@ const openContactFormModal = () => {
             class="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,16,34,0.35)_0%,rgba(44,31,85,0.52)_50%,rgba(74,56,145,0.78)_100%)]"
           ></div>
 
-          <div class="relative z-10">
-            <h4
-              class="text-[28px] font-semibold leading-[0.98] tracking-[-0.03em] text-white sm:text-[34px]"
-            >
-              {{ ctaTitleLines[0] }}<br />
-              {{ ctaTitleLines[1] }}
-            </h4>
+          <!-- ВАЖНО: делаем карточку flex-col, чтобы кнопки/картинка не "уезжали" из-за абсолютных слоёв -->
+          <div class="relative z-10 flex min-h-[420px] flex-col">
+            <div>
+              <h4
+                class="text-[28px] font-semibold leading-[0.98] tracking-[-0.03em] text-white sm:text-[34px]"
+              >
+                {{ ctaTitleLines[0] }}<br />
+                {{ ctaTitleLines[1] }}
+              </h4>
 
-            <div
-              v-if="ctaStep?.imageSrc"
-              class="mt-5 flex h-[300px] items-center justify-center"
-            >
-              <img
-                :src="ctaStep.imageSrc"
-                alt=""
-                class="h-full w-full object-contain scale-[1.18]"
-                loading="lazy"
-                draggable="false"
-              />
+              <div v-if="ctaStep?.imageSrc" class="mt-5 flex h-[300px] items-center justify-center">
+                <img
+                  :src="ctaStep.imageSrc"
+                  alt=""
+                  class="h-full w-full object-contain"
+                  loading="lazy"
+                  draggable="false"
+                />
+              </div>
             </div>
-          </div>
 
-          <div
-            v-if="ctaActions.length"
-            class="relative z-10 mt-6 flex flex-wrap items-center gap-2"
-          >
-            <a
-              v-for="action in ctaActions"
-              :key="action.label"
-              :href="action.href"
-              :aria-label="`Open ${action.label}`"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex h-[40px] items-center justify-center rounded-[12px] border border-white/60 bg-white/10 px-4 text-[14px] font-medium tracking-[-0.01em] text-white backdrop-blur-md transition hover:bg-white/20"
+            <!-- КНОПКИ: фиксируем позиционирование — прижимаем вниз через mt-auto -->
+            <div v-if="ctaActions.length" class="mt-auto flex flex-wrap items-center gap-2 pt-6">
+              <a
+                v-for="action in ctaActions"
+                :key="action.label"
+                :href="action.href"
+                :aria-label="`Open ${action.label}`"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex h-[40px] items-center justify-center rounded-[12px] border border-white/60 bg-white/10 px-4 text-[14px] font-medium tracking-[-0.01em] text-white backdrop-blur-md transition hover:bg-white/20"
+              >
+                {{ action.label }}
+              </a>
+            </div>
+
+            <button
+              v-else
+              type="button"
+              class="mt-auto inline-flex h-[56px] w-full items-center justify-center rounded-[16px]
+                     border border-white/60 bg-white/10 text-[18px] font-medium tracking-[-0.01em] text-white
+                     backdrop-blur-md transition hover:bg-white/20 active:scale-[0.99]"
+              @click="openContactFormModal"
             >
-              {{ action.label }}
-            </a>
+              {{ integrationStepsData.ctaButtonLabel }}
+            </button>
           </div>
-          <button
-            v-else
-            type="button"
-            class="relative z-10 mt-6 inline-flex h-[56px] w-full items-center justify-center rounded-[16px]
-                   border border-white/60 bg-white/10 text-[18px] font-medium tracking-[-0.01em] text-white
-                   backdrop-blur-md transition hover:bg-white/20 active:scale-[0.99]"
-            @click="openContactFormModal"
-          >
-            {{ integrationStepsData.ctaButtonLabel }}
-          </button>
         </div>
       </div>
 
@@ -207,7 +208,7 @@ const openContactFormModal = () => {
 
           <!-- CTA -->
           <div
-            class="relative flex min-h-[520px] flex-col justify-between overflow-hidden rounded-[32px] bg-[#1B1730] p-8 xl:h-[520px] xl:p-10"
+            class="relative overflow-hidden rounded-[32px] bg-[#1B1730] p-8 xl:h-[520px] xl:p-10"
           >
             <img
               :src="siteData.assets.images.ctaBackground"
@@ -221,52 +222,53 @@ const openContactFormModal = () => {
               class="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,16,34,0.35)_0%,rgba(44,31,85,0.52)_50%,rgba(74,56,145,0.78)_100%)]"
             ></div>
 
-            <div class="relative z-10">
-              <h4 class="text-[30px] font-semibold leading-[0.96] tracking-[-0.03em] text-white xl:text-[40px]">
-                {{ ctaTitleLines[0] }}<br />
-                {{ ctaTitleLines[1] }}
-              </h4>
+            <!-- ВАЖНО: делаем внутренний контейнер flex-col на всю высоту, чтобы кнопки не "уезжали" -->
+            <div class="relative z-10 flex h-full flex-col">
+              <div>
+                <h4
+                  class="text-[30px] font-semibold leading-[0.96] tracking-[-0.03em] text-white xl:text-[40px]"
+                >
+                  {{ ctaTitleLines[0] }}<br />
+                  {{ ctaTitleLines[1] }}
+                </h4>
 
-              <div
-                v-if="ctaStep?.imageSrc"
-                class="mt-6 flex h-[320px] items-center justify-center"
-              >
-                <img
-                  :src="ctaStep.imageSrc"
-                  alt=""
-                  class="max-h-[420px] w-full object-contain"
-                  loading="lazy"
-                  draggable="false"
-                />
+                <div v-if="ctaStep?.imageSrc" class="mt-6 flex h-[320px] items-center justify-center">
+                  <img
+                    :src="ctaStep.imageSrc"
+                    alt=""
+                    class="max-h-[420px] w-full object-contain"
+                    loading="lazy"
+                    draggable="false"
+                  />
+                </div>
               </div>
-            </div>
 
-            <div
-              v-if="ctaActions.length"
-              class="relative z-10 flex flex-wrap items-center gap-2"
-            >
-              <a
-                v-for="action in ctaActions"
-                :key="action.label"
-                :href="action.href"
-                :aria-label="`Open ${action.label}`"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex h-[40px] items-center justify-center rounded-[12px] border border-white/60 bg-white/10 px-4 text-[14px] font-medium tracking-[-0.01em] text-white backdrop-blur-md transition hover:bg-white/20"
+              <!-- КНОПКИ: гарантированно внизу карточки -->
+              <div v-if="ctaActions.length" class="mt-auto flex flex-wrap items-center gap-2 pt-6">
+                <a
+                  v-for="action in ctaActions"
+                  :key="action.label"
+                  :href="action.href"
+                  :aria-label="`Open ${action.label}`"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex h-[40px] items-center justify-center rounded-[12px] border border-white/60 bg-white/10 px-4 text-[14px] font-medium tracking-[-0.01em] text-white backdrop-blur-md transition hover:bg-white/20"
+                >
+                  {{ action.label }}
+                </a>
+              </div>
+
+              <button
+                v-else
+                type="button"
+                class="mt-auto inline-flex h-[56px] w-full items-center justify-center rounded-[16px]
+                       border border-white/60 bg-white/10 text-[18px] font-medium tracking-[-0.01em] text-white
+                       backdrop-blur-md transition hover:bg-white/20 xl:w-[230px]"
+                @click="openContactFormModal"
               >
-                {{ action.label }}
-              </a>
+                {{ integrationStepsData.ctaButtonLabel }}
+              </button>
             </div>
-            <button
-              v-else
-              type="button"
-              class="relative z-10 inline-flex h-[56px] w-full items-center justify-center rounded-[16px]
-                     border border-white/60 bg-white/10 text-[18px] font-medium tracking-[-0.01em] text-white
-                     backdrop-blur-md transition hover:bg-white/20 xl:w-[230px]"
-              @click="openContactFormModal"
-            >
-              {{ integrationStepsData.ctaButtonLabel }}
-            </button>
           </div>
         </div>
       </div>
