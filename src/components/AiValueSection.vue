@@ -97,16 +97,7 @@ const integrationsRows = integrationsData.rows
 
     <!-- ✅ ДВЕ КОЛОНКИ В ГОРИЗОНТАЛЬ (всегда рядом) -->
     <div class="mt-6 overflow-hidden rounded-[22px] border border-white/40 bg-white/55 shadow-[0_18px_55px_rgba(18,26,52,0.08)]">
-      <div class="relative grid grid-cols-2 gap-0">
-        <!-- vertical divider -->
-        <div
-          class="pointer-events-none absolute inset-y-0 left-1/2 hidden w-px -translate-x-1/2 bg-[linear-gradient(180deg,transparent_0%,rgba(90,98,126,0.18)_16%,rgba(90,98,126,0.18)_84%,transparent_100%)] sm:block"
-          aria-hidden="true"
-        ></div>
-        <div
-          class="pointer-events-none absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-[linear-gradient(180deg,transparent_0%,rgba(90,98,126,0.18)_16%,rgba(90,98,126,0.18)_84%,transparent_100%)] sm:hidden"
-          aria-hidden="true"
-        ></div>
+      <div class="relative grid grid-cols-1 gap-0 sm:grid-cols-2">
 
         <!-- LEFT: Бесплатная основа -->
         <div class="p-4 sm:p-5 lg:p-6">
@@ -189,7 +180,7 @@ const integrationsRows = integrationsData.rows
         </div>
 
         <!-- RIGHT: Платная основа -->
-        <div class="p-4 sm:p-5 lg:p-6">
+        <div class="border-t border-[rgba(90,98,126,0.18)] p-4 sm:border-l sm:border-t-0 sm:p-5 lg:p-6">
           <div class="inline-flex items-center gap-2 rounded-full border border-white/50 bg-white/70 px-3 py-1.5 text-[12px] font-semibold text-[#141633]">
             <span class="h-2 w-2 rounded-full bg-[#6F63FF]" aria-hidden="true"></span>
             {{ launchData.rightLabel }}
