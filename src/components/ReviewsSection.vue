@@ -43,10 +43,16 @@
         </div>
       </div>
 
-      <div class="mt-10 overflow-hidden sm:mt-12">
+      <!-- ВАЖНО: верстку сохраняем, добавляем только “свайп” -->
+      <div class="mt-10 overflow-hidden sm:mt-12" ref="viewportRef">
         <div
+          ref="trackRef"
           class="flex transition-transform duration-500 ease-out"
-          :style="{ transform: `translateX(-${currentPage * 100}%)` }"
+          :class="isDragging ? 'duration-0' : ''"
+          :style="{
+            transform: `translateX(${trackTranslateX}px)`,
+            touchAction: 'pan-y',
+          }"
         >
           <div
             v-for="(page, pageIndex) in pagedReviews"
@@ -209,6 +215,19 @@ const activeReview = ref(null)
 const closeButtonRef = ref(null)
 let previousBodyOverflow = ''
 
+// refs для свайпа/размера
+const viewportRef = ref(null)
+const trackRef = ref(null)
+const viewportPx = ref(0)
+
+// свайп-состояние
+const isDragging = ref(false)
+const dragOffsetX = ref(0)
+let pointerId = null
+let startX = 0
+let startY = 0
+let lockedAxis = null // 'x' | 'y' | null
+
 const cardsPerPage = computed(() => {
   if (viewportWidth.value >= 1280) return 3
   if (viewportWidth.value >= 768) return 2
@@ -236,6 +255,10 @@ const gridColumnsClass = computed(() => {
 
 const updateViewportWidth = () => {
   viewportWidth.value = window.innerWidth
+}
+
+const updateViewportPx = () => {
+  viewportPx.value = viewportRef.value?.clientWidth || 0
 }
 
 const goPrev = () => {
@@ -273,6 +296,102 @@ const handleKeydown = (event) => {
   }
 }
 
+// --- СВАЙП (Pointer Events) ---
+const clamp = (v, min, max) => Math.min(max, Math.max(min, v))
+
+const getSwipeThreshold = () => {
+  // чуть “упругий” порог: 15% ширины, но не меньше 50px и не больше 120px
+  const w = viewportPx.value || 0
+  return clamp(w * 0.15, 50, 120)
+}
+
+const onPointerDown = (e) => {
+  // модалка открыта — свайп не нужен
+  if (activeReview.value) return
+  if (pageCount.value <= 1) return
+
+  // только основной палец/кнопка
+  if (e.pointerType === 'mouse' && e.button !== 0) return
+
+  pointerId = e.pointerId
+  startX = e.clientX
+  startY = e.clientY
+  lockedAxis = null
+  isDragging.value = true
+  dragOffsetX.value = 0
+
+  // захватываем pointer, чтобы не “терять” свайп
+  trackRef.value?.setPointerCapture?.(pointerId)
+}
+
+const onPointerMove = (e) => {
+  if (!isDragging.value) return
+  if (pointerId !== e.pointerId) return
+
+  const dx = e.clientX - startX
+  const dy = e.clientY - startY
+
+  // определяем ось (чтобы вертикальный скролл не ломать)
+  if (!lockedAxis) {
+    if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return
+    lockedAxis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y'
+  }
+
+  if (lockedAxis === 'y') {
+    // вертикальный скролл — отпускаем “перетаскивание”
+    dragOffsetX.value = 0
+    return
+  }
+
+  // горизонтальный свайп: гасим нежелательные жесты браузера
+  e.preventDefault?.()
+
+  // легкое сопротивление на краях (если вдруг без цикличности пригодится),
+  // но у нас цикличная прокрутка — оставим просто ограничение по “упругости”
+  const maxPull = (viewportPx.value || 360) * 0.35
+  dragOffsetX.value = clamp(dx, -maxPull, maxPull)
+}
+
+const finishDrag = () => {
+  if (!isDragging.value) return
+
+  const threshold = getSwipeThreshold()
+  const dx = dragOffsetX.value
+
+  isDragging.value = false
+  dragOffsetX.value = 0
+  lockedAxis = null
+  pointerId = null
+
+  if (Math.abs(dx) < threshold) return
+
+  // dx < 0 — тянем влево, значит следующий слайд
+  if (dx < 0) goNext()
+  else goPrev()
+}
+
+const onPointerUp = (e) => {
+  if (!isDragging.value) return
+  if (pointerId !== e.pointerId) return
+  finishDrag()
+}
+
+const onPointerCancel = (e) => {
+  if (!isDragging.value) return
+  if (pointerId !== e.pointerId) return
+  // просто сброс без перелистывания
+  isDragging.value = false
+  dragOffsetX.value = 0
+  lockedAxis = null
+  pointerId = null
+}
+
+// px-трансформ вместо % — чтобы во время свайпа можно было двигать на пиксели
+const trackTranslateX = computed(() => {
+  const w = viewportPx.value || 0
+  return -(currentPage.value * w) + dragOffsetX.value
+})
+
 watch(pageCount, (count) => {
   if (count === 0) {
     currentPage.value = 0
@@ -298,16 +417,49 @@ watch(activeReview, (review) => {
 
 onMounted(() => {
   updateViewportWidth()
+  updateViewportPx()
+
   window.addEventListener('resize', updateViewportWidth)
+  window.addEventListener('resize', updateViewportPx)
   window.addEventListener('keydown', handleKeydown)
+
+  // Pointer events — свайп и на iOS/Android, и в десктопе (мышкой тоже можно)
+  const el = trackRef.value
+  if (el) {
+    el.addEventListener('pointerdown', onPointerDown, { passive: true })
+    // move НЕ passive, чтобы preventDefault работал при горизонтальном свайпе
+    el.addEventListener('pointermove', onPointerMove, { passive: false })
+    el.addEventListener('pointerup', onPointerUp, { passive: true })
+    el.addEventListener('pointercancel', onPointerCancel, { passive: true })
+  }
+
+  // на случай, если ширина меняется не только от resize (например, шрифты/контейнер)
+  if ('ResizeObserver' in window && viewportRef.value) {
+    const ro = new ResizeObserver(() => updateViewportPx())
+    ro.observe(viewportRef.value)
+    // сохраним в элементе, чтобы снять позже
+    viewportRef.value.__ro = ro
+  }
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', updateViewportWidth)
+  window.removeEventListener('resize', updateViewportPx)
   window.removeEventListener('keydown', handleKeydown)
+
+  const el = trackRef.value
+  if (el) {
+    el.removeEventListener('pointerdown', onPointerDown)
+    el.removeEventListener('pointermove', onPointerMove)
+    el.removeEventListener('pointerup', onPointerUp)
+    el.removeEventListener('pointercancel', onPointerCancel)
+  }
+
+  const ro = viewportRef.value?.__ro
+  if (ro?.disconnect) ro.disconnect()
+
   if (typeof document !== 'undefined') {
     document.body.style.overflow = previousBodyOverflow
   }
 })
 </script>
-
