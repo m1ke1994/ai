@@ -4,11 +4,11 @@
     <div class="pt-[74px] lg:pt-[88px]">
       <HeroSection />
       <WhatSellerCan />
-     
+       <AiValueSection />
       <IntegrationSteps />
       <ReviewsSection />
       <PricingSection />
-      <AiValueSection />
+    
         
       <ContactFeedbackSection />
     
