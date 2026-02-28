@@ -100,7 +100,7 @@ const openContactFormModal = () => {
                 <img
                   :src="ctaStep.imageSrc"
                   alt=""
-                  class="max-h-[220px] w-full object-contain"
+                  class="max-h-[220px] w-full object-contain scale-[2.2] origin-center"
                   loading="lazy"
                   draggable="false"
                 />
@@ -235,7 +235,7 @@ const openContactFormModal = () => {
                   <img
                     :src="ctaStep.imageSrc"
                     alt=""
-                    class="max-h-[220px] w-full object-contain"
+                    class="max-h-[220px] w-full object-contain scale-[2.2] origin-center"
                     loading="lazy"
                     draggable="false"
                   />
