@@ -19,8 +19,6 @@
 
 <script setup>
 import AppHeader from '@/components/AppHeader.vue'
-
-import Social_Media from '@/components/Social_Media.vue'
 import HeroSection from '@/components/HeroSection.vue'
 import WhatSellerCan from '@/components/WhatSellerCan.vue'
 import IntegrationSteps from '@/components/IntegrationSteps.vue'

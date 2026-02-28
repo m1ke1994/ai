@@ -9,7 +9,7 @@ const navigationItems = [
   { label: 'Тарифы', href: '#pricing' },
 ]
 
-export const socialMedia = [
+const socialMedia = [
   { id: 'site', name: 'Сайт', icon: '/icons/web.svg', href: 'https://example.com' },
   { id: 'telegram', name: 'Telegram', icon: '/icons/telegram.svg', href: 'https://example.com' },
   { id: 'avito', name: 'Avito', icon: '/icons/avito.svg', href: 'https://example.com' },
@@ -23,7 +23,7 @@ export const socialMedia = [
   { id: 'max', name: 'Max', icon: '/icons/Max.svg', href: 'https://example.com' },
 ]
 
-export const siteData = {
+const legacyData = {
   // SECTION: shared/assets/events
   // Contains reusable asset paths and event names used across multiple sections.
   events: {
@@ -638,6 +638,574 @@ export const siteData = {
       },
       submitLabel: 'Отправить заявку',
       closeAriaLabel: 'Закрыть форму',
+    },
+  },
+}
+
+const ensureModelItems = (items = [], mapItem = (item) => item) =>
+  items.map((item, index) => ({
+    sortOrder: index + 1,
+    isActive: true,
+    ...mapItem(item, index),
+  }))
+
+const mapTextItems = (items = [], prefix) =>
+  ensureModelItems(items, (text, index) => ({
+    id: `${prefix}-${index + 1}`,
+    slug: `${prefix}-${index + 1}`,
+    text,
+  }))
+
+const socialIconsById = Object.fromEntries(socialMedia.map((item) => [item.id, item.icon]))
+
+const navItems = ensureModelItems(legacyData.header.navItems, (item) => ({
+  id: `nav-${item.href.replace('#', '')}`,
+  slug: item.href.replace('#', ''),
+  label: item.label,
+  href: item.href,
+}))
+
+const socialChannelItems = ensureModelItems(socialMedia, (item) => ({
+  id: `channel-${item.id}`,
+  slug: item.id,
+  name: item.name,
+  href: item.href,
+  icon: {
+    src: item.icon,
+    alt: item.name,
+  },
+}))
+
+const mobileSocialItems = ensureModelItems(legacyData.header.mobileSocialItems, (item) => ({
+  id: `mobile-social-${item.id}`,
+  slug: item.id,
+  label: item.label,
+  href: item.href,
+  ariaLabel: item.label,
+  icon: {
+    src: socialIconsById[item.id] || '',
+    alt: item.label,
+  },
+}))
+
+const integrationPrimarySteps = legacyData.integrationSteps.steps.slice(0, 5)
+const integrationCtaStep = legacyData.integrationSteps.steps[5] || {}
+
+const pricingItems = ensureModelItems(legacyData.pricing.plans, (plan) => ({
+  id: `pricing-${plan.key}`,
+  slug: plan.key,
+  title: plan.name,
+  subtitle: plan.topBadge,
+  description: '',
+  channels: plan.channels,
+  accentBadge: plan.accentBadge || '',
+  inheritLine: plan.inheritLine || '',
+  meta: {
+    featured: Boolean(plan.featured),
+    darkCard: Boolean(plan.darkCard),
+  },
+  cta: {
+    id: `pricing-${plan.key}-cta`,
+    slug: `pricing-${plan.key}-cta`,
+    label: plan.ctaLabel,
+    href: '#contacts',
+    sortOrder: 1,
+    isActive: true,
+  },
+  features: mapTextItems(plan.features || [], `pricing-${plan.key}-feature`),
+}))
+
+const reviewItems = ensureModelItems(legacyData.reviews.items, (review) => ({
+  id: `review-${review.id}`,
+  slug: review.id,
+  company: review.company,
+  person: review.person,
+  previewParagraphs: mapTextItems(review.previewParagraphs || [], `${review.id}-preview-paragraph`),
+  previewBullets: mapTextItems(review.previewBullets || [], `${review.id}-preview-bullet`),
+  detailsParagraphs: mapTextItems(review.detailsParagraphs || [], `${review.id}-details-paragraph`),
+  results: mapTextItems(review.results || [], `${review.id}-result`),
+  media: {
+    avatar: {
+      src: '',
+      alt: '',
+    },
+  },
+  meta: {
+    rating: null,
+  },
+}))
+
+const contactMessengers = ensureModelItems(
+  [
+    { key: 'whatsapp', ...legacyData.contacts.links.whatsapp },
+    { key: 'telegram', ...legacyData.contacts.links.telegram },
+  ],
+  (item) => ({
+    id: `messenger-${item.key}`,
+    slug: item.key,
+    name: item.label,
+    label: item.label,
+    href: item.href,
+    icon: {
+      src: item.icon,
+      alt: item.label,
+    },
+    ariaLabel: item.ariaLabel,
+  }),
+)
+
+const footerLegalLinks = ensureModelItems(legacyData.footer.legalItems, (item, index) => ({
+  id: `footer-legal-${index + 1}`,
+  slug: `legal-${index + 1}`,
+  label: item.label,
+  href: item.href,
+}))
+
+const footerColumns = ensureModelItems([
+  {
+    id: 'footer-column-navigation',
+    slug: 'navigation',
+    title: 'Навигация',
+    links: navItems.map((item) => ({
+      id: `footer-${item.id}`,
+      slug: item.slug,
+      label: item.label,
+      href: item.href,
+      sortOrder: item.sortOrder,
+      isActive: item.isActive,
+    })),
+  },
+  {
+    id: 'footer-column-legal',
+    slug: 'legal',
+    title: 'Документы',
+    links: footerLegalLinks,
+  },
+])
+
+const assetRegistry = ensureModelItems([
+  { id: 'asset-logo', slug: 'logo', src: legacyData.assets.images.logo, alt: legacyData.header.brandName },
+  { id: 'asset-hero-phone', slug: 'hero-phone', src: legacyData.assets.images.heroPhone, alt: legacyData.hero.phoneAlt },
+  { id: 'asset-hero-texture', slug: 'hero-texture', src: legacyData.assets.images.heroTexture, alt: '' },
+  { id: 'asset-social-phone', slug: 'social-phone', src: legacyData.assets.images.socialPhone, alt: legacyData.socialMedia.phoneAlt },
+  {
+    id: 'asset-social-phone-secondary',
+    slug: 'social-phone-secondary',
+    src: legacyData.assets.images.socialPhoneSecondary,
+    alt: `${legacyData.socialMedia.phoneAlt} 2`,
+  },
+  { id: 'asset-section-background', slug: 'section-background', src: legacyData.assets.images.sectionBackground, alt: '' },
+  { id: 'asset-cta-background', slug: 'cta-background', src: legacyData.assets.images.ctaBackground, alt: '' },
+  { id: 'asset-integrations-banner', slug: 'integrations-banner', src: legacyData.assets.images.integrationsBanner, alt: '' },
+  { id: 'asset-check', slug: 'check', src: legacyData.assets.icons.check, alt: '' },
+  ...ensureModelItems(legacyData.heroLogos.logos, (logo, index) => ({
+    id: `asset-hero-logo-${index + 1}`,
+    slug: `hero-logo-${index + 1}`,
+    src: logo,
+    alt: '',
+  })),
+  ...ensureModelItems(socialMedia, (item) => ({
+    id: `asset-social-icon-${item.id}`,
+    slug: `social-icon-${item.id}`,
+    src: item.icon,
+    alt: item.name,
+  })),
+])
+
+export const siteData = {
+  meta: {
+    brandName: legacyData.header.brandName,
+    siteName: legacyData.header.brandName,
+    description: legacyData.hero.description,
+    locale: 'ru-RU',
+    theme: 'light',
+    supportEmail: legacyData.footer.supportEmail,
+  },
+
+  events: legacyData.events,
+
+  assets: {
+    id: 'assets',
+    title: 'Asset Registry',
+    subtitle: '',
+    description: 'Реестр медиа, которые используются в лендинге.',
+    items: assetRegistry,
+    cta: null,
+    media: {
+      logo: { src: legacyData.assets.images.logo, alt: legacyData.header.brandName },
+      heroPhone: { src: legacyData.assets.images.heroPhone, alt: legacyData.hero.phoneAlt },
+      heroTexture: { src: legacyData.assets.images.heroTexture, alt: '' },
+      socialPhone: { src: legacyData.assets.images.socialPhone, alt: legacyData.socialMedia.phoneAlt },
+      socialPhoneSecondary: { src: legacyData.assets.images.socialPhoneSecondary, alt: `${legacyData.socialMedia.phoneAlt} 2` },
+      sectionBackground: { src: legacyData.assets.images.sectionBackground, alt: '' },
+      ctaBackground: { src: legacyData.assets.images.ctaBackground, alt: '' },
+      integrationsBanner: { src: legacyData.assets.images.integrationsBanner, alt: '' },
+      integrationsStepDay1: { src: legacyData.assets.images.integrationsStepDay1, alt: 'Брифинг' },
+      integrationsStepDay2: { src: legacyData.assets.images.integrationsStepDay2, alt: 'Создание бота' },
+      integrationsStepDay3: { src: legacyData.assets.images.integrationsStepDay3, alt: 'Тестирование чат-бота' },
+      integrationsStepDay4: { src: legacyData.assets.images.integrationsStepDay4, alt: 'Релиз чат-бота' },
+      integrationsStepMonthly: { src: legacyData.assets.images.integrationsStepMonthly, alt: 'Поддержка и аналитика' },
+      integrationsCtaImage: { src: integrationCtaStep.imageSrc || '', alt: 'Брифинг' },
+      checkIcon: { src: legacyData.assets.icons.check, alt: '' },
+    },
+    meta: {},
+  },
+
+  nav: {
+    id: 'nav',
+    title: '',
+    subtitle: '',
+    description: '',
+    items: navItems,
+    cta: null,
+    media: {
+      logo: { src: legacyData.assets.images.logo, alt: legacyData.header.brandName },
+    },
+    meta: {
+      brandHref: legacyData.header.brandHref,
+      aria: legacyData.header.aria,
+      mobileSocials: mobileSocialItems,
+    },
+  },
+
+  hero: {
+    id: 'hero',
+    title: legacyData.hero.titleLines[0],
+    subtitle: legacyData.hero.titleLines[1],
+    description: legacyData.hero.description,
+    items: ensureModelItems(legacyData.hero.stats, (item, index) => ({
+      id: `hero-stat-${index + 1}`,
+      slug: `hero-stat-${index + 1}`,
+      value: item.value,
+      text: item.label,
+    })),
+    cta: null,
+    media: {
+      image: { src: legacyData.assets.images.heroPhone, alt: legacyData.hero.phoneAlt },
+      texture: { src: legacyData.assets.images.heroTexture, alt: '' },
+    },
+    meta: {
+      statsDisclaimer: legacyData.hero.statsDisclaimer,
+      imageVars: legacyData.hero.imageVars,
+    },
+  },
+
+  heroLogos: {
+    id: 'hero-logos',
+    title: '',
+    subtitle: '',
+    description: '',
+    items: ensureModelItems(legacyData.heroLogos.logos, (logo, index) => ({
+      id: `hero-logo-${index + 1}`,
+      slug: `hero-logo-${index + 1}`,
+      src: logo,
+      alt: '',
+    })),
+    cta: null,
+    media: {},
+    meta: {},
+  },
+
+  advantages: {
+    id: 'advantages',
+    title: legacyData.whatSellerCan.training.badge,
+    subtitle: legacyData.whatSellerCan.summary.title,
+    description: legacyData.whatSellerCan.summary.desktopFooter,
+    items: ensureModelItems(legacyData.whatSellerCan.compareRows, (row, index) => ({
+      id: `advantage-row-${index + 1}`,
+      slug: `advantage-row-${index + 1}`,
+      title: row.label,
+      aiDescription: row.ai,
+      humanDescription: row.human,
+    })),
+    cta: null,
+    media: {
+      icon: { src: legacyData.assets.icons.check, alt: '' },
+    },
+    meta: {
+      training: {
+        id: 'advantages-training',
+        title: legacyData.whatSellerCan.training.badge,
+        subtitle: '',
+        description: '',
+        items: ensureModelItems(legacyData.whatSellerCan.training.dataSources, (text, index) => ({
+          id: `training-source-${index + 1}`,
+          slug: `training-source-${index + 1}`,
+          title: text,
+        })),
+        cta: null,
+        media: {
+          icon: { src: legacyData.assets.icons.check, alt: '' },
+        },
+        meta: {
+          rightPill: legacyData.whatSellerCan.training.rightPill,
+          rightTitle: legacyData.whatSellerCan.training.rightTitle,
+          rightBullets: mapTextItems(legacyData.whatSellerCan.training.rightBullets, 'training-right-bullet'),
+        },
+      },
+      summary: {
+        id: 'advantages-summary',
+        title: legacyData.whatSellerCan.summary.title,
+        subtitle: legacyData.whatSellerCan.summary.kicker,
+        description: '',
+        items: [],
+        cta: null,
+        media: {},
+        meta: {
+          ...legacyData.whatSellerCan.summary,
+          stageDescriptionLabel: 'Сравнение по этапу',
+        },
+      },
+      aiSummary: mapTextItems(legacyData.whatSellerCan.aiSummary, 'ai-summary'),
+      humanLimits: mapTextItems(legacyData.whatSellerCan.humanLimits, 'human-limit'),
+    },
+  },
+
+  aiValue: {
+    id: 'ai-value',
+    title: legacyData.aiValue.title,
+    subtitle: `${legacyData.aiValue.subtitlePrefix} ${legacyData.aiValue.subtitleHighlight}`.trim(),
+    description: '',
+    items: mapTextItems(legacyData.aiValue.launch.valuePoints, 'ai-value-point'),
+    cta: null,
+    media: {
+      integrationsBanner: { src: legacyData.assets.images.integrationsBanner, alt: '' },
+    },
+    meta: {
+      subtitlePrefix: legacyData.aiValue.subtitlePrefix,
+      subtitleHighlight: legacyData.aiValue.subtitleHighlight,
+      launch: {
+        id: 'ai-value-launch',
+        title: legacyData.aiValue.launch.title,
+        subtitle: '',
+        description: legacyData.aiValue.launch.description,
+        items: [],
+        cta: null,
+        media: {},
+        meta: {
+          badgePrimary: legacyData.aiValue.launch.badgePrimary,
+          badgeSecondary: legacyData.aiValue.launch.badgeSecondary,
+          leftLabel: legacyData.aiValue.launch.leftLabel,
+          rightLabel: legacyData.aiValue.launch.rightLabel,
+          paidTitle: legacyData.aiValue.launch.paidTitle,
+          paidDescription: legacyData.aiValue.launch.paidDescription,
+          noteTitle: legacyData.aiValue.launch.noteTitle,
+          noteDescription: legacyData.aiValue.launch.noteDescription,
+        },
+      },
+      integrations: {
+        id: 'ai-value-integrations',
+        title: legacyData.aiValue.integrations.title,
+        subtitle: legacyData.aiValue.integrations.pill,
+        description: '',
+        items: ensureModelItems(legacyData.aiValue.integrations.rows, (row, index) => ({
+          id: `integration-row-${index + 1}`,
+          slug: `integration-row-${index + 1}`,
+          title: row.title,
+          description: row.desc,
+          media: {
+            image: { src: legacyData.assets.images.integrationsBanner, alt: '' },
+          },
+        })),
+        cta: null,
+        media: {
+          banner: { src: legacyData.assets.images.integrationsBanner, alt: '' },
+        },
+        meta: {
+          addAriaLabel: legacyData.aiValue.integrations.addAriaLabel,
+        },
+      },
+    },
+  },
+
+  channels: {
+    id: 'channels',
+    title: legacyData.socialMedia.title,
+    subtitle: legacyData.socialMedia.pill,
+    description: legacyData.socialMedia.description,
+    items: socialChannelItems,
+    cta: null,
+    media: {
+      background: { src: legacyData.assets.images.sectionBackground, alt: '' },
+      image: { src: legacyData.assets.images.socialPhone, alt: legacyData.socialMedia.phoneAlt },
+      secondaryImage: { src: legacyData.assets.images.socialPhoneSecondary, alt: `${legacyData.socialMedia.phoneAlt} 2` },
+    },
+    meta: {
+      itemAriaLabelPrefix: 'Social link',
+    },
+  },
+
+  steps: {
+    id: 'steps',
+    title: legacyData.integrationSteps.title,
+    subtitle: legacyData.integrationSteps.subtitle,
+    description: '',
+    items: ensureModelItems(integrationPrimarySteps, (step, index) => ({
+      id: `step-${index + 1}`,
+      slug: `step-${index + 1}`,
+      day: step.day,
+      title: step.title,
+      description: step.desc,
+      media: {
+        image: {
+          src: step.image || step.imageSrc || '',
+          alt: step.title || '',
+        },
+      },
+    })),
+    cta: {
+      title: legacyData.integrationSteps.ctaTitle,
+      titleLines: (legacyData.integrationSteps.ctaTitle || '').split('\n'),
+      primary: {
+        id: 'steps-cta-primary',
+        slug: 'steps-cta-primary',
+        label: legacyData.integrationSteps.ctaButtonLabel,
+        href: '#contacts',
+        sortOrder: 1,
+        isActive: true,
+      },
+      actions: ensureModelItems(integrationCtaStep.actions || [], (action) => ({
+        id: `steps-cta-${action.label.toLowerCase()}`,
+        slug: action.label.toLowerCase(),
+        label: action.label,
+        href: action.href,
+        ariaLabel: `Open ${action.label}`,
+      })),
+      media: {
+        image: { src: integrationCtaStep.imageSrc || '', alt: 'Брифинг' },
+        background: { src: legacyData.assets.images.ctaBackground, alt: '' },
+      },
+    },
+    media: {
+      ctaBackground: { src: legacyData.assets.images.ctaBackground, alt: '' },
+    },
+    meta: {},
+  },
+
+  pricing: {
+    id: 'pricing',
+    title: legacyData.pricing.title,
+    subtitle: legacyData.pricing.subtitle,
+    description: '',
+    items: pricingItems,
+    cta: null,
+    media: {},
+    meta: {
+      channelsLabel: 'Каналы:',
+    },
+  },
+
+  reviews: {
+    id: 'reviews',
+    title: legacyData.reviews.titleMain,
+    subtitle: legacyData.reviews.titleAccent,
+    description: '',
+    items: reviewItems,
+    cta: null,
+    media: {},
+    meta: {
+      actions: legacyData.reviews.actions,
+      modalResultsTitle: legacyData.reviews.modalResultsTitle,
+    },
+  },
+
+  contacts: {
+    id: 'contacts',
+    title: legacyData.contacts.heading.line1,
+    subtitle: legacyData.contacts.heading.accent,
+    description: legacyData.contacts.description || '',
+    items: contactMessengers,
+    cta: null,
+    media: {
+      sectionBackground: { src: legacyData.assets.images.sectionBackground, alt: '' },
+      cardBackground: { src: legacyData.assets.images.ctaBackground, alt: '' },
+    },
+    meta: {
+      headingLine3: legacyData.contacts.heading.line3,
+      card: legacyData.contacts.card,
+      form: {
+        id: 'contacts-form',
+        title: legacyData.contacts.form.title,
+        subtitle: legacyData.contacts.form.subtitle,
+        fields: ensureModelItems(
+          [
+            {
+              key: 'name',
+              label: legacyData.contacts.form.labels.name,
+              placeholder: legacyData.contacts.form.placeholders.name,
+              type: 'text',
+              required: true,
+            },
+            {
+              key: 'contact',
+              label: legacyData.contacts.form.labels.contact,
+              placeholder: legacyData.contacts.form.placeholders.contact,
+              type: 'text',
+              required: true,
+            },
+            {
+              key: 'comment',
+              label: legacyData.contacts.form.labels.comment,
+              placeholder: legacyData.contacts.form.placeholders.comment,
+              type: 'textarea',
+              required: false,
+            },
+          ],
+          (field) => ({
+            id: `contacts-form-${field.key}`,
+            slug: field.key,
+            ...field,
+          }),
+        ),
+        submitLabel: legacyData.contacts.form.submitLabel,
+        closeAriaLabel: legacyData.contacts.form.closeAriaLabel,
+      },
+    },
+    phones: ensureModelItems([
+      {
+        id: 'contact-phone-main',
+        slug: 'main',
+        label: 'Телефон',
+        value: legacyData.contacts.links.whatsapp.phoneE164 || '',
+        href: legacyData.contacts.links.whatsapp.phoneE164 ? `tel:${legacyData.contacts.links.whatsapp.phoneE164}` : '',
+      },
+    ]),
+    emails: ensureModelItems([
+      {
+        id: 'contact-email-support',
+        slug: 'support',
+        label: 'Email',
+        value: legacyData.footer.supportEmail,
+        href: `mailto:${legacyData.footer.supportEmail}`,
+      },
+    ]),
+    address: {
+      text: '',
+      mapUrl: '',
+    },
+    socials: socialChannelItems,
+    messengers: contactMessengers,
+  },
+
+  footer: {
+    id: 'footer',
+    title: '',
+    subtitle: '',
+    description: '',
+    items: footerColumns,
+    cta: null,
+    media: {
+      logo: {
+        src: legacyData.assets.images.logo,
+        alt: legacyData.footer.brandName,
+      },
+    },
+    meta: {
+      brandName: legacyData.footer.brandName,
+      brandHref: legacyData.footer.brandHref,
+      supportEmail: legacyData.footer.supportEmail,
+      navAriaLabel: 'Навигация в футере',
+      copyright: '',
     },
   },
 }

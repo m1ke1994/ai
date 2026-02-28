@@ -2,10 +2,9 @@
 import { siteData } from '@/assets/data'
 
 const heroData = siteData.hero
-const hiroMobileImageVars = heroData.imageVars.mobile
-const hiroDesktopImageVars = heroData.imageVars.desktop
-const heroFloatingBadgesVars = heroData.imageVars.floatingBadges
-const stats = heroData.stats
+const hiroMobileImageVars = heroData.meta.imageVars.mobile
+const hiroDesktopImageVars = heroData.meta.imageVars.desktop
+const stats = heroData.items
 </script>
 
 <template>
@@ -27,7 +26,7 @@ const stats = heroData.stats
     />
 
     <img
-      :src="siteData.assets.images.heroTexture"
+      :src="siteData.assets.media.heroTexture.src"
       alt=""
       aria-hidden="true"
       class="pointer-events-none absolute bottom-[-250px] left-1/2 z-[1] w-[88%] min-w-[620px] -translate-x-1/2 select-none opacity-5 sm:min-w-[760px]"
@@ -36,8 +35,8 @@ const stats = heroData.stats
 
     <!-- desktop phone -->
     <img
-      :src="siteData.assets.images.heroPhone"
-      :alt="heroData.phoneAlt"
+      :src="heroData.media.image.src"
+      :alt="heroData.media.image.alt"
       :style="hiroDesktopImageVars"
       class="pointer-events-none absolute right-[var(--hiro-desktop-right)] bottom-[var(--hiro-desktop-bottom)] z-[5] hidden w-[var(--hiro-desktop-w)] max-w-full object-contain select-none lg:block xl:w-[var(--hiro-desktop-w-xl)] xl:max-w-none 2xl:w-[var(--hiro-desktop-w-2xl)]"
       draggable="false"
@@ -50,8 +49,8 @@ const stats = heroData.stats
         <h1
           class="max-w-[360px] text-[30px] font-semibold leading-[1.15] tracking-[-0.03em] text-white sm:max-w-[440px] sm:text-[34px]"
         >
-          <span class="block">{{ heroData.titleLines[0] }}</span>
-          <span class="block">{{ heroData.titleLines[1] }}</span>
+          <span class="block">{{ heroData.title }}</span>
+          <span class="block">{{ heroData.subtitle }}</span>
         </h1>
 
         <p class="mt-5 max-w-[360px] text-[14px] leading-[1.5] text-[#A9AEC8] sm:max-w-[460px] sm:text-[15px]">
@@ -67,21 +66,21 @@ const stats = heroData.stats
               class="grid gap-2 [grid-template-columns:repeat(auto-fit,minmax(150px,1fr))] sm:gap-3"
             >
               <div
-                v-for="(s, i) in stats"
-                :key="i"
+                v-for="s in stats"
+                :key="s.id"
                 class="stats-card rounded-[18px] border border-white/10 bg-white/5 px-3 py-3 text-center sm:rounded-[20px] sm:px-4 sm:py-4"
               >
                 <div class="text-[20px] font-semibold leading-[1] tracking-[-0.03em] text-white sm:text-[22px]">
                   {{ s.value }}
                 </div>
                 <div class="mt-2 text-[11px] leading-[1.25] tracking-[-0.01em] text-white/75 sm:text-[12px]">
-                  {{ s.label }}
+                  {{ s.text }}
                 </div>
               </div>
             </div>
 
             <div class="mt-3 text-center text-[11px] leading-[1.35] text-white/60 sm:mt-4 sm:text-[12px]">
-              {{ heroData.statsDisclaimer }}
+              {{ heroData.meta.statsDisclaimer }}
             </div>
           </div>
         </div>
@@ -89,8 +88,8 @@ const stats = heroData.stats
         <!-- телефон по центру -->
         <div class="mt-7 w-full">
           <img
-            :src="siteData.assets.images.heroPhone"
-            :alt="heroData.phoneAlt"
+            :src="heroData.media.image.src"
+            :alt="heroData.media.image.alt"
             :style="hiroMobileImageVars"
             class="mx-auto w-[var(--hiro-mobile-w)] max-w-[var(--hiro-mobile-max-w)] object-contain sm:w-[var(--hiro-mobile-w-sm)] sm:max-w-[var(--hiro-mobile-max-w-sm)]"
             draggable="false"
@@ -107,8 +106,8 @@ const stats = heroData.stats
           <h1
             class="max-w-[640px] text-[48px] font-semibold leading-[1.12] tracking-[-0.03em] text-white xl:max-w-[820px] xl:text-[64px] 2xl:text-[72px]"
           >
-            <span class="block">{{ heroData.titleLines[0] }}</span>
-            <span class="mt-3 block">{{ heroData.titleLines[1] }}</span>
+            <span class="block">{{ heroData.title }}</span>
+            <span class="mt-3 block">{{ heroData.subtitle }}</span>
           </h1>
 
           <p class="mt-6 max-w-[560px] text-[18px] leading-[1.42] text-[#A9AEC8] xl:mt-8 xl:max-w-[680px] xl:text-[22px]">
@@ -122,21 +121,21 @@ const stats = heroData.stats
             >
               <div class="grid grid-cols-3 gap-3 xl:gap-4">
                 <div
-                  v-for="(s, i) in stats"
-                  :key="i"
+                  v-for="s in stats"
+                  :key="s.id"
                   class="stats-card rounded-[20px] border border-white/10 bg-white/5 px-4 py-4 text-center xl:px-5 xl:py-5"
                 >
                   <div class="text-[24px] font-semibold leading-[1] tracking-[-0.03em] text-white xl:text-[26px]">
                     {{ s.value }}
                   </div>
                   <div class="mt-2 text-[12px] leading-[1.25] tracking-[-0.01em] text-white/75 xl:text-[13px]">
-                    {{ s.label }}
+                    {{ s.text }}
                   </div>
                 </div>
               </div>
 
               <div class="mt-4 text-center text-[12px] leading-[1.35] text-white/60 xl:text-[13px]">
-                {{ heroData.statsDisclaimer }}
+                {{ heroData.meta.statsDisclaimer }}
               </div>
             </div>
           </div>

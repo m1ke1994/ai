@@ -1,40 +1,20 @@
 ﻿<script setup>
-import { nextTick, ref } from 'vue'
+import { computed } from 'vue'
 import { siteData } from '@/assets/data'
 
-const advantagesData = siteData.whatSellerCan
-const trainingData = advantagesData.training
-const summaryData = advantagesData.summary
-const compareRows = advantagesData.compareRows
-const checkIcon = siteData.assets.icons.check
+const advantagesData = siteData.advantages
+const trainingData = advantagesData.meta.training
+const summaryData = advantagesData.meta.summary
+const compareRows = advantagesData.items
+const checkIcon = advantagesData.media.icon.src
 
-const isCompareOpen = ref(false)
-const compareDetailsRef = ref(null)
-
-const scrollToExpandedCompare = () => {
-  if (typeof window === 'undefined') return
-  const element = compareDetailsRef.value
-  if (!element) return
-
-  window.requestAnimationFrame(() => {
-    window.requestAnimationFrame(() => {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      })
-    })
-  })
-}
-
-const toggleCompare = async () => {
-  const nextState = !isCompareOpen.value
-  isCompareOpen.value = nextState
-
-  if (!nextState) return
-
-  await nextTick()
-  scrollToExpandedCompare()
-}
+const trainingRows = computed(() => {
+  const rows = []
+  for (let index = 0; index < trainingData.items.length; index += 2) {
+    rows.push(trainingData.items.slice(index, index + 2))
+  }
+  return rows
+})
 </script>
 
 <template>
@@ -81,69 +61,22 @@ const toggleCompare = async () => {
               />
             </span>
             <span class="text-[12px] font-medium tracking-[-0.01em] text-[#2F3452] sm:text-[20px]">
-              {{ trainingData.badge }}
+              {{ trainingData.title }}
             </span>
           </div>
 
-          <!-- ✅ Сетка: по 2 в ряд, центрируем содержимое каждой плашки -->
+          <!-- Сетка источников обучения -->
           <div class="mt-4 space-y-2.5">
-            <!-- Row 1 -->
-            <div class="grid grid-cols-2 gap-2.5">
+            <div v-for="row in trainingRows" :key="row[0].id" class="grid grid-cols-2 gap-2.5">
               <div
+                v-for="item in row"
+                :key="item.id"
                 class="flex w-full items-center justify-center gap-2 rounded-[12px] border border-[#E6EAF4] bg-white/85 px-3 py-2 text-[18px] font-medium text-[#343A57] shadow-[0_8px_20px_rgba(18,26,52,0.04)]"
               >
                 <img :src="checkIcon" alt="" class="h-3.5 w-3.5" aria-hidden="true" />
-                <span>{{ trainingData.dataSources[0] }}</span>
+                <span>{{ item.title }}</span>
               </div>
-              <div
-                class="flex w-full items-center justify-center gap-2 rounded-[12px] border border-[#E6EAF4] bg-white/85 px-3 py-2 text-[18px] font-medium text-[#343A57] shadow-[0_8px_20px_rgba(18,26,52,0.04)]"
-              >
-                <img :src="checkIcon" alt="" class="h-3.5 w-3.5" aria-hidden="true" />
-                <span>{{ trainingData.dataSources[1] }}</span>
-              </div>
-            </div>
-
-            <!-- Row 2 -->
-            <div class="grid grid-cols-2 gap-2.5">
-              <div
-                class="flex w-full items-center justify-center gap-2 rounded-[12px] border border-[#E6EAF4] bg-white/85 px-3 py-2 text-[18px] font-medium text-[#343A57] shadow-[0_8px_20px_rgba(18,26,52,0.04)]"
-              >
-                <img :src="checkIcon" alt="" class="h-3.5 w-3.5" aria-hidden="true" />
-                <span>{{ trainingData.dataSources[2] }}</span>
-              </div>
-              <div
-                class="flex w-full items-center justify-center gap-2 rounded-[12px] border border-[#E6EAF4] bg-white/85 px-3 py-2 text-[18px] font-medium text-[#343A57] shadow-[0_8px_20px_rgba(18,26,52,0.04)]"
-              >
-                <img :src="checkIcon" alt="" class="h-3.5 w-3.5" aria-hidden="true" />
-                <span>{{ trainingData.dataSources[3] }}</span>
-              </div>
-            </div>
-
-            <!-- Row 3 -->
-            <div class="grid grid-cols-2 gap-2.5">
-              <div
-                class="flex w-full items-center justify-center gap-2 rounded-[12px] border border-[#E6EAF4] bg-white/85 px-3 py-2 text-[18px] font-medium text-[#343A57] shadow-[0_8px_20px_rgba(18,26,52,0.04)]"
-              >
-                <img :src="checkIcon" alt="" class="h-3.5 w-3.5" aria-hidden="true" />
-                <span>{{ trainingData.dataSources[4] }}</span>
-              </div>
-              <div
-                class="flex w-full items-center justify-center gap-2 rounded-[12px] border border-[#E6EAF4] bg-white/85 px-3 py-2 text-[18px] font-medium text-[#343A57] shadow-[0_8px_20px_rgba(18,26,52,0.04)]"
-              >
-                <img :src="checkIcon" alt="" class="h-3.5 w-3.5" aria-hidden="true" />
-                <span>{{ trainingData.dataSources[5] }}</span>
-              </div>
-            </div>
-
-            <!-- Row 4 (last: single item + пустышка для сетки) -->
-            <div class="grid grid-cols-2 gap-2.5">
-              <div
-                class="flex w-full items-center justify-center gap-2 rounded-[12px] border border-[#E6EAF4] bg-white/85 px-3 py-2 text-[18px] font-medium text-[#343A57] shadow-[0_8px_20px_rgba(18,26,52,0.04)]"
-              >
-                <img :src="checkIcon" alt="" class="h-3.5 w-3.5" aria-hidden="true" />
-                <span>{{ trainingData.dataSources[6] }}</span>
-              </div>
-              <div aria-hidden="true"></div>
+              <div v-if="row.length === 1" aria-hidden="true"></div>
             </div>
           </div>
         </div>
@@ -166,44 +99,28 @@ const toggleCompare = async () => {
               class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[11px] font-medium text-white sm:text-[12px]"
             >
               <span class="h-2 w-2 rounded-full bg-[#78F7C7] shadow-[0_0_14px_rgba(120,247,199,0.8)]" />
-              {{ trainingData.rightPill }}
+              {{ trainingData.meta.rightPill }}
             </div>
 
             <p
               class="mt-3 text-[15px] font-medium leading-[1.38] tracking-[-0.01em] text-white sm:text-[16px] lg:text-[19px]"
             >
-              {{ trainingData.rightTitle }}
+              {{ trainingData.meta.rightTitle }}
             </p>
 
             <div class="mt-4 grid gap-2.5 sm:gap-3">
-              <div class="flex items-start gap-2.5 text-[12px] leading-[1.35] text-white sm:text-[13px]">
+              <div
+                v-for="bullet in trainingData.meta.rightBullets"
+                :key="bullet.id"
+                class="flex items-start gap-2.5 text-[12px] leading-[1.35] text-white sm:text-[13px]"
+              >
                 <img
                   :src="checkIcon"
                   alt=""
                   class="mt-0.5 h-3.5 w-3.5 shrink-0 brightness-[4] saturate-0"
                   aria-hidden="true"
                 />
-                <span class="text-white">{{ trainingData.rightBullets[0] }}</span>
-              </div>
-
-              <div class="flex items-start gap-2.5 text-[12px] leading-[1.35] text-white sm:text-[13px]">
-                <img
-                  :src="checkIcon"
-                  alt=""
-                  class="mt-0.5 h-3.5 w-3.5 shrink-0 brightness-[4] saturate-0"
-                  aria-hidden="true"
-                />
-                <span class="text-white">{{ trainingData.rightBullets[1] }}</span>
-              </div>
-
-              <div class="flex items-start gap-2.5 text-[12px] leading-[1.35] text-white sm:text-[13px]">
-                <img
-                  :src="checkIcon"
-                  alt=""
-                  class="mt-0.5 h-3.5 w-3.5 shrink-0 brightness-[4] saturate-0"
-                  aria-hidden="true"
-                />
-                <span class="text-white">{{ trainingData.rightBullets[2] }}</span>
+                <span class="text-white">{{ bullet.text }}</span>
               </div>
             </div>
           </div>
@@ -238,7 +155,7 @@ const toggleCompare = async () => {
         <!-- header row (без кнопки) -->
         <div class="flex flex-col gap-2">
           <div class="text-[14px] font-semibold tracking-[-0.01em] text-[#2F3452] lg:text-[15px]">
-            {{ summaryData.kicker }}
+            {{ summaryData.subtitle }}
           </div>
           <div
             class="max-w-[980px] text-[16px] font-semibold leading-[1.18] tracking-[-0.03em] text-[#141633] sm:text-[20px] lg:text-[26px]"
@@ -255,22 +172,22 @@ const toggleCompare = async () => {
           <!-- desktop compare -->
           <div class="hidden lg:block">
             <div class="grid grid-cols-[minmax(240px,0.30fr)_minmax(0,0.35fr)_minmax(0,0.35fr)] px-6 pt-6">
-              <div class="text-[14px] font-semibold tracking-[-0.01em] text-[#2F3452]">{{ summaryData.desktopStageLabel }}</div>
-              <div class="text-[14px] font-semibold tracking-[-0.01em] text-[#4B39FF]">{{ summaryData.desktopAiLabel }}</div>
-              <div class="text-[14px] font-semibold tracking-[-0.01em] text-[#2F3452]">{{ summaryData.desktopHumanLabel }}</div>
+              <div class="text-[14px] font-semibold tracking-[-0.01em] text-[#2F3452]">{{ summaryData.meta.desktopStageLabel }}</div>
+              <div class="text-[14px] font-semibold tracking-[-0.01em] text-[#4B39FF]">{{ summaryData.meta.desktopAiLabel }}</div>
+              <div class="text-[14px] font-semibold tracking-[-0.01em] text-[#2F3452]">{{ summaryData.meta.desktopHumanLabel }}</div>
             </div>
 
             <div class="mt-4 divide-y divide-[#E8EBF4]">
               <div
-                v-for="(r, i) in compareRows"
-                :key="i"
+                v-for="r in compareRows"
+                :key="r.id"
                 class="grid grid-cols-[minmax(240px,0.30fr)_minmax(0,0.35fr)_minmax(0,0.35fr)] px-6 py-6"
               >
                 <div>
                   <div class="text-[16px] font-semibold tracking-[-0.02em] text-[#141633]">
-                    {{ r.label }}
+                    {{ r.title }}
                   </div>
-                  <div class="mt-1 text-[13px] leading-[1.35] text-[#7A809A]">Сравнение по этапу</div>
+                  <div class="mt-1 text-[13px] leading-[1.35] text-[#7A809A]">{{ summaryData.meta.stageDescriptionLabel }}</div>
                 </div>
 
                 <div>
@@ -285,7 +202,7 @@ const toggleCompare = async () => {
                         <span class="text-[14px] text-white">✓</span>
                       </span>
                       <div class="text-[15px] leading-[1.55] tracking-[-0.01em] text-[#141633]">
-                        {{ r.ai }}
+                        {{ r.aiDescription }}
                       </div>
                     </div>
                   </div>
@@ -298,7 +215,7 @@ const toggleCompare = async () => {
                         <span class="text-[14px] font-semibold text-[#2F3452]">—</span>
                       </span>
                       <div class="text-[15px] leading-[1.55] tracking-[-0.01em] text-[#2B2E3A]">
-                        {{ r.human }}
+                        {{ r.humanDescription }}
                       </div>
                     </div>
                   </div>
@@ -307,25 +224,25 @@ const toggleCompare = async () => {
             </div>
 
             <div class="px-6 pb-6 pt-1 text-center text-[13px] leading-[1.45] text-[#6B7190]">
-              {{ summaryData.desktopFooter }}
+              {{ summaryData.meta.desktopFooter }}
             </div>
           </div>
 
           <!-- mobile compare -->
           <div class="lg:hidden">
             <div class="px-4 pt-5 sm:px-6">
-              <div class="text-[14px] font-semibold tracking-[-0.02em] text-[#141633]">{{ summaryData.mobileTitle }}</div>
-              <div class="mt-1 text-[13px] leading-[1.45] text-[#616782]">{{ summaryData.mobileSubtitle }}</div>
+              <div class="text-[14px] font-semibold tracking-[-0.02em] text-[#141633]">{{ summaryData.meta.mobileTitle }}</div>
+              <div class="mt-1 text-[13px] leading-[1.45] text-[#616782]">{{ summaryData.meta.mobileSubtitle }}</div>
             </div>
 
             <div class="mt-4 space-y-4 px-4 pb-6 sm:px-6">
               <div
-                v-for="(r, i) in compareRows"
-                :key="i"
+                v-for="r in compareRows"
+                :key="r.id"
                 class="rounded-[22px] border border-[#E6EAF4] bg-white/80 p-4 shadow-[0_18px_60px_rgba(18,26,52,0.08)]"
               >
                 <div class="text-[15px] font-semibold tracking-[-0.02em] text-[#141633]">
-                  {{ r.label }}
+                  {{ r.title }}
                 </div>
 
                 <div class="mt-3 grid gap-3">
@@ -336,10 +253,10 @@ const toggleCompare = async () => {
                       <span class="grid h-6 w-6 place-items-center rounded-full bg-[linear-gradient(135deg,#4B39FF_0%,#8A7DFF_100%)] text-white">
                         ✓
                       </span>
-                      {{ summaryData.mobileAiLabel }}
+                      {{ summaryData.meta.mobileAiLabel }}
                     </div>
                     <div class="mt-2 text-[14px] leading-[1.55] tracking-[-0.01em] text-[#141633]">
-                      {{ r.ai }}
+                      {{ r.aiDescription }}
                     </div>
                   </div>
 
@@ -348,17 +265,17 @@ const toggleCompare = async () => {
                       <span class="grid h-6 w-6 place-items-center rounded-full bg-[#111827]/5 text-[#2F3452]">
                         —
                       </span>
-                      {{ summaryData.mobileHumanLabel }}
+                      {{ summaryData.meta.mobileHumanLabel }}
                     </div>
                     <div class="mt-2 text-[14px] leading-[1.55] tracking-[-0.01em] text-[#2B2E3A]">
-                      {{ r.human }}
+                      {{ r.humanDescription }}
                     </div>
                   </div>
                 </div>
               </div>
 
               <div class="pt-1 text-center text-[13px] leading-[1.45] text-[#6B7190]">
-                {{ summaryData.mobileFooter }}
+                {{ summaryData.meta.mobileFooter }}
               </div>
             </div>
           </div>

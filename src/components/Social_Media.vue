@@ -1,7 +1,8 @@
 <script setup>
-import { siteData, socialMedia } from '@/assets/data'
+import { siteData } from '@/assets/data'
 
-const socialData = siteData.socialMedia
+const channelsData = siteData.channels
+const channelItems = channelsData.items
 </script>
 
 <template>
@@ -9,7 +10,7 @@ const socialData = siteData.socialMedia
     class="relative overflow-hidden rounded-[30px] border border-[#E1E5F2] bg-[#0b0f2a] p-5 pb-0 shadow-[0_22px_70px_rgba(18,26,52,0.18)] sm:rounded-[32px] sm:p-6 sm:pb-0 lg:p-7 lg:pb-0"
   >
     <img
-      :src="siteData.assets.images.sectionBackground"
+      :src="channelsData.media.background.src"
       alt=""
       aria-hidden="true"
       class="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-[0.75]"
@@ -42,30 +43,30 @@ const socialData = siteData.socialMedia
           class="inline-flex items-center gap-2 rounded-full border border-[#E3E8F6] bg-white px-3 py-1.5 text-[11px] font-medium tracking-[-0.01em] text-[#59607D]"
         >
           <span class="h-2 w-2 rounded-full bg-[#6F63FF] shadow-[0_0_14px_rgba(111,99,255,0.75)]" aria-hidden="true" />
-          {{ socialData.pill }}
+          {{ channelsData.subtitle }}
         </div>
 
         <h4 class="mt-4 text-[22px] font-semibold tracking-[-0.03em] text-[#fbfcfd] sm:text-[26px]">
-          {{ socialData.title }}
+          {{ channelsData.title }}
         </h4>
 
         <p class="mt-2 max-w-[720px] text-[13px] leading-[1.55] text-[#fafbfc] sm:text-[14px]">
-          {{ socialData.description }}
+          {{ channelsData.description }}
         </p>
 
         <div class="mt-5 grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-4">
           <a
-            v-for="item in socialMedia"
+            v-for="item in channelItems"
             :key="item.id"
             :href="item.href"
-            :aria-label="`Social link ${item.name}`"
+            :aria-label="`${channelsData.meta.itemAriaLabelPrefix} ${item.name}`"
             target="_blank"
             rel="noopener noreferrer"
             class="group flex min-h-[44px] items-center justify-center gap-2 rounded-[14px] border border-[#E5E9F5] bg-white px-3 py-2 text-[12px] font-medium tracking-[-0.01em] text-black shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition hover:-translate-y-0.5 hover:border-[#D3DAEF] hover:bg-[#FBFCFF]"
           >
             <img
-              :src="item.icon"
-              :alt="item.name"
+              :src="item.icon.src"
+              :alt="item.icon.alt"
               class="h-4 w-4 shrink-0 object-contain opacity-90 transition group-hover:opacity-100"
             />
             <span class="truncate">{{ item.name }}</span>
@@ -80,17 +81,17 @@ const socialData = siteData.socialMedia
         />
         <div class="relative flex items-end justify-center gap-3 sm:gap-4">
           <img
-            :src="siteData.assets.images.socialPhone"
-            :alt="socialData.phoneAlt"
+            :src="channelsData.media.image.src"
+            :alt="channelsData.media.image.alt"
             class="h-auto w-[46%] object-contain translate-y-[6px] sm:translate-y-[10px] lg:translate-y-[14px]"
             draggable="false"
           />
           <img
-            :src="siteData.assets.images.socialPhoneSecondary || siteData.assets.images.socialPhone"
-            :alt="`${socialData.phoneAlt} 2`"
+            :src="channelsData.media.secondaryImage.src || channelsData.media.image.src"
+            :alt="channelsData.media.secondaryImage.alt"
             class="h-auto w-[46%] object-contain translate-y-[6px] sm:translate-y-[10px] lg:translate-y-[14px]"
             draggable="false"
-            @error="($event) => ($event.target.src = siteData.assets.images.socialPhone)"
+            @error="($event) => ($event.target.src = channelsData.media.image.src)"
           />
         </div>
       </div>

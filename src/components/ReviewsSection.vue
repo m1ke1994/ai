@@ -11,8 +11,8 @@
             id="reviews-title"
             class="text-[42px] font-semibold leading-[0.95] tracking-[-0.03em] text-white sm:text-[56px] lg:text-[54px]"
           >
-            {{ reviewsData.titleMain }}
-            <span class="mt-2 block text-[#A8ADC4]">{{ reviewsData.titleAccent }}</span>
+            {{ reviewsData.title }}
+            <span class="mt-2 block text-[#A8ADC4]">{{ reviewsData.subtitle }}</span>
           </h2>
         </div>
 
@@ -21,7 +21,7 @@
             type="button"
             class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-[#151723] text-[#D8DBEF] transition hover:border-white/25 hover:bg-[#1A1D2B] disabled:cursor-not-allowed disabled:opacity-40"
             :disabled="pageCount <= 1"
-            :aria-label="reviewsData.actions.prevPageAria"
+            :aria-label="reviewActions.prevPageAria"
             @click="goPrev"
           >
             <svg viewBox="0 0 20 20" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.75">
@@ -33,7 +33,7 @@
             type="button"
             class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-[#151723] text-[#D8DBEF] transition hover:border-white/25 hover:bg-[#1A1D2B] disabled:cursor-not-allowed disabled:opacity-40"
             :disabled="pageCount <= 1"
-            :aria-label="reviewsData.actions.nextPageAria"
+            :aria-label="reviewActions.nextPageAria"
             @click="goNext"
           >
             <svg viewBox="0 0 20 20" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.75">
@@ -75,13 +75,13 @@
                   </p>
 
                   <div class="mt-6 space-y-4 text-[14px] leading-[1.55] text-[#C4C8DD] sm:text-[15px]">
-                    <p v-for="(paragraph, idx) in review.previewParagraphs" :key="`${review.id}-p-${idx}`">
-                      {{ paragraph }}
+                    <p v-for="paragraph in review.previewParagraphs" :key="paragraph.id">
+                      {{ paragraph.text }}
                     </p>
 
                     <ul v-if="review.previewBullets?.length" class="list-disc space-y-1.5 pl-5 marker:text-[#A7ACC3]">
-                      <li v-for="(bullet, idx) in review.previewBullets" :key="`${review.id}-b-${idx}`">
-                        {{ bullet }}
+                      <li v-for="bullet in review.previewBullets" :key="bullet.id">
+                        {{ bullet.text }}
                       </li>
                     </ul>
                   </div>
@@ -92,7 +92,7 @@
                   class="mt-auto inline-flex h-[50px] w-full max-w-[192px] shrink-0 items-center justify-center rounded-[14px] border border-white/60 bg-transparent text-[18px] font-semibold tracking-[-0.01em] text-white transition hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
                   @click="openReview(review)"
                 >
-                  {{ reviewsData.actions.readMore }}
+                  {{ reviewActions.readMore }}
                 </button>
               </article>
             </div>
@@ -103,7 +103,7 @@
       <div
         v-if="pageCount > 1"
         class="mt-6 flex items-center justify-center gap-2"
-        :aria-label="reviewsData.actions.paginationAria"
+        :aria-label="reviewActions.paginationAria"
       >
         <button
           v-for="page in pageCount"
@@ -111,7 +111,7 @@
           type="button"
           class="h-2 rounded-full transition"
           :class="page - 1 === currentPage ? 'w-8 bg-white' : 'w-2 bg-white/25 hover:bg-white/45'"
-          :aria-label="`${reviewsData.actions.paginationGoTo} ${page}`"
+          :aria-label="`${reviewActions.paginationGoTo} ${page}`"
           :aria-current="page - 1 === currentPage ? 'true' : 'false'"
           @click="currentPage = page - 1"
         />
@@ -167,7 +167,7 @@
                   ref="closeButtonRef"
                   type="button"
                   class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
-                  :aria-label="reviewsData.actions.closeModalAria"
+                  :aria-label="reviewActions.closeModalAria"
                   @click="closeReview"
                 >
                   <svg viewBox="0 0 20 20" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.75">
@@ -178,17 +178,17 @@
 
               <div class="max-h-[70vh] overflow-y-auto px-5 py-6 sm:px-7 sm:py-7">
                 <div class="space-y-5 text-[15px] leading-[1.65] text-[#D4D8EA] sm:text-base">
-                  <p v-for="(paragraph, idx) in activeReview.detailsParagraphs" :key="`${activeReview.id}-detail-${idx}`">
-                    {{ paragraph }}
+                  <p v-for="paragraph in activeReview.detailsParagraphs" :key="paragraph.id">
+                    {{ paragraph.text }}
                   </p>
 
                   <div v-if="activeReview.results?.length" class="rounded-2xl border border-white/8 bg-white/3 p-4 sm:p-5">
                     <p class="text-sm font-semibold uppercase tracking-[0.08em] text-[#A8ADC4]">
-                      {{ reviewsData.modalResultsTitle }}
+                      {{ reviewsData.meta.modalResultsTitle }}
                     </p>
                     <ul class="mt-3 list-disc space-y-2 pl-5 marker:text-[#C4C8DD]">
-                      <li v-for="(result, idx) in activeReview.results" :key="`${activeReview.id}-result-${idx}`">
-                        {{ result }}
+                      <li v-for="result in activeReview.results" :key="result.id">
+                        {{ result.text }}
                       </li>
                     </ul>
                   </div>
@@ -208,6 +208,7 @@ import { siteData } from '@/assets/data'
 
 const reviewsData = siteData.reviews
 const reviews = reviewsData.items
+const reviewActions = reviewsData.meta.actions
 
 const viewportWidth = ref(typeof window !== 'undefined' ? window.innerWidth : 1440)
 const currentPage = ref(0)
