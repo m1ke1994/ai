@@ -598,12 +598,12 @@ export const siteData = {
       line3: 'Свяжитесь с нами',
     },
     description:
-      'Напишите нам в WhatsApp или Telegram — быстро ответим, уточним задачу и предложим лучший вариант внедрения.',
+      "",
     card: {
       titleLine1: 'Выберите удобный',
       titleLine2: 'канал связи',
       description: 'Открываем чат в один клик — без форм и ожиданий.',
-      responseTime: 'Отвечаем обычно в течение 5–15 минут в рабочее время.',
+      responseTime: '',
     },
     links: {
       whatsapp: {
