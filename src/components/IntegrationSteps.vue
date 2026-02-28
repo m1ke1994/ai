@@ -42,7 +42,7 @@ const openContactFormModal = () => {
         <div
           v-for="(step, index) in primaryIntegrationSteps"
           :key="index"
-          class="relative flex min-h-[420px] flex-col justify-between rounded-[26px] bg-[#E9EBF2] p-6"
+          class="relative flex min-h-[520px] flex-col justify-between rounded-[26px] bg-[#E9EBF2] p-6"
         >
           <!-- Текст -->
           <div>
@@ -60,12 +60,12 @@ const openContactFormModal = () => {
           </div>
 
           <!-- Изображение -->
-          <div class="mt-5 flex h-[190px] items-center justify-center">
+          <div class="mt-5 flex h-[220px] items-center justify-center">
             <img
               v-if="step.image || step.imageSrc"
               :src="step.image || step.imageSrc"
               alt=""
-              class="max-h-[190px] w-auto object-contain"
+              class="max-h-[220px] w-auto object-contain"
               loading="lazy"
               draggable="false"
             />
@@ -87,8 +87,8 @@ const openContactFormModal = () => {
           ></div>
 
           <!-- ВАЖНО: делаем карточку flex-col, чтобы кнопки/картинка не "уезжали" из-за абсолютных слоёв -->
-          <div class="relative z-10 flex min-h-[420px] flex-col">
-            <div>
+          <div class="relative z-10 flex min-h-[520px] flex-col">
+            <div class="min-h-0 flex flex-1 flex-col">
               <h4
                 class="text-[28px] font-semibold leading-[0.98] tracking-[-0.03em] text-white sm:text-[34px]"
               >
@@ -96,11 +96,11 @@ const openContactFormModal = () => {
                 {{ ctaTitleLines[1] }}
               </h4>
 
-              <div v-if="ctaStep.imageSrc" class="mt-5 flex h-[300px] items-center justify-center">
+              <div v-if="ctaStep.imageSrc" class="mt-5 flex h-[220px] items-center justify-center">
                 <img
                   :src="ctaStep.imageSrc"
                   alt=""
-                  class="h-full w-full object-contain"
+                  class="max-h-[220px] w-full object-contain"
                   loading="lazy"
                   draggable="false"
                 />
@@ -108,7 +108,7 @@ const openContactFormModal = () => {
             </div>
 
             <!-- КНОПКИ: фиксируем позиционирование — прижимаем вниз через mt-auto -->
-            <div v-if="ctaActions.length" class="relative z-20 mt-auto flex flex-wrap items-center gap-2 pt-6">
+            <div v-if="ctaActions.length" class="relative z-20 mt-auto shrink-0 flex flex-wrap items-center gap-2 pt-6">
               <a
                 v-for="action in ctaActions"
                 :key="action.label"
@@ -159,7 +159,7 @@ const openContactFormModal = () => {
               </p>
             </div>
 
-            <div class="mt-6 flex h-[190px] items-center justify-center xl:h-[220px]">
+            <div class="mt-6 flex h-[220px] items-center justify-center">
               <img
                 v-if="step.image || step.imageSrc"
                 :src="step.image || step.imageSrc"
@@ -193,7 +193,7 @@ const openContactFormModal = () => {
               </p>
             </div>
 
-            <div class="mt-6 flex h-[190px] items-center justify-center xl:h-[220px]">
+            <div class="mt-6 flex h-[220px] items-center justify-center">
               <img
                 v-if="step.image || step.imageSrc"
                 :src="step.image || step.imageSrc"
@@ -223,7 +223,7 @@ const openContactFormModal = () => {
 
             <!-- ВАЖНО: делаем внутренний контейнер flex-col на всю высоту, чтобы кнопки не "уезжали" -->
             <div class="relative z-10 flex h-full flex-col">
-              <div>
+              <div class="min-h-0 flex flex-1 flex-col">
                 <h4
                   class="text-[30px] font-semibold leading-[0.96] tracking-[-0.03em] text-white xl:text-[40px]"
                 >
@@ -243,7 +243,7 @@ const openContactFormModal = () => {
               </div>
 
               <!-- КНОПКИ: гарантированно внизу карточки -->
-              <div v-if="ctaActions.length" class="relative z-20 mt-auto flex flex-wrap items-center gap-2 pt-6">
+              <div v-if="ctaActions.length" class="relative z-20 mt-auto shrink-0 flex flex-wrap items-center gap-2 pt-6">
                 <a
                   v-for="action in ctaActions"
                   :key="action.label"
