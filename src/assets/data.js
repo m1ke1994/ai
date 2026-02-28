@@ -9,18 +9,18 @@ const navigationItems = [
   { label: 'Тарифы', href: '#pricing' },
 ]
 
-const omniChannels = [
-  'Сайт',
-  'Telegram',
-  'Avito',
-  'Instagram',
-  'Facebook',
-  'WhatsApp',
-  'YouTube',
-  'TikTok',
-  'Mail',
-  'ВКонтакте',
-  'Max',
+export const socialMedia = [
+  { id: 'site', name: 'Сайт', icon: '/icons/web.svg', href: 'https://example.com' },
+  { id: 'telegram', name: 'Telegram', icon: '/icons/telegram.svg', href: 'https://example.com' },
+  { id: 'avito', name: 'Avito', icon: '/icons/avito.svg', href: 'https://example.com' },
+  { id: 'instagram', name: 'Instagram', icon: '/icons/instagram.svg', href: 'https://example.com' },
+  { id: 'facebook', name: 'Facebook', icon: '/icons/facebook.svg', href: 'https://example.com' },
+  { id: 'whatsapp', name: 'WhatsApp', icon: '/icons/whatsapp.svg', href: 'https://example.com' },
+  { id: 'youtube', name: 'YouTube', icon: '/icons/youtube.svg', href: 'https://example.com' },
+  { id: 'tiktok', name: 'TikTok', icon: '/icons/tiktok.svg', href: 'https://example.com' },
+  { id: 'mail', name: 'Mail', icon: '/icons/mail.svg', href: 'https://example.com' },
+  { id: 'vk', name: 'ВКонтакте', icon: '/icons/vk.svg', href: 'https://example.com' },
+  { id: 'max', name: 'Max', icon: '/icons/Max.svg', href: 'https://example.com' },
 ]
 
 export const siteData = {
@@ -295,7 +295,6 @@ export const siteData = {
     description:
       'Единая логика ответов и сбор лидов во всех ключевых каналах общения с клиентом.',
     phoneAlt: 'Превью телефона',
-    contactChannels: omniChannels,
   },
 
   // SECTION: integration-steps
