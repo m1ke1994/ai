@@ -62,7 +62,7 @@ const socialItems = contactChannels.map((label) => ({
 
     <div class="relative grid gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center">
       <!-- LEFT: text + channels -->
-      <div class="h-full rounded-[24px] border border-[#E6EAF4]  p-4 shadow-[0_20px_50px_rgba(18,26,52,0.12)] sm:p-5 lg:p-6">
+      <div class="h-full rounded-[24px] p-4 shadow-[0_20px_50px_rgba(18,26,52,0.12)] sm:p-5 lg:p-6">
         <div
           class="inline-flex items-center gap-2 rounded-full border border-[#E3E8F6] bg-white px-3 py-1.5 text-[11px] font-medium tracking-[-0.01em] text-[#59607D]"
         >
