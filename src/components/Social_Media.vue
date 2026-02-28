@@ -62,7 +62,7 @@ const socialItems = contactChannels.map((label) => ({
 
     <div class="relative grid gap-6 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-center">
       <!-- LEFT: text + channels -->
-      <div class="h-full rounded-[24px] border border-[#E6EAF4] bg-white p-4 shadow-[0_20px_50px_rgba(18,26,52,0.12)] sm:p-5 lg:p-6">
+      <div class="h-full rounded-[24px] border border-[#E6EAF4]  p-4 shadow-[0_20px_50px_rgba(18,26,52,0.12)] sm:p-5 lg:p-6">
         <div
           class="inline-flex items-center gap-2 rounded-full border border-[#E3E8F6] bg-white px-3 py-1.5 text-[11px] font-medium tracking-[-0.01em] text-[#59607D]"
         >
@@ -70,11 +70,11 @@ const socialItems = contactChannels.map((label) => ({
           {{ socialData.pill }}
         </div>
 
-        <h4 class="mt-4 text-[22px] font-semibold tracking-[-0.03em] text-[#141633] sm:text-[26px]">
+        <h4 class="mt-4 text-[22px] font-semibold tracking-[-0.03em] text-[#fbfcfd] sm:text-[26px]">
           {{ socialData.title }}
         </h4>
 
-        <p class="mt-2 max-w-[720px] text-[13px] leading-[1.55] text-[#5F6683] sm:text-[14px]">
+        <p class="mt-2 max-w-[720px] text-[13px] leading-[1.55] text-[#fafbfc] sm:text-[14px]">
           {{ socialData.description }}
         </p>
 
