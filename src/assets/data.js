@@ -39,6 +39,7 @@ export const siteData = {
       heroPhone: '/hiro.png',
       heroTexture: '/tilda.png',
       socialPhone: '/dialog.png',
+      socialPhoneSecondary: '/dialog2.png',
       sectionBackground: '/bg-fon.png',
       ctaBackground: '/bg.png',
       integrationsBanner: '/banner.png',

@@ -1,11 +1,11 @@
-<script setup>
+﻿<script setup>
 import { siteData } from '@/assets/data'
 
 const socialData = siteData.socialMedia
 const { contactChannels } = socialData
 
 const socialConfigByLabel = {
-  'Сайт': { href: '#', icon: '/icons/web.svg' },
+  Сайт: { href: '#', icon: '/icons/web.svg' },
   Telegram: { href: '#', icon: '/icons/telegram.svg' },
   Avito: { href: '#', icon: '/icons/avito.svg' },
   Instagram: { href: '#', icon: '/icons/instagram.svg' },
@@ -14,7 +14,7 @@ const socialConfigByLabel = {
   YouTube: { href: '#', icon: '/icons/youtube.svg' },
   TikTok: { href: '#', icon: '/icons/tiktok.svg' },
   Mail: { href: '#', icon: '/icons/mail.svg' },
-  'ВКонтакте': { href: '#', icon: '/icons/vk.svg' },
+  ВКонтакте: { href: '#', icon: '/icons/vk.svg' },
   Max: { href: '#', icon: '/icons/Max.svg' },
 }
 
@@ -26,7 +26,7 @@ const socialItems = contactChannels.map((label) => ({
 </script>
 
 <template>
-  <!-- ✅ Контакты / Омниканальность (фон + телефон) -->
+  <!-- вњ… РљРѕРЅС‚Р°РєС‚С‹ / РћРјРЅРёРєР°РЅР°Р»СЊРЅРѕСЃС‚СЊ (С„РѕРЅ + С‚РµР»РµС„РѕРЅ) -->
   <div
     class="relative overflow-hidden rounded-[30px] border border-[#E1E5F2] bg-[#0b0f2a] p-5 pb-0 shadow-[0_22px_70px_rgba(18,26,52,0.18)] sm:rounded-[32px] sm:p-6 sm:pb-0 lg:p-7 lg:pb-0"
   >
@@ -97,22 +97,30 @@ const socialItems = contactChannels.map((label) => ({
         </div>
       </div>
 
-      <!-- RIGHT: phone (без матового контейнера + больше размер + без нижнего отступа) -->
+      <!-- RIGHT: phone (Р±РµР· РјР°С‚РѕРІРѕРіРѕ РєРѕРЅС‚РµР№РЅРµСЂР° + Р±РѕР»СЊС€Рµ СЂР°Р·РјРµСЂ + Р±РµР· РЅРёР¶РЅРµРіРѕ РѕС‚СЃС‚СѓРїР°) -->
       <div class="relative mx-auto w-full max-w-[620px] self-end">
         <div
           aria-hidden="true"
           class="pointer-events-none absolute -inset-10 rounded-[40px] bg-[radial-gradient(closest-side,rgba(111,99,255,0.22),transparent_70%)] blur-2xl"
         />
-        <!-- убрали: border/bg/padding/backdrop-blur -->
-        <div class="relative">
+        <!-- СѓР±СЂР°Р»Рё: border/bg/padding/backdrop-blur -->
+        <div class="relative flex items-end justify-center gap-3 sm:gap-4">
           <img
             :src="siteData.assets.images.socialPhone"
             :alt="socialData.phoneAlt"
-            class="h-auto w-[60%] object-contain translate-y-[6px] sm:translate-y-[10px] lg:translate-y-[14px]"
+            class="h-auto w-[46%] object-contain translate-y-[6px] sm:translate-y-[10px] lg:translate-y-[14px]"
             draggable="false"
+          />
+          <img
+            :src="siteData.assets.images.socialPhoneSecondary || siteData.assets.images.socialPhone"
+            :alt="`${socialData.phoneAlt} 2`"
+            class="h-auto w-[46%] object-contain translate-y-[6px] sm:translate-y-[10px] lg:translate-y-[14px]"
+            draggable="false"
+            @error="($event) => ($event.target.src = siteData.assets.images.socialPhone)"
           />
         </div>
       </div>
     </div>
   </div>
 </template>
+
