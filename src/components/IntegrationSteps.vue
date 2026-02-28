@@ -4,6 +4,9 @@ import { siteData } from '@/assets/data'
 const CONTACT_FORM_OPEN_EVENT = siteData.events.contactFormOpen
 const integrationStepsData = siteData.integrationSteps
 const integrationSteps = integrationStepsData.steps
+const primaryIntegrationSteps = integrationSteps.slice(0, 5)
+const ctaStep = integrationSteps[5] || null
+const ctaActions = ctaStep?.actions || []
 const ctaTitleLines = integrationStepsData.ctaTitle.split('\n')
 
 const openContactFormModal = () => {
@@ -36,7 +39,7 @@ const openContactFormModal = () => {
       <!-- МОБИЛКА: колонка -->
       <div class="flex flex-col gap-4 lg:hidden">
         <div
-          v-for="(step, index) in integrationSteps"
+          v-for="(step, index) in primaryIntegrationSteps"
           :key="index"
           class="relative flex min-h-[420px] flex-col justify-between rounded-[26px] bg-[#E9EBF2] p-6"
         >
@@ -58,8 +61,8 @@ const openContactFormModal = () => {
           <!-- Изображение -->
           <div class="mt-5 flex h-[190px] items-center justify-center">
             <img
-              v-if="step.image"
-              :src="step.image"
+              v-if="step.image || step.imageSrc"
+              :src="step.image || step.imageSrc"
               alt=""
               class="max-h-[190px] w-auto object-contain"
               loading="lazy"
@@ -89,9 +92,39 @@ const openContactFormModal = () => {
               {{ ctaTitleLines[0] }}<br />
               {{ ctaTitleLines[1] }}
             </h4>
+
+            <div
+              v-if="ctaStep?.imageSrc"
+              class="mt-5 flex h-[300px] items-center justify-center"
+            >
+              <img
+                :src="ctaStep.imageSrc"
+                alt=""
+                class="h-full w-full object-contain scale-[1.18]"
+                loading="lazy"
+                draggable="false"
+              />
+            </div>
           </div>
 
+          <div
+            v-if="ctaActions.length"
+            class="relative z-10 mt-6 flex flex-wrap items-center gap-2"
+          >
+            <a
+              v-for="action in ctaActions"
+              :key="action.label"
+              :href="action.href"
+              :aria-label="`Open ${action.label}`"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex h-[40px] items-center justify-center rounded-[12px] border border-white/60 bg-white/10 px-4 text-[14px] font-medium tracking-[-0.01em] text-white backdrop-blur-md transition hover:bg-white/20"
+            >
+              {{ action.label }}
+            </a>
+          </div>
           <button
+            v-else
             type="button"
             class="relative z-10 mt-6 inline-flex h-[56px] w-full items-center justify-center rounded-[16px]
                    border border-white/60 bg-white/10 text-[18px] font-medium tracking-[-0.01em] text-white
@@ -128,8 +161,8 @@ const openContactFormModal = () => {
 
             <div class="mt-6 flex h-[190px] items-center justify-center xl:h-[220px]">
               <img
-                v-if="step.image"
-                :src="step.image"
+                v-if="step.image || step.imageSrc"
+                :src="step.image || step.imageSrc"
                 alt=""
                 class="max-h-[220px] w-auto object-contain"
                 loading="lazy"
@@ -162,8 +195,8 @@ const openContactFormModal = () => {
 
             <div class="mt-6 flex h-[190px] items-center justify-center xl:h-[220px]">
               <img
-                v-if="step.image"
-                :src="step.image"
+                v-if="step.image || step.imageSrc"
+                :src="step.image || step.imageSrc"
                 alt=""
                 class="max-h-[220px] w-auto object-contain"
                 loading="lazy"
@@ -193,9 +226,39 @@ const openContactFormModal = () => {
                 {{ ctaTitleLines[0] }}<br />
                 {{ ctaTitleLines[1] }}
               </h4>
+
+              <div
+                v-if="ctaStep?.imageSrc"
+                class="mt-6 flex h-[320px] items-center justify-center"
+              >
+                <img
+                  :src="ctaStep.imageSrc"
+                  alt=""
+                  class="max-h-[420px] w-full object-contain"
+                  loading="lazy"
+                  draggable="false"
+                />
+              </div>
             </div>
 
+            <div
+              v-if="ctaActions.length"
+              class="relative z-10 flex flex-wrap items-center gap-2"
+            >
+              <a
+                v-for="action in ctaActions"
+                :key="action.label"
+                :href="action.href"
+                :aria-label="`Open ${action.label}`"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex h-[40px] items-center justify-center rounded-[12px] border border-white/60 bg-white/10 px-4 text-[14px] font-medium tracking-[-0.01em] text-white backdrop-blur-md transition hover:bg-white/20"
+              >
+                {{ action.label }}
+              </a>
+            </div>
             <button
+              v-else
               type="button"
               class="relative z-10 inline-flex h-[56px] w-full items-center justify-center rounded-[16px]
                      border border-white/60 bg-white/10 text-[18px] font-medium tracking-[-0.01em] text-white

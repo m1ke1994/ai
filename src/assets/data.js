@@ -335,6 +335,14 @@ export const siteData = {
         desc: 'Следим за качеством ответов и предоставляем отчеты о работе AI-продавца',
         image: '/10.png',
       },
+      {
+        imageSrc: '/briffing.png',
+        // TODO: Replace with real Telegram/WhatsApp URLs.
+        actions: [
+          { label: 'Telegram', href: 'https://t.me/' },
+          { label: 'WhatsApp', href: 'https://wa.me/' },
+        ],
+      },
     ],
   },
 
