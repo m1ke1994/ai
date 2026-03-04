@@ -226,7 +226,7 @@ class="flex px-6 py-6 items-center"
 <div class="flex items-start gap-3">
 
 <span
-class="grid h-7 w-7 place-items-center rounded-full bg-gradient-to-r from-[#4B39FF] to-[#8A7DFF] text-white"
+class="flex items-center justify-center w-7 h-7 min-w-[28px] min-h-[28px] shrink-0 rounded-full bg-gradient-to-r from-[#4B39FF] to-[#8A7DFF] text-white"
 >
 ✓
 </span>
