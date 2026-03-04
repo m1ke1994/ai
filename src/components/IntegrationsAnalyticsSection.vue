@@ -31,14 +31,14 @@ const getRowImageAlt = (row) => {
         {{ integrationsData.title }}
       </h3>
 
-      <!-- Таблица интеграций -->
+      <!-- Таблица -->
       <div class="mt-6 overflow-hidden rounded-[22px] border border-[#E7EAF4] bg-white">
         <div class="divide-y divide-[#EEF1FA]">
 
           <div
             v-for="row in integrationsRows"
             :key="row.id"
-            class="grid grid-cols-1 gap-4 px-4 py-6 sm:grid-cols-[minmax(260px,1fr)_minmax(380px,1.8fr)_auto] sm:items-center sm:gap-10 sm:px-6"
+            class="grid grid-cols-1 gap-4 px-5 py-5 sm:grid-cols-[minmax(260px,1fr)_minmax(380px,1.8fr)_140px] sm:items-center sm:gap-8 sm:px-6"
           >
 
             <!-- LEFT -->
@@ -59,20 +59,15 @@ const getRowImageAlt = (row) => {
               </div>
             </div>
 
-            <!-- RIGHT: ICON -->
-            <div class="flex items-center justify-start sm:justify-end">
+            <!-- RIGHT: ИКОНКИ -->
+            <div class="flex items-center justify-between gap-2">
 
-              <div
-                class="flex items-center justify-center rounded-[16px]  px-4 py-3"
-              >
-
+              <div class="icon-box">
                 <img
                   :src="getRowImageSrc(row)"
                   :alt="getRowImageAlt(row)"
-                  class="max-h-[44px] w-auto object-contain"
                   loading="lazy"
                 />
-
               </div>
 
             </div>
@@ -85,3 +80,24 @@ const getRowImageAlt = (row) => {
     </div>
   </section>
 </template>
+
+<style scoped>
+
+.icon-box{
+  width:150px;
+  height:150px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  flex-shrink:0;
+}
+
+.icon-box img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+}
+
+</style>

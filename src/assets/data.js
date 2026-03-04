@@ -286,7 +286,7 @@ const legacyData = {
         {
           title: 'Пользовательские вебхуки и API-интеграции',
           desc: 'Подключение любых систем через API и вебхуки',
-          img:'/banner 3.png'
+          img:'/api.png'
         },
       ],
     },
@@ -317,19 +317,19 @@ const legacyData = {
         image: '/13.png',
       },
       {
-        day: 'День 2',
+        day: 'День 2-5',
         title: 'Создание бота',
         desc: 'Технические и sales-специалисты разрабатывают логику и сценарии работы AI-продавца',
         image: '/11.png',
       },
       {
-        day: 'День 3',
+        day: 'День 6',
         title: 'Тестирование чат-бота',
         desc: 'Создаем прототип бота и проводим тестирование сценариев общения',
         image: '/12.png',
       },
       {
-        day: 'День 4',
+        day: 'День 7',
         title: 'Релиз чат-бота',
         desc: 'Подключаем чат-бота ко всем мессенджерам и интегрируем в вашу CRM',
         image: '/icon icon.png',
@@ -343,10 +343,7 @@ const legacyData = {
       {
         imageSrc: '/briffing.png',
         // TODO: Replace with real Telegram/WhatsApp URLs.
-        actions: [
-          { label: 'WhatsApp', href: 'https://wa.me/' },
-          { label: 'Telegram', href: 'https://t.me/' },
-        ],
+        
       },
     ],
   },
@@ -607,7 +604,6 @@ const legacyData = {
     card: {
       titleLine1: 'Выберите удобный',
       titleLine2: 'канал связи',
-      description: 'Открываем чат в один клик — без форм и ожиданий.',
       responseTime: '',
     },
     links: {

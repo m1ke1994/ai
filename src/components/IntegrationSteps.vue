@@ -1,20 +1,12 @@
 <script setup>
 import { siteData } from '@/assets/data'
 
-const CONTACT_FORM_OPEN_EVENT = siteData.events.contactFormOpen
 const integrationStepsData = siteData.steps
 const integrationSteps = integrationStepsData.items
 const firstRowSteps = integrationSteps.slice(0, 3)
 const secondRowSteps = integrationSteps.slice(3, 5)
 const ctaData = integrationStepsData.cta
-const ctaActions = ctaData.actions || []
 const ctaTitleLines = ctaData.titleLines || []
-
-const openContactFormModal = () => {
-  if (typeof window !== 'undefined') {
-    window.dispatchEvent(new Event(CONTACT_FORM_OPEN_EVENT))
-  }
-}
 </script>
 
 <template>
@@ -107,31 +99,6 @@ const openContactFormModal = () => {
               </div>
             </div>
 
-            <!-- КНОПКИ: фиксируем позиционирование — прижимаем вниз через mt-auto -->
-            <div v-if="ctaActions.length" class="relative z-20 mt-auto shrink-0 flex flex-wrap items-center gap-2 pt-6">
-              <a
-                v-for="action in ctaActions"
-                :key="action.id"
-                :href="action.href"
-                :aria-label="action.ariaLabel"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex h-[40px] items-center justify-center rounded-[12px] border border-white/60 bg-white/10 px-4 text-[14px] font-medium tracking-[-0.01em] text-white backdrop-blur-md transition hover:bg-white/20"
-              >
-                {{ action.label }}
-              </a>
-            </div>
-
-            <button
-              v-else
-              type="button"
-              class="mt-auto inline-flex h-[56px] w-full items-center justify-center rounded-[16px]
-                     border border-white/60 bg-white/10 text-[18px] font-medium tracking-[-0.01em] text-white
-                     backdrop-blur-md transition hover:bg-white/20 active:scale-[0.99]"
-              @click="openContactFormModal"
-            >
-              {{ ctaData.primary.label }}
-            </button>
           </div>
         </div>
       </div>
@@ -242,31 +209,6 @@ const openContactFormModal = () => {
                 </div>
               </div>
 
-              <!-- КНОПКИ: гарантированно внизу карточки -->
-              <div v-if="ctaActions.length" class="relative z-20 mt-auto shrink-0 flex flex-wrap items-center gap-2 pt-6">
-                <a
-                  v-for="action in ctaActions"
-                  :key="action.id"
-                  :href="action.href"
-                  :aria-label="action.ariaLabel"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="inline-flex h-[40px] items-center justify-center rounded-[12px] border border-white/60 bg-white/10 px-4 text-[14px] font-medium tracking-[-0.01em] text-white backdrop-blur-md transition hover:bg-white/20"
-                >
-                  {{ action.label }}
-                </a>
-              </div>
-
-              <button
-                v-else
-                type="button"
-                class="mt-auto inline-flex h-[56px] w-full items-center justify-center rounded-[16px]
-                       border border-white/60 bg-white/10 text-[18px] font-medium tracking-[-0.01em] text-white
-                       backdrop-blur-md transition hover:bg-white/20 xl:w-[230px]"
-                @click="openContactFormModal"
-              >
-                {{ ctaData.primary.label }}
-              </button>
             </div>
           </div>
         </div>
