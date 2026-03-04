@@ -154,7 +154,7 @@ const legacyData = {
       ],
     },
     summary: {
-      kicker: 'Сводка возможностей',
+     
       title: 'Эффективные растут не эффективные исчезают',
       desktopStageLabel: 'Этап',
       desktopAiLabel: 'ИИ-отдел продаж',
@@ -953,7 +953,7 @@ export const siteData = {
         media: {},
         meta: {
           ...legacyData.whatSellerCan.summary,
-          stageDescriptionLabel: 'Сравнение по этапу',
+          
         },
       },
       aiSummary: mapTextItems(legacyData.whatSellerCan.aiSummary, 'ai-summary'),
