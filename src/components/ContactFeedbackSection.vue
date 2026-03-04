@@ -1,7 +1,7 @@
 ﻿<template>
   <section
     id="contacts"
-    class="relative scroll-mt-[92px] overflow-hidden bg-[#01020a] py-10 sm:py-12 lg:scroll-mt-[104px] lg:py-16"
+    class="relative overflow-hidden bg-[#01020a] py-10 sm:py-12 lg:py-16"
   >
     <img
       :src="contactsData.media.sectionBackground.src"

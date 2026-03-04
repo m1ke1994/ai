@@ -5,8 +5,11 @@ const logos = siteData.heroLogos.items
 </script>
 
 <template>
-  <div class="mt-16 max-w-full overflow-x-auto pb-1 sm:mt-20 lg:absolute lg:bottom-8 lg:left-0 lg:mt-0 lg:w-[980px] lg:overflow-visible xl:w-[1180px] xl:max-w-none 2xl:w-[1280px]">
-    <div class="flex min-w-max flex-nowrap items-center gap-x-12 whitespace-nowrap opacity-60 grayscale sm:gap-x-14 lg:gap-x-16 xl:gap-x-20">
+  <div
+    class="mx-auto max-w-full touch-pan-x overflow-x-auto bg-[#02030D] pb-2 lg:w-[980px] xl:w-[1180px] 2xl:w-[1280px]"
+    style="-webkit-overflow-scrolling: touch;"
+  >
+    <div class="flex min-w-max flex-nowrap items-center gap-x-12 whitespace-nowrap px-4 opacity-60 grayscale sm:gap-x-14 sm:px-6 lg:gap-x-16 lg:px-0 xl:gap-x-20">
       <img
         v-for="logo in logos"
         :key="logo.id"

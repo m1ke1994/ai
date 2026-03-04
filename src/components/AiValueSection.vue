@@ -111,7 +111,7 @@ const valuePoints = aiValueData.items
             <div
               v-for="point in valuePoints"
               :key="point.id"
-              class="flex items-start gap-2.5 rounded-[18px] border border-white/50 bg-white/70 px-3.5 py-3 shadow-[0_14px_36px_rgba(18,26,52,0.05)] backdrop-blur-sm"
+              class="fade-item flex items-start gap-2.5 rounded-[18px] border border-white/50 bg-white/70 px-3.5 py-3 shadow-[0_14px_36px_rgba(18,26,52,0.05)] backdrop-blur-sm"
             >
               <span
                 aria-hidden="true"

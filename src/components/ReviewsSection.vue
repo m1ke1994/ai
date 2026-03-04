@@ -1,7 +1,7 @@
 ﻿<template>
   <section
     id="reviews"
-    class="scroll-mt-[92px] bg-[#020205] py-10 sm:py-12 lg:scroll-mt-[104px] lg:py-16"
+    class="bg-[#020205] py-10 sm:py-12 lg:py-16"
     aria-labelledby="reviews-title"
   >
     <div class="mx-auto max-w-[1720px] px-4 sm:px-6 lg:px-10">
@@ -63,7 +63,7 @@
               <article
                 v-for="review in page"
                 :key="review.id"
-                class="flex min-h-[460px] flex-col rounded-[28px] border border-white/5 bg-[#1F2230] p-6 text-left shadow-[0_20px_60px_rgba(0,0,0,0.28)] sm:min-h-[500px] sm:p-8 lg:h-[520px] lg:p-10"
+                class="fade-item flex min-h-[460px] flex-col rounded-[28px] border border-white/5 bg-[#1F2230] p-6 text-left shadow-[0_20px_60px_rgba(0,0,0,0.28)] sm:min-h-[500px] sm:p-8 lg:h-[520px] lg:p-10"
               >
                 <div class="min-h-0 flex-1 overflow-hidden">
                   <h3 class="text-[28px] font-medium leading-tight tracking-[-0.02em] text-white">

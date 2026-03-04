@@ -14,7 +14,7 @@ const openContactFormModal = () => {
 <template>
   <section
     id="pricing"
-    class="relative isolate scroll-mt-[92px] bg-[#F3F4F7] py-10 sm:py-12 lg:scroll-mt-[104px] lg:py-16"
+    class="relative isolate bg-[#F3F4F7] py-10 sm:py-12 lg:py-16"
   >
     <div
       aria-hidden="true"
@@ -45,7 +45,7 @@ const openContactFormModal = () => {
         <article
           v-for="plan in pricingPlans"
           :key="plan.id"
-          class="group relative flex h-full min-h-[560px] flex-col overflow-hidden rounded-[26px] border p-5 shadow-[0_14px_40px_rgba(17,24,39,0.06)] transition-all duration-500 hover:-translate-y-1 sm:min-h-[600px] sm:rounded-[28px] sm:p-6 lg:min-h-[620px]"
+          class="fade-item group relative flex h-full min-h-[560px] flex-col overflow-hidden rounded-[26px] border p-5 shadow-[0_14px_40px_rgba(17,24,39,0.06)] transition-all duration-500 hover:-translate-y-1 sm:min-h-[600px] sm:rounded-[28px] sm:p-6 lg:min-h-[620px]"
           :class="
             plan.meta.darkCard
               ? 'border-[#3A3D63] bg-[linear-gradient(180deg,#171A31_0%,#121524_100%)] shadow-[0_20px_60px_rgba(28,31,67,0.26)] hover:shadow-[0_28px_70px_rgba(28,31,67,0.34)]'

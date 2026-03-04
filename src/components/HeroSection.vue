@@ -144,6 +144,7 @@ const stats = heroData.items
         <!-- правый блок -->
         
       </div>
+
     </div>
   </section>
 </template>

@@ -23,6 +23,7 @@ const mobileSocialItems = navData.meta.mobileSocials
 
 const isMobileMenuOpen = ref(false)
 const activeHash = ref('')
+const scrollProgress = ref(0)
 let previousBodyOverflow = ''
 let pendingAnchorScrollTimeout = null
 
@@ -137,6 +138,24 @@ const handleResize = () => {
     closeMobileMenu()
   }
   syncHash()
+  updateScrollProgress()
+}
+
+const updateScrollProgress = () => {
+  if (typeof window === 'undefined' || typeof document === 'undefined') return
+
+  const scrollTop = window.scrollY || document.documentElement.scrollTop || 0
+  const documentHeight = document.documentElement.scrollHeight
+  const viewportHeight = window.innerHeight
+  const scrollableHeight = documentHeight - viewportHeight
+
+  if (scrollableHeight <= 0) {
+    scrollProgress.value = 0
+    return
+  }
+
+  const rawProgress = (scrollTop / scrollableHeight) * 100
+  scrollProgress.value = Math.min(100, Math.max(0, rawProgress))
 }
 
 watch(isMobileMenuOpen, (opened) => {
@@ -152,9 +171,12 @@ watch(isMobileMenuOpen, (opened) => {
 
 onMounted(() => {
   syncHash()
+  updateScrollProgress()
+
   if (typeof window !== 'undefined') {
     window.addEventListener('keydown', handleKeydown)
     window.addEventListener('resize', handleResize)
+    window.addEventListener('scroll', updateScrollProgress, { passive: true })
     window.addEventListener('hashchange', handleHashChange)
 
     if (window.location.hash) {
@@ -173,6 +195,7 @@ onBeforeUnmount(() => {
   if (typeof window !== 'undefined') {
     window.removeEventListener('keydown', handleKeydown)
     window.removeEventListener('resize', handleResize)
+    window.removeEventListener('scroll', updateScrollProgress)
     window.removeEventListener('hashchange', handleHashChange)
     clearPendingAnchorScroll()
   }
@@ -253,6 +276,13 @@ onBeforeUnmount(() => {
           </svg>
         </button>
       </div>
+    </div>
+
+    <div class="pointer-events-none absolute inset-x-0 bottom-0 h-[4px] bg-white/10">
+      <div
+        class="h-full bg-[linear-gradient(90deg,#7A6EFF_0%,#9D96FF_100%)] transition-[width] duration-150 ease-out"
+        :style="{ width: `${scrollProgress}%` }"
+      />
     </div>
   </header>
 

@@ -4,9 +4,6 @@
     <div class="pt-[74px] lg:pt-[88px]">
       <HeroSection />
       <WhatSellerCan />
-     <!--  <IntegrationsAnalyticsSection />
-       -->
-      
       <AiValueSection />
       <PricingSection />
       <IntegrationSteps />
@@ -23,8 +20,10 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue'
 /* import IntegrationsAnalyticsSection from '@/components/IntegrationsAnalyticsSection.vue' */
 import AppHeader from '@/components/AppHeader.vue'
+import HeroLogosStrip from '@/components/HeroLogosStrip.vue'
 import HeroSection from '@/components/HeroSection.vue'
 import WhatSellerCan from '@/components/WhatSellerCan.vue'
 import IntegrationSteps from '@/components/IntegrationSteps.vue'
@@ -33,4 +32,9 @@ import PricingSection from '@/components/PricingSection.vue'
 import AiValueSection from '@/components/AiValueSection.vue'
 import ContactFeedbackSection from '@/components/ContactFeedbackSection.vue'
 import AppFooter from '@/components/AppFooter.vue'
+import { useRevealOnScroll } from '@/composables/useRevealOnScroll'
+
+onMounted(() => {
+  useRevealOnScroll()
+})
 </script>

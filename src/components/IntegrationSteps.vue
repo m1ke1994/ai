@@ -12,7 +12,7 @@ const ctaTitleLines = ctaData.titleLines || []
 <template>
   <section
     id="steps"
-    class="relative isolate scroll-mt-[92px] bg-[#F3F4F7] py-10 sm:py-12 lg:scroll-mt-[104px] lg:py-16"
+    class="relative isolate bg-[#F3F4F7] py-10 sm:py-12 lg:py-16"
   >
     <!-- Заголовок -->
     <div class="text-center px-4">
@@ -34,7 +34,7 @@ const ctaTitleLines = ctaData.titleLines || []
         <div
           v-for="step in integrationSteps"
           :key="step.id"
-          class="relative flex min-h-[520px] flex-col justify-between rounded-[26px] bg-[#E9EBF2] p-6"
+          class="fade-item relative flex min-h-[520px] flex-col justify-between rounded-[26px] bg-[#E9EBF2] p-6"
         >
           <!-- Текст -->
           <div>
@@ -65,7 +65,7 @@ const ctaTitleLines = ctaData.titleLines || []
         </div>
 
         <!-- CTA карточка последней в колонке -->
-        <div class="relative overflow-hidden rounded-[26px] bg-[#1B1730] p-6">
+        <div class="fade-item relative overflow-hidden rounded-[26px] bg-[#1B1730] p-6">
           <img
             :src="ctaData.media.background.src"
             alt=""
@@ -110,7 +110,7 @@ const ctaTitleLines = ctaData.titleLines || []
           <div
             v-for="step in firstRowSteps"
             :key="step.id"
-            class="relative flex min-h-[520px] flex-col justify-between rounded-[32px] bg-[#E9EBF2] p-8 xl:h-[520px] xl:p-10"
+            class="fade-item relative flex min-h-[520px] flex-col justify-between rounded-[32px] bg-[#E9EBF2] p-8 xl:h-[520px] xl:p-10"
           >
             <div>
               <p class="text-base !text-gray-500 xl:text-lg">
@@ -144,7 +144,7 @@ const ctaTitleLines = ctaData.titleLines || []
           <div
             v-for="step in secondRowSteps"
             :key="step.id"
-            class="relative flex min-h-[520px] flex-col justify-between rounded-[32px] bg-[#E9EBF2] p-8 xl:h-[520px] xl:p-10"
+            class="fade-item relative flex min-h-[520px] flex-col justify-between rounded-[32px] bg-[#E9EBF2] p-8 xl:h-[520px] xl:p-10"
           >
             <div>
               <p class="text-base !text-gray-500 xl:text-lg">
@@ -174,7 +174,7 @@ const ctaTitleLines = ctaData.titleLines || []
 
           <!-- CTA -->
           <div
-            class="relative overflow-hidden rounded-[32px] bg-[#1B1730] p-8 xl:h-[520px] xl:p-10"
+            class="fade-item relative overflow-hidden rounded-[32px] bg-[#1B1730] p-8 xl:h-[520px] xl:p-10"
           >
             <img
               :src="ctaData.media.background.src"

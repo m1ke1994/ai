@@ -38,7 +38,7 @@ const getRowImageAlt = (row) => {
           <div
             v-for="row in integrationsRows"
             :key="row.id"
-            class="grid grid-cols-1 gap-4 px-5 py-5 sm:grid-cols-[minmax(260px,1fr)_minmax(380px,1.8fr)_140px] sm:items-center sm:gap-8 sm:px-6"
+            class="fade-item grid grid-cols-1 gap-4 px-5 py-5 sm:grid-cols-[minmax(260px,1fr)_minmax(380px,1.8fr)_140px] sm:items-center sm:gap-8 sm:px-6"
           >
 
             <!-- LEFT -->
