@@ -19,12 +19,12 @@ const getRowImageAlt = (row) => {
 <template>
   <section
     id="integrations"
-    class="relative overflow-hidden rounded-[32px] border border-[#E1E5F2] bg-white p-6 shadow-[0_18px_54px_rgba(18,26,52,0.08)] sm:p-8"
+    class="relative overflow-hidden rounded-[32px] border border-[#E1E5F2] bg-white p-6 shadow-[0_18px_54px_rgba(18,26,52,0.08)] sm:p-8 "
   >
     <div aria-hidden="true" class="pointer-events-none absolute -right-12 -top-10 h-40 w-40 rounded-full bg-[rgba(111,99,255,0.10)] blur-3xl" />
     <div aria-hidden="true" class="pointer-events-none absolute -left-12 -bottom-10 h-40 w-40 rounded-full bg-[rgba(126,182,255,0.12)] blur-3xl" />
 
-    <div class="relative">
+    <div class="relative w-[90%] m-auto">
 
       <!-- Заголовок -->
       <h3 class="text-[22px] font-semibold tracking-[-0.03em] text-[#0B0D1A] sm:text-[28px]">

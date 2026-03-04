@@ -13,7 +13,7 @@ const valuePoints = aiValueData.items
 <template>
   <section
     id="ai-value"
-    class="relative isolate scroll-mt-[92px] rounded-none bg-[#F3F4F7] py-14 lg:scroll-mt-[104px] sm:py-20 lg:py-28"
+    class="relative isolate scroll-mt-[92px] rounded-none bg-[#F3F4F7] py-10 sm:py-12 lg:scroll-mt-[104px] lg:py-16"
   >
     <div
       aria-hidden="true"

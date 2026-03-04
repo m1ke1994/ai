@@ -22,7 +22,7 @@ const trainingRows = computed(() => {
 <template>
 <section
 id="advantages"
-class="relative z-10 scroll-mt-[92px] bg-[#F3F4F7] pt-0 pb-8 lg:scroll-mt-[104px] lg:pb-10"
+class="relative z-10 scroll-mt-[92px] bg-[#F3F4F7] py-10 sm:py-12 lg:scroll-mt-[104px] lg:py-16"
 >
 
 <div class="mx-auto w-full max-w-[1880px] px-4 sm:px-6 lg:px-10">

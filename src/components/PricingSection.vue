@@ -14,7 +14,7 @@ const openContactFormModal = () => {
 <template>
   <section
     id="pricing"
-    class="relative isolate scroll-mt-[92px] bg-[#F3F4F7] py-8 sm:py-10 lg:scroll-mt-[104px] lg:py-12"
+    class="relative isolate scroll-mt-[92px] bg-[#F3F4F7] py-10 sm:py-12 lg:scroll-mt-[104px] lg:py-16"
   >
     <div
       aria-hidden="true"

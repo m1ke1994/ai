@@ -12,7 +12,7 @@ const ctaTitleLines = ctaData.titleLines || []
 <template>
   <section
     id="steps"
-    class="relative isolate scroll-mt-[92px] bg-[#F3F4F7] pt-0 pb-8 sm:pt-0 sm:pb-10 lg:scroll-mt-[104px] lg:pt-0 lg:pb-12"
+    class="relative isolate scroll-mt-[92px] bg-[#F3F4F7] py-10 sm:py-12 lg:scroll-mt-[104px] lg:py-16"
   >
     <!-- Заголовок -->
     <div class="text-center px-4">
