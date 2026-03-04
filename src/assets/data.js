@@ -235,11 +235,11 @@ const legacyData = {
     launch: {
       badgePrimary: '7 дней теста',
       badgeSecondary: 'Без риска для бизнеса',
-      title: 'Запускаем ИИ-продавца как рабочий канал продаж, а не как эксперимент',
+      
       description:
         'Вы получаете обучение, интеграции, поддержку и тестовый период до оплаты. Решение должно показать ценность в бизнесе, а не просто красиво выглядеть.',
-      leftLabel: 'Бесплатная основа',
-      rightLabel: 'Платная основа',
+      leftLabel: '0 Р',
+      rightLabel: 'По подписке',
       valuePoints: [
         'Бесплатное обучение ИИ-продавца на ваших данных',
         'Безлимитное количество диалогов',
@@ -250,9 +250,8 @@ const legacyData = {
       paidTitle: 'Платите только ежемесячную подписку',
       paidDescription:
         'Оплата начинается только после теста и подтверждения результата. Никаких разовых платежей за запуск — только ежемесячная подписка за использование и сопровождение.',
-      noteTitle: 'Прозрачно и предсказуемо',
       noteDescription:
-        'Вы платите за понятный результат и постоянную работу ИИ-продавца в ваших каналах, с обновлением данных и поддержкой.',
+        'Подключаете подписку только если видите ценность для бизнеса',
     },
     integrations: {
       
@@ -262,17 +261,17 @@ const legacyData = {
         {
           title: 'Интеграция с CRM',
           desc: 'Двигает этапы сделки, заполняет поля и ставит задачи',
-           img:'/banner 3.png'
+          img:'/banner 3.png'
         },
         {
           title: 'Запись клиентов',
           desc: 'Назначает клиентам встречи и записи',
-           img:'/banner.png'
+          img:'/banner.png'
         },
         {
           title: 'Товарные фиды',
           desc: 'Знает остатки по товарам на складе',
-           img:'/tovar_fids.png'
+          img:'/tovar_fids.png'
         },
         {
           title: 'Slack',
@@ -282,12 +281,12 @@ const legacyData = {
         {
           title: 'Google Analytics и Яндекс Метрика/Аналитика',
           desc: 'События, цели и отчёты по эффективности каналов',
-           img:'/yandex_google.png'
+          img:'/yandex_google.png'
         },
         {
           title: 'Пользовательские вебхуки и API-интеграции',
           desc: 'Подключение любых систем через API и вебхуки',
-           img:'/banner 3.png'
+          img:'/banner 3.png'
         },
       ],
     },
@@ -1010,7 +1009,7 @@ export const siteData = {
           title: row.title,
           description: row.desc,
           media: {
-            image: { src: legacyData.assets.images.integrationsBanner, alt: '' },
+            image: { src: row.img || legacyData.assets.images.integrationsBanner, alt: '' },
           },
         })),
         cta: null,
