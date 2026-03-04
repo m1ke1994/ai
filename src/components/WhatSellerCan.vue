@@ -132,165 +132,190 @@ const trainingRows = computed(() => {
 
           <!-- ✅ NEW (вариант 4): Summary + раскрытие деталей -->
          
-    <div
-      class="summary-shell relative overflow-hidden rounded-[26px] border border-[#E6EAF4] bg-[linear-gradient(180deg,#FFFFFF_0%,#F7F8FC_100%)] shadow-[0_30px_90px_rgba(18,26,52,0.12)]"
-    >
-      <!-- lights -->
-      <div
-        class="pointer-events-none absolute inset-0 opacity-100"
-        style="
-          background:
-            radial-gradient(42rem 18rem at 12% 0%, rgba(75, 57, 255, 0.11), transparent 62%),
-            radial-gradient(36rem 22rem at 100% 70%, rgba(125, 108, 255, 0.10), transparent 64%),
-            linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.0));
-        "
-        aria-hidden="true"
-      />
-      <div
-        class="pointer-events-none absolute -top-24 left-1/2 h-56 w-[560px] -translate-x-1/2 rounded-full bg-[linear-gradient(90deg,rgba(75,57,255,0.18),rgba(138,125,255,0.10))] blur-3xl"
-        aria-hidden="true"
-      />
+  <div
+  class="summary-shell relative overflow-hidden rounded-[26px] border border-[#E6EAF4] bg-[linear-gradient(180deg,#FFFFFF_0%,#F7F8FC_100%)] shadow-[0_30px_90px_rgba(18,26,52,0.12)]"
+>
+  <!-- lights -->
+  <div
+    class="pointer-events-none absolute inset-0 opacity-100"
+    style="
+      background:
+        radial-gradient(42rem 18rem at 12% 0%, rgba(75, 57, 255, 0.11), transparent 62%),
+        radial-gradient(36rem 22rem at 100% 70%, rgba(125, 108, 255, 0.10), transparent 64%),
+        linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.0));
+    "
+    aria-hidden="true"
+  />
+  <div
+    class="pointer-events-none absolute -top-24 left-1/2 h-56 w-[560px] -translate-x-1/2 rounded-full bg-[linear-gradient(90deg,rgba(75,57,255,0.18),rgba(138,125,255,0.10))] blur-3xl"
+    aria-hidden="true"
+  />
 
-      <div class="relative p-5 sm:p-6 lg:p-8">
-        <!-- header row (без кнопки) -->
-        <div class="flex flex-col gap-2">
-          <div class="text-[14px] font-semibold tracking-[-0.01em] text-[#2F3452] lg:text-[15px]">
-            {{ summaryData.subtitle }}
-          </div>
-          <div
-            class="max-w-[980px] text-[16px] font-semibold leading-[1.18] tracking-[-0.03em] text-[#141633] sm:text-[20px] lg:text-[26px]"
-          >
-            {{ summaryData.title }}
-
-          </div>
-        </div>
-
-        <!-- ✅ ОСТАВЛЯЕМ ТОЛЬКО ТО, ЧТО БЫЛО В РАСКРЫВАЮЩЕМСЯ БЛОКЕ -->
-        <div
-          class="mt-6 overflow-hidden rounded-[22px] border border-[#E6EAF4] bg-white/60 shadow-[0_22px_70px_rgba(18,26,52,0.08)] scroll-mt-[110px]"
-        >
-          <!-- desktop compare -->
-          <div class="hidden lg:block">
-            <div class="grid grid-cols-[minmax(240px,0.30fr)_minmax(0,0.35fr)_minmax(0,0.35fr)] px-6 pt-6">
-              <div class="text-[14px] font-semibold tracking-[-0.01em] text-[#2F3452]">{{ summaryData.meta.desktopStageLabel }}</div>
-              <div class="text-[14px] font-semibold tracking-[-0.01em] text-[#4B39FF]">{{ summaryData.meta.desktopAiLabel }}</div>
-              <div class="text-[14px] font-semibold tracking-[-0.01em] text-[#2F3452]">{{ summaryData.meta.desktopHumanLabel }}</div>
-            </div>
-
-            <div class="mt-4 divide-y divide-[#E8EBF4]">
-              <div
-                v-for="r in compareRows"
-                :key="r.id"
-                class="grid grid-cols-[minmax(240px,0.30fr)_minmax(0,0.35fr)_minmax(0,0.35fr)] px-6 py-6"
-              >
-                <div>
-                  <div class="text-[16px] font-semibold tracking-[-0.02em] text-[#141633]">
-                    {{ r.title }}
-                  </div>
-                  <div class="mt-1 text-[13px] leading-[1.35] text-[#7A809A]">{{ summaryData.meta.stageDescriptionLabel }}</div>
-                </div>
-
-                <div>
-                  <div
-                    class="rounded-[18px] border border-white/40 bg-[linear-gradient(135deg,rgba(75,57,255,0.10)_0%,rgba(138,125,255,0.06)_100%)] p-5 shadow-[0_18px_55px_rgba(89,75,255,0.12)]"
-                  >
-                    <div class="flex items-start gap-3">
-                      <span
-                        class="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[linear-gradient(135deg,#4B39FF_0%,#8A7DFF_100%)] shadow-[0_10px_22px_rgba(89,75,255,0.24)]"
-                        aria-hidden="true"
-                      >
-                        <span class="text-[14px] text-white">✓</span>
-                      </span>
-                      <div class="text-[15px] leading-[1.55] tracking-[-0.01em] text-[#141633]">
-                        {{ r.aiDescription }}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div>
-                  <div class="rounded-[18px] border border-[#E6EAF4] bg-white/85 p-5 shadow-[0_16px_44px_rgba(18,26,52,0.06)]">
-                    <div class="flex items-start gap-3">
-                      <span class="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#111827]/5" aria-hidden="true">
-                        <span class="text-[14px] font-semibold text-[#2F3452]">—</span>
-                      </span>
-                      <div class="text-[15px] leading-[1.55] tracking-[-0.01em] text-[#2B2E3A]">
-                        {{ r.humanDescription }}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="px-6 pb-6 pt-1 text-center text-[13px] leading-[1.45] text-[#6B7190]">
-              {{ summaryData.meta.desktopFooter }}
-            </div>
-          </div>
-
-          <!-- mobile compare -->
-          <div class="lg:hidden">
-            <div class="px-4 pt-5 sm:px-6">
-              <div class="text-[14px] font-semibold tracking-[-0.02em] text-[#141633]">{{ summaryData.meta.mobileTitle }}</div>
-              <div class="mt-1 text-[13px] leading-[1.45] text-[#616782]">{{ summaryData.meta.mobileSubtitle }}</div>
-            </div>
-
-            <div class="mt-4 space-y-4 px-4 pb-6 sm:px-6">
-              <div
-                v-for="r in compareRows"
-                :key="r.id"
-                class="rounded-[22px] border border-[#E6EAF4] bg-white/80 p-4 shadow-[0_18px_60px_rgba(18,26,52,0.08)]"
-              >
-                <div class="text-[15px] font-semibold tracking-[-0.02em] text-[#141633]">
-                  {{ r.title }}
-                </div>
-
-                <div class="mt-3 grid gap-3">
-                  <div
-                    class="rounded-[18px] border border-white/40 bg-[linear-gradient(135deg,rgba(75,57,255,0.10)_0%,rgba(138,125,255,0.06)_100%)] p-4 shadow-[0_18px_52px_rgba(89,75,255,0.14)]"
-                  >
-                    <div class="flex items-center gap-2 text-[12px] font-semibold text-[#4B39FF]">
-                      <span class="grid h-6 w-6 place-items-center rounded-full bg-[linear-gradient(135deg,#4B39FF_0%,#8A7DFF_100%)] text-white">
-                        ✓
-                      </span>
-                      {{ summaryData.meta.mobileAiLabel }}
-                    </div>
-                    <div class="mt-2 text-[14px] leading-[1.55] tracking-[-0.01em] text-[#141633]">
-                      {{ r.aiDescription }}
-                    </div>
-                  </div>
-
-                  <div class="rounded-[18px] border border-[#E6EAF4] bg-white/90 p-4 shadow-[0_14px_44px_rgba(18,26,52,0.06)]">
-                    <div class="flex items-center gap-2 text-[12px] font-semibold text-[#2F3452]">
-                      <span class="grid h-6 w-6 place-items-center rounded-full bg-[#111827]/5 text-[#2F3452]">
-                        —
-                      </span>
-                      {{ summaryData.meta.mobileHumanLabel }}
-                    </div>
-                    <div class="mt-2 text-[14px] leading-[1.55] tracking-[-0.01em] text-[#2B2E3A]">
-                      {{ r.humanDescription }}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="pt-1 text-center text-[13px] leading-[1.45] text-[#6B7190]">
-                {{ summaryData.meta.mobileFooter }}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- subtle footer line -->
-        
+  <div class="relative p-5 sm:p-6 lg:p-8">
+    <!-- header row (без кнопки) -->
+    <div class="flex flex-col gap-2">
+      <div class="text-[14px] font-semibold tracking-[-0.01em] text-[#2F3452] lg:text-[15px]">
+        {{ summaryData.subtitle }}
       </div>
-
-      <!-- luxury border -->
-      <div class="pointer-events-none absolute inset-0 rounded-[26px]" aria-hidden="true">
-        <div class="absolute inset-0 rounded-[26px] border border-white/70 opacity-45"></div>
-        <div class="absolute inset-[1px] rounded-[25px] border border-[#E6EAF4] opacity-85"></div>
+      <div
+        class="max-w-[980px] text-[16px] font-semibold leading-[1.18] tracking-[-0.03em] text-[#141633] sm:text-[20px] lg:text-[26px]"
+      >
+        {{ summaryData.title }}
       </div>
     </div>
+
+    <!-- ✅ ОСТАВЛЯЕМ ТОЛЬКО ТО, ЧТО БЫЛО В РАСКРЫВАЮЩЕМСЯ БЛОКЕ -->
+    <div
+      class="mt-6 overflow-hidden rounded-[22px] border border-[#E6EAF4] bg-white/60 shadow-[0_22px_70px_rgba(18,26,52,0.08)] scroll-mt-[110px]"
+    >
+<!-- desktop compare -->
+<div class="hidden lg:block">
+
+  <!-- заголовки -->
+  <div class="flex justify-between px-6 pt-6 text-center">
+    <div class="w-[30%] text-[14px] font-semibold tracking-[-0.01em] text-[#2F3452]">
+      {{ summaryData.meta.desktopStageLabel }}
+    </div>
+
+    <div class="w-[35%] text-[14px] font-semibold tracking-[-0.01em] text-[#4B39FF]">
+      {{ summaryData.meta.desktopAiLabel }}
+    </div>
+
+    <div class="w-[35%] text-[14px] font-semibold tracking-[-0.01em] text-[#2F3452]">
+      {{ summaryData.meta.desktopHumanLabel }}
+    </div>
+  </div>
+
+  <div class="mt-4 divide-y divide-[#E8EBF4]">
+
+    <div
+      v-for="r in compareRows"
+      :key="r.id"
+      class="flex justify-between px-6 py-6"
+    >
+
+      <!-- этап -->
+      <div class="w-[30%] flex flex-col items-center text-center">
+        <div class="text-[16px] font-semibold tracking-[-0.02em] text-[#141633]">
+          {{ r.title }}
+        </div>
+
+        <div class="mt-1 text-[13px] leading-[1.35] text-[#7A809A]">
+          {{ summaryData.meta.stageDescriptionLabel }}
+        </div>
+      </div>
+
+      <!-- AI отдел -->
+      <div class="w-[35%] flex justify-center">
+        <div
+          class="max-w-[360px] w-full rounded-[18px] border border-[#E6EAF4] bg-white/90 p-5 shadow-[0_16px_44px_rgba(18,26,52,0.06)]"
+        >
+          <div class="flex items-start gap-3">
+            <span
+              class="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[linear-gradient(135deg,#4B39FF_0%,#8A7DFF_100%)] text-white"
+            >
+              ✓
+            </span>
+
+            <div class="text-[15px] leading-[1.55] tracking-[-0.01em] text-[#141633]">
+              {{ r.aiDescription }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- менеджер -->
+      <div class="w-[35%] flex justify-center">
+        <div
+          class="max-w-[360px] w-full rounded-[18px] border border-[#E6EAF4] bg-white/90 p-5 shadow-[0_16px_44px_rgba(18,26,52,0.06)]"
+        >
+          <div class="flex items-start gap-3">
+            <span class="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-[#111827]/5 text-[#2F3452]">
+              —
+            </span>
+
+            <div class="text-[15px] leading-[1.55] tracking-[-0.01em] text-[#2B2E3A]">
+              {{ r.humanDescription }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="px-6 pb-6 pt-1 text-center text-[13px] leading-[1.45] text-[#6B7190]">
+    {{ summaryData.meta.desktopFooter }}
+  </div>
+
+</div>
+
+      <!-- mobile compare -->
+      <div class="lg:hidden">
+        <div class="px-4 pt-5 sm:px-6">
+          <div class="text-[14px] font-semibold tracking-[-0.02em] text-[#141633]">
+            {{ summaryData.meta.mobileTitle }}
+          </div>
+          <div class="mt-1 text-[13px] leading-[1.45] text-[#616782]">
+            {{ summaryData.meta.mobileSubtitle }}
+          </div>
+        </div>
+
+        <div class="mt-4 space-y-4 px-4 pb-6 sm:px-6">
+          <div
+            v-for="r in compareRows"
+            :key="r.id"
+            class="rounded-[22px] border border-[#E6EAF4] bg-white/80 p-4 shadow-[0_18px_60px_rgba(18,26,52,0.08)]"
+          >
+            <div class="text-[15px] font-semibold tracking-[-0.02em] text-[#141633]">
+              {{ r.title }}
+            </div>
+
+            <div class="mt-3 grid gap-3">
+              <div
+                class="rounded-[18px] border border-white/40 bg-[linear-gradient(135deg,rgba(75,57,255,0.10)_0%,rgba(138,125,255,0.06)_100%)] p-4 shadow-[0_18px_52px_rgba(89,75,255,0.14)]"
+              >
+                <div class="flex items-center gap-2 text-[12px] font-semibold text-[#4B39FF]">
+                  <span class="grid h-6 w-6 place-items-center rounded-full bg-[linear-gradient(135deg,#4B39FF_0%,#8A7DFF_100%)] text-white">
+                    ✓
+                  </span>
+                  {{ summaryData.meta.mobileAiLabel }}
+                </div>
+                <div class="mt-2 text-[14px] leading-[1.55] tracking-[-0.01em] text-[#141633]">
+                  {{ r.aiDescription }}
+                </div>
+              </div>
+
+              <div class="rounded-[18px] border border-[#E6EAF4] bg-white/90 p-4 shadow-[0_14px_44px_rgba(18,26,52,0.06)]">
+                <div class="flex items-center gap-2 text-[12px] font-semibold text-[#2F3452]">
+                  <span class="grid h-6 w-6 place-items-center rounded-full bg-[#111827]/5 text-[#2F3452]">
+                    —
+                  </span>
+                  {{ summaryData.meta.mobileHumanLabel }}
+                </div>
+                <div class="mt-2 text-[14px] leading-[1.55] tracking-[-0.01em] text-[#2B2E3A]">
+                  {{ r.humanDescription }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-1 text-center text-[13px] leading-[1.45] text-[#6B7190]">
+            {{ summaryData.meta.mobileFooter }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- subtle footer line -->
+  </div>
+
+  <!-- luxury border -->
+  <div class="pointer-events-none absolute inset-0 rounded-[26px]" aria-hidden="true">
+    <div class="absolute inset-0 rounded-[26px] border border-white/70 opacity-45"></div>
+    <div class="absolute inset-[1px] rounded-[25px] border border-[#E6EAF4] opacity-85"></div>
+  </div>
+</div>
   </div>
           <!-- /NEW -->
         </div>
