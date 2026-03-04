@@ -1,12 +1,13 @@
 ﻿<script setup>
-import Social_Media from '@/components/Social_Media.vue'
+
 import { siteData } from '@/assets/data'
+
 
 const aiValueData = siteData.aiValue
 const launchData = aiValueData.meta.launch
-const integrationsData = aiValueData.meta.integrations
+
 const valuePoints = aiValueData.items
-const integrationsRows = integrationsData.items
+
 </script>
 
 <template>
@@ -169,68 +170,8 @@ const integrationsRows = integrationsData.items
   </div>
 </div>
 
-        <!-- 2) РРЅС‚РµРіСЂР°С†РёРё Рё Р°РЅР°Р»РёС‚РёРєР° -->
-      <!-- 2) РРЅС‚РµРіСЂР°С†РёРё Рё Р°РЅР°Р»РёС‚РёРєР° (РєР°Рє РЅР° С„РѕС‚Рѕ) -->
-<!-- 2) РРЅС‚РµРіСЂР°С†РёРё Рё Р°РЅР°Р»РёС‚РёРєР° (С‚РѕС‡РЅРѕ РєР°Рє РЅР° СЃРєСЂРёРЅРµ) -->
-<div
-  class="relative overflow-hidden rounded-[30px] border border-[#E1E5F2] bg-[linear-gradient(180deg,rgba(255,255,255,0.96)_0%,rgba(246,247,252,0.98)_100%)] p-5 shadow-[0_18px_54px_rgba(18,26,52,0.07)] sm:rounded-[32px] sm:p-6"
->
-  <div aria-hidden="true" class="pointer-events-none absolute -right-10 top-0 h-28 w-28 rounded-full bg-[rgba(111,99,255,0.10)] blur-2xl" />
-  <div aria-hidden="true" class="pointer-events-none absolute -left-10 bottom-0 h-28 w-28 rounded-full bg-[rgba(126,182,255,0.12)] blur-2xl" />
+        
 
-  <div class="relative">
-    <div class="inline-flex items-center gap-2 rounded-full border border-[#E3E8F6] bg-white/85 px-3 py-1.5 text-[11px] font-medium tracking-[-0.01em] text-[#59607D]">
-      <span class="h-2 w-2 rounded-full bg-[#7BB3FF]" aria-hidden="true" />
-      {{ integrationsData.subtitle }}
-    </div>
-
-    <h4 class="mt-4 text-[20px] font-semibold tracking-[-0.03em] text-[#141633] sm:text-[22px]">
-      {{ integrationsData.title }}
-    </h4>
-
-    <!-- LIST -->
-    <div class="mt-4 overflow-hidden rounded-[22px] border border-[#E4E7F2] bg-[#ECEAF2]/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)]">
-      <div class="divide-y divide-white/80">
-        <div
-          v-for="row in integrationsRows"
-          :key="row.id"
-          class="grid grid-cols-1 gap-3 bg-[#ECEAF2]/95 px-4 py-4 sm:grid-cols-[minmax(210px,1fr)_minmax(260px,1.4fr)_auto] sm:items-center sm:gap-5 sm:px-5"
-        >
-          <!-- LEFT -->
-          <div class="min-w-0">
-            <div class="text-[14px] font-semibold tracking-[-0.02em] text-[#141633] sm:text-[15px]">
-              {{ row.title }}
-            </div>
-            <div class="mt-1 text-[12px] leading-[1.45] text-[#8A90A8] sm:hidden">
-              {{ row.description }}
-            </div>
-          </div>
-
-          <!-- CENTER -->
-          <div class="hidden sm:block">
-            <div class="text-[12px] leading-[1.45] text-[#8A90A8]">
-              {{ row.description }}
-            </div>
-          </div>
-
-          <!-- RIGHT -->
-          <div class="flex shrink-0 items-center gap-1.5 sm:justify-self-end">
-           
-            <div class="flex -space-x-2.5">
-              <span class="relative z-[2] grid  w-24 place-items-center overflow-hidden border border-white bg-white shadow-[0_10px_24px_rgba(18,26,52,0.12)]">
-                <img :src="row.media.image.src" :alt="row.media.image.alt" class="h-full w-full object-contain p-1.5" />
-              </span>
-           
-            </div>
-
-            <!-- plus circle -->
-       
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
       
       </div>

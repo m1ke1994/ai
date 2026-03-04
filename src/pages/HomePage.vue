@@ -4,8 +4,10 @@
     <div class="pt-[74px] lg:pt-[88px]">
       <HeroSection />
       <WhatSellerCan />
+     <!--  <IntegrationsAnalyticsSection />
+       -->
       
-       <AiValueSection />
+      <AiValueSection />
       <IntegrationSteps />
       <ReviewsSection />
       <PricingSection />
@@ -19,6 +21,7 @@
 </template>
 
 <script setup>
+/* import IntegrationsAnalyticsSection from '@/components/IntegrationsAnalyticsSection.vue' */
 import AppHeader from '@/components/AppHeader.vue'
 import HeroSection from '@/components/HeroSection.vue'
 import WhatSellerCan from '@/components/WhatSellerCan.vue'

@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { siteData } from '@/assets/data'
 import Social_Media from '@/components/Social_Media.vue'
+import IntegrationsAnalyticsSection from '@/components/IntegrationsAnalyticsSection.vue'
 
 const advantagesData = siteData.advantages
 const trainingData = advantagesData.meta.training
@@ -316,6 +317,7 @@ class="rounded-[18px] border border-[#E6EAF4] bg-white p-4 shadow-sm space-y-3"
 
 
 <Social_Media />
+<IntegrationsAnalyticsSection />
 
 </div>
 
