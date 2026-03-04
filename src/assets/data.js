@@ -159,7 +159,7 @@ const legacyData = {
       desktopStageLabel: 'Этап',
       desktopAiLabel: 'ИИ-отдел продаж',
       desktopHumanLabel: 'Менеджер',
-      desktopFooter: 'Детали: почему ИИ выдерживает поток, а менеджер — нет.',
+      desktopFooter: '',
       mobileTitle: 'Сравнение по этапам',
       mobileSubtitle: 'Прокрути — детали ниже.',
       mobileAiLabel: 'ИИ-отдел продаж',
@@ -291,7 +291,7 @@ const legacyData = {
   // Channels list and media resources for omnichannel block.
   socialMedia: {
     pill: 'Омниканальность',
-    title: 'Каналы контакта',
+    title: '',
     description:
       'ИИ продажник работает во всех точках контакта с клиентом. Под каждый канал можно сделать свою роль: продажник, консультант, техподдержка',
     phoneAlt: 'Превью телефона',

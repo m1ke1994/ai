@@ -232,8 +232,7 @@ const integrationsRows = integrationsData.items
   </div>
 </div>
 
-        <!-- 3) РљР°РЅР°Р»С‹ РєРѕРЅС‚Р°РєС‚Р° -->
-      <Social_Media />
+      
       </div>
       <!-- /stack -->
     </div>

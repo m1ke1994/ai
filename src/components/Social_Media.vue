@@ -7,7 +7,7 @@ const channelItems = channelsData.items
 
 <template>
   <div
-    class="relative overflow-hidden rounded-[30px] border border-[#E1E5F2] bg-[#0b0f2a] p-5 pb-0 shadow-[0_22px_70px_rgba(18,26,52,0.18)] sm:rounded-[32px] sm:p-6 sm:pb-0 lg:p-7 lg:pb-0"
+    class="relative overflow-hidden rounded-[30px] border border-[#E1E5F2] bg-[#0b0f2a] p-5 pb-0 shadow-[0_22px_70px_rgba(18,26,52,0.18)] sm:rounded-[32px] sm:p-6 sm:pb-0 lg:p-7 lg:pb-0 py-2"
   >
     <img
       :src="channelsData.media.background.src"
