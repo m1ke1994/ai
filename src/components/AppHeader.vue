@@ -3,7 +3,22 @@ import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import { siteData } from '@/assets/data'
 
 const navData = siteData.nav
-const navItems = navData.items
+const navItemsByHref = Object.fromEntries((navData.items || []).map((item) => [item.href, item]))
+const navItems = [
+  navItemsByHref['#advantages'],
+  {
+    id: 'nav-integrations',
+    slug: 'integrations',
+    label: 'Интеграции',
+    href: '#integrations',
+    sortOrder: 0,
+    isActive: true,
+  },
+  navItemsByHref['#steps'],
+  navItemsByHref['#reviews'],
+  navItemsByHref['#pricing'],
+  navItemsByHref['#contacts'],
+].filter(Boolean)
 const mobileSocialItems = navData.meta.mobileSocials
 
 const isMobileMenuOpen = ref(false)

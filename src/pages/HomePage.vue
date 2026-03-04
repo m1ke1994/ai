@@ -8,9 +8,11 @@
        -->
       
       <AiValueSection />
-      <IntegrationSteps />
-      <ReviewsSection />
       <PricingSection />
+      <IntegrationSteps />
+
+      <ReviewsSection />
+      
     
         
       <ContactFeedbackSection />

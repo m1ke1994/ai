@@ -18,7 +18,7 @@ const getRowImageAlt = (row) => {
 
 <template>
   <section
-    id="integrations-analytics"
+    id="integrations"
     class="relative overflow-hidden rounded-[32px] border border-[#E1E5F2] bg-white p-6 shadow-[0_18px_54px_rgba(18,26,52,0.08)] sm:p-8"
   >
     <div aria-hidden="true" class="pointer-events-none absolute -right-12 -top-10 h-40 w-40 rounded-full bg-[rgba(111,99,255,0.10)] blur-3xl" />
