@@ -6,7 +6,7 @@
           <img
             :src="footerData.media.logo.src"
             :alt="footerData.media.logo.alt"
-            class="h-11 w-auto rounded-full sm:h-[52px] lg:h-[58px]"
+            class="h-[56px] w-auto rounded-full sm:h-[62px] lg:h-[70px]"
             draggable="false"
           />
           <span class="text-[20px] font-semibold leading-none tracking-[-0.02em] sm:text-[24px] lg:text-[26px]">

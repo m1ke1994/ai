@@ -177,7 +177,7 @@ onBeforeUnmount(() => {
           <img
             :src="siteData.assets.media.logo.src"
             :alt="siteData.meta.brandName"
-            class="h-11 w-auto rounded-full sm:h-[52px] lg:h-[58px]"
+            class="h-[100px] w-auto rounded-full sm:h-[100px] lg:h-[100px]"
             draggable="false"
           />
           <span class="text-[20px] font-semibold leading-none tracking-[-0.02em] sm:text-[24px] lg:text-[26px]">
@@ -271,7 +271,7 @@ onBeforeUnmount(() => {
               <img
                 :src="siteData.assets.media.logo.src"
                 :alt="siteData.meta.brandName"
-                class="h-11 w-auto rounded-full"
+                class="h-14 w-auto rounded-full"
                 draggable="false"
               />
               <span class="text-[20px] font-semibold leading-none tracking-[-0.02em]">

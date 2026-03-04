@@ -35,7 +35,7 @@ const legacyData = {
       check: '/vecor.svg',
     },
     images: {
-      logo: '/logo.svg',
+      logo: '/logo.png',
       heroPhone: '/hiro.png',
       heroTexture: '/tilda.png',
       socialPhone: '/dialog.png',
@@ -54,7 +54,7 @@ const legacyData = {
   // SECTION: header
   // Top navigation, brand and mobile menu metadata.
   header: {
-    brandName: 'Ai4Business',
+    brandName: '4Business',
     brandHref: '/',
     navItems: navigationItems,
     aria: {
