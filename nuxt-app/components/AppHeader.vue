@@ -14,9 +14,9 @@ const navItems = [
     sortOrder: 0,
     isActive: true,
   },
+  navItemsByHref['#pricing'],
   navItemsByHref['#steps'],
   navItemsByHref['#reviews'],
-  navItemsByHref['#pricing'],
   navItemsByHref['#contacts'],
 ].filter(Boolean)
 const mobileSocialItems = navData.meta.mobileSocials
