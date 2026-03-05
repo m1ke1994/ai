@@ -92,7 +92,7 @@ const ctaTitleLines = ctaData.titleLines || []
                 <img
                   :src="ctaData.media.image.src"
                   :alt="ctaData.media.image.alt"
-                  class="max-h-[220px] w-full object-contain scale-[1.6] origin-center"
+                  class="max-h-[220px] w-full object-contain scale-100 origin-bottom sm:scale-[1.35]"
                   loading="lazy"
                   draggable="false"
                 />
