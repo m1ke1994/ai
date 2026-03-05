@@ -1,11 +1,11 @@
-﻿<template>
+<template>
   <section
     id="reviews"
-    class="bg-[#020205] py-10 sm:py-12 lg:py-16"
+    class="overflow-x-hidden bg-[#020205] py-10 sm:py-12 lg:py-16"
     aria-labelledby="reviews-title"
   >
     <div class="mx-auto max-w-[1720px] px-4 sm:px-6 lg:px-10">
-      <div class="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+      <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div class="max-w-[640px]">
           <h2
             id="reviews-title"
@@ -16,12 +16,12 @@
           </h2>
         </div>
 
-        <div class="flex items-center gap-3 md:pt-5">
+        <div class="flex items-center gap-3">
           <button
             type="button"
             class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-[#151723] text-[#D8DBEF] transition hover:border-white/25 hover:bg-[#1A1D2B] disabled:cursor-not-allowed disabled:opacity-40"
-            :disabled="pageCount <= 1"
-            :aria-label="reviewActions.prevPageAria"
+            :disabled="currentIndex === 0"
+            :aria-label="reviewActions.prevPageAria || 'Предыдущие отзывы'"
             @click="goPrev"
           >
             <svg viewBox="0 0 20 20" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.75">
@@ -32,8 +32,8 @@
           <button
             type="button"
             class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-[#151723] text-[#D8DBEF] transition hover:border-white/25 hover:bg-[#1A1D2B] disabled:cursor-not-allowed disabled:opacity-40"
-            :disabled="pageCount <= 1"
-            :aria-label="reviewActions.nextPageAria"
+            :disabled="currentIndex >= maxStartIndex"
+            :aria-label="reviewActions.nextPageAria || 'Следующие отзывы'"
             @click="goNext"
           >
             <svg viewBox="0 0 20 20" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.75">
@@ -43,77 +43,77 @@
         </div>
       </div>
 
-      <!-- ВАЖНО: верстку сохраняем, добавляем только “свайп” -->
       <div class="mt-10 overflow-hidden sm:mt-12" ref="viewportRef">
         <div
           ref="trackRef"
           class="flex transition-transform duration-500 ease-out"
           :class="isDragging ? 'duration-0' : ''"
           :style="{
-            transform: `translateX(${trackTranslateX}px)`,
+            transform: `translate3d(${trackTranslateX}px,0,0)`,
             touchAction: 'pan-y',
           }"
+          @pointerdown="onPointerDown"
+          @pointermove="onPointerMove"
+          @pointerup="onPointerUp"
+          @pointercancel="onPointerCancel"
         >
           <div
-            v-for="(page, pageIndex) in pagedReviews"
-            :key="`reviews-page-${pageIndex}`"
-            class="min-w-full"
+            v-for="review in reviews"
+            :key="review.id"
+            class="min-w-0 shrink-0 px-2 sm:px-3"
+            :style="{ width: `${100 / slidesPerView}%` }"
           >
-            <div class="grid gap-6 lg:gap-8" :class="gridColumnsClass">
-              <article
-                v-for="review in page"
-                :key="review.id"
-                class="fade-item flex min-h-[460px] flex-col rounded-[28px] border border-white/5 bg-[#1F2230] p-6 text-left shadow-[0_20px_60px_rgba(0,0,0,0.28)] sm:min-h-[500px] sm:p-8 lg:h-[520px] lg:p-10"
-              >
-                <div class="min-h-0 flex-1 overflow-hidden">
-                  <h3 class="text-[28px] font-medium leading-tight tracking-[-0.02em] text-white">
-                    {{ review.company }}
-                  </h3>
+            <article
+              class="fade-item flex h-full min-w-0 flex-col rounded-[28px] border border-white/5 bg-[#1F2230] p-5 text-left shadow-[0_20px_60px_rgba(0,0,0,0.28)] sm:min-h-[500px] sm:p-8 lg:h-[520px] lg:p-10"
+            >
+              <div class="min-h-0 flex-1 overflow-hidden">
+                <h3 class="break-words text-[28px] font-medium leading-tight tracking-[-0.02em] text-white">
+                  {{ review.company }}
+                </h3>
 
-                  <p class="mt-4 text-[15px] font-semibold leading-snug text-[#A8ADC4]">
-                    {{ review.person }}
+                <p class="mt-4 break-words text-[15px] font-semibold leading-snug text-[#A8ADC4]">
+                  {{ review.person }}
+                </p>
+
+                <div class="mt-6 space-y-4 text-[14px] leading-[1.55] text-[#C4C8DD] sm:text-[15px]">
+                  <p v-for="paragraph in review.previewParagraphs" :key="paragraph.id">
+                    {{ paragraph.text }}
                   </p>
 
-                  <div class="mt-6 space-y-4 text-[14px] leading-[1.55] text-[#C4C8DD] sm:text-[15px]">
-                    <p v-for="paragraph in review.previewParagraphs" :key="paragraph.id">
-                      {{ paragraph.text }}
-                    </p>
-
-                    <ul v-if="review.previewBullets?.length" class="list-disc space-y-1.5 pl-5 marker:text-[#A7ACC3]">
-                      <li v-for="bullet in review.previewBullets" :key="bullet.id">
-                        {{ bullet.text }}
-                      </li>
-                    </ul>
-                  </div>
+                  <ul v-if="review.previewBullets?.length" class="list-disc space-y-1.5 pl-5 marker:text-[#A7ACC3]">
+                    <li v-for="bullet in review.previewBullets" :key="bullet.id">
+                      {{ bullet.text }}
+                    </li>
+                  </ul>
                 </div>
+              </div>
 
-                <button
-                  type="button"
-                  class="mt-auto inline-flex h-[50px] w-full max-w-[192px] shrink-0 items-center justify-center rounded-[14px] border border-white/60 bg-transparent text-[18px] font-semibold tracking-[-0.01em] text-white transition hover:bg-white hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-                  @click="openReview(review)"
-                >
-                  {{ reviewActions.readMore }}
-                </button>
-              </article>
-            </div>
+              <button
+                type="button"
+                class="mt-6 inline-flex h-[48px] w-full max-w-full shrink-0 items-center justify-center rounded-[14px] border border-white text-white transition hover:bg-white hover:text-black sm:max-w-[200px]"
+                @click="openReview(review)"
+              >
+                {{ reviewActions.readMore }}
+              </button>
+            </article>
           </div>
         </div>
       </div>
 
       <div
-        v-if="pageCount > 1"
+        v-if="paginationCount > 1"
         class="mt-6 flex items-center justify-center gap-2"
-        :aria-label="reviewActions.paginationAria"
+        :aria-label="reviewActions.paginationAria || 'Пагинация отзывов'"
       >
         <button
-          v-for="page in pageCount"
-          :key="`dot-${page}`"
+          v-for="dot in paginationCount"
+          :key="`dot-${dot}`"
           type="button"
           class="h-2 rounded-full transition"
-          :class="page - 1 === currentPage ? 'w-8 bg-white' : 'w-2 bg-white/25 hover:bg-white/45'"
-          :aria-label="`${reviewActions.paginationGoTo} ${page}`"
-          :aria-current="page - 1 === currentPage ? 'true' : 'false'"
-          @click="currentPage = page - 1"
+          :class="dot - 1 === currentIndex ? 'w-8 bg-white' : 'w-2 bg-white/25 hover:bg-white/45'"
+          :aria-label="`${reviewActions.paginationGoTo || 'Перейти к странице'} ${dot}`"
+          :aria-current="dot - 1 === currentIndex ? 'true' : 'false'"
+          @click="setIndex(dot - 1)"
         />
       </div>
     </div>
@@ -210,66 +210,112 @@ const reviewsData = siteData.reviews
 const reviews = reviewsData.items
 const reviewActions = reviewsData.meta.actions
 
-const viewportWidth = ref(typeof window !== 'undefined' ? window.innerWidth : 1440)
-const currentPage = ref(0)
+const viewportRef = ref(null)
+const trackRef = ref(null)
+const viewportWidth = ref(0)
+const viewportPx = ref(0)
+
+const currentIndex = ref(0)
+const isDragging = ref(false)
+const dragOffsetX = ref(0)
+
 const activeReview = ref(null)
 const closeButtonRef = ref(null)
 let previousBodyOverflow = ''
 
-// refs для свайпа/размера
-const viewportRef = ref(null)
-const trackRef = ref(null)
-const viewportPx = ref(0)
-
-// свайп-состояние
-const isDragging = ref(false)
-const dragOffsetX = ref(0)
 let pointerId = null
 let startX = 0
 let startY = 0
-let lockedAxis = null // 'x' | 'y' | null
+let lockedAxis = null
+let resizeObserver = null
 
-const cardsPerPage = computed(() => {
-  if (viewportWidth.value >= 1280) return 3
-  if (viewportWidth.value >= 768) return 2
-  return 1
+const slidesPerView = computed(() => (viewportWidth.value >= 1024 ? 3 : 1))
+const maxStartIndex = computed(() => Math.max(0, reviews.length - slidesPerView.value))
+const paginationCount = computed(() => maxStartIndex.value + 1)
+const slideWidthPx = computed(() => {
+  if (!viewportPx.value || !slidesPerView.value) return 0
+  return viewportPx.value / slidesPerView.value
 })
 
-const pagedReviews = computed(() => {
-  const perPage = cardsPerPage.value
-  const pages = []
+const trackTranslateX = computed(() => {
+  return -(currentIndex.value * slideWidthPx.value) + dragOffsetX.value
+})
 
-  for (let i = 0; i < reviews.length; i += perPage) {
-    pages.push(reviews.slice(i, i + perPage))
+const clamp = (value, min, max) => Math.min(max, Math.max(min, value))
+const setIndex = (value) => {
+  currentIndex.value = clamp(value, 0, maxStartIndex.value)
+}
+
+const goPrev = () => setIndex(currentIndex.value - 1)
+const goNext = () => setIndex(currentIndex.value + 1)
+
+const getSwipeThreshold = () => {
+  return clamp((slideWidthPx.value || 320) * 0.18, 40, 140)
+}
+
+const resetDragState = () => {
+  isDragging.value = false
+  dragOffsetX.value = 0
+  pointerId = null
+  lockedAxis = null
+}
+
+const onPointerDown = (event) => {
+  if (activeReview.value || maxStartIndex.value === 0) return
+  if (event.pointerType === 'mouse' && event.button !== 0) return
+
+  pointerId = event.pointerId
+  startX = event.clientX
+  startY = event.clientY
+  lockedAxis = null
+  isDragging.value = true
+  dragOffsetX.value = 0
+  trackRef.value?.setPointerCapture?.(pointerId)
+}
+
+const onPointerMove = (event) => {
+  if (!isDragging.value || pointerId !== event.pointerId) return
+
+  const dx = event.clientX - startX
+  const dy = event.clientY - startY
+
+  if (!lockedAxis) {
+    if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return
+    lockedAxis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y'
   }
 
-  return pages
-})
+  if (lockedAxis === 'y') {
+    dragOffsetX.value = 0
+    return
+  }
 
-const pageCount = computed(() => pagedReviews.value.length)
-
-const gridColumnsClass = computed(() => {
-  if (cardsPerPage.value === 3) return 'grid-cols-3'
-  if (cardsPerPage.value === 2) return 'grid-cols-2'
-  return 'grid-cols-1'
-})
-
-const updateViewportWidth = () => {
-  viewportWidth.value = window.innerWidth
+  event.preventDefault?.()
+  const maxPull = (slideWidthPx.value || 320) * 0.35
+  dragOffsetX.value = clamp(dx, -maxPull, maxPull)
 }
 
-const updateViewportPx = () => {
-  viewportPx.value = viewportRef.value?.clientWidth || 0
+const finishDrag = () => {
+  if (!isDragging.value) return
+
+  const delta = dragOffsetX.value
+  const threshold = getSwipeThreshold()
+
+  if (Math.abs(delta) >= threshold) {
+    if (delta < 0) goNext()
+    else goPrev()
+  }
+
+  resetDragState()
 }
 
-const goPrev = () => {
-  if (pageCount.value <= 1) return
-  currentPage.value = (currentPage.value - 1 + pageCount.value) % pageCount.value
+const onPointerUp = (event) => {
+  if (!isDragging.value || pointerId !== event.pointerId) return
+  finishDrag()
 }
 
-const goNext = () => {
-  if (pageCount.value <= 1) return
-  currentPage.value = (currentPage.value + 1) % pageCount.value
+const onPointerCancel = (event) => {
+  if (!isDragging.value || pointerId !== event.pointerId) return
+  resetDragState()
 }
 
 const openReview = async (review) => {
@@ -282,126 +328,25 @@ const closeReview = () => {
   activeReview.value = null
 }
 
+const updateViewport = () => {
+  if (typeof window === 'undefined') return
+  viewportWidth.value = window.innerWidth
+  viewportPx.value = viewportRef.value?.clientWidth || 0
+}
+
 const handleKeydown = (event) => {
   if (event.key === 'Escape' && activeReview.value) {
     closeReview()
     return
   }
 
-  if (event.key === 'ArrowLeft' && !activeReview.value) {
-    goPrev()
-  }
-
-  if (event.key === 'ArrowRight' && !activeReview.value) {
-    goNext()
-  }
-}
-
-// --- СВАЙП (Pointer Events) ---
-const clamp = (v, min, max) => Math.min(max, Math.max(min, v))
-
-const getSwipeThreshold = () => {
-  // чуть “упругий” порог: 15% ширины, но не меньше 50px и не больше 120px
-  const w = viewportPx.value || 0
-  return clamp(w * 0.15, 50, 120)
-}
-
-const onPointerDown = (e) => {
-  // модалка открыта — свайп не нужен
   if (activeReview.value) return
-  if (pageCount.value <= 1) return
-
-  // только основной палец/кнопка
-  if (e.pointerType === 'mouse' && e.button !== 0) return
-
-  pointerId = e.pointerId
-  startX = e.clientX
-  startY = e.clientY
-  lockedAxis = null
-  isDragging.value = true
-  dragOffsetX.value = 0
-
-  // захватываем pointer, чтобы не “терять” свайп
-  trackRef.value?.setPointerCapture?.(pointerId)
+  if (event.key === 'ArrowLeft') goPrev()
+  if (event.key === 'ArrowRight') goNext()
 }
 
-const onPointerMove = (e) => {
-  if (!isDragging.value) return
-  if (pointerId !== e.pointerId) return
-
-  const dx = e.clientX - startX
-  const dy = e.clientY - startY
-
-  // определяем ось (чтобы вертикальный скролл не ломать)
-  if (!lockedAxis) {
-    if (Math.abs(dx) < 6 && Math.abs(dy) < 6) return
-    lockedAxis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y'
-  }
-
-  if (lockedAxis === 'y') {
-    // вертикальный скролл — отпускаем “перетаскивание”
-    dragOffsetX.value = 0
-    return
-  }
-
-  // горизонтальный свайп: гасим нежелательные жесты браузера
-  e.preventDefault?.()
-
-  // легкое сопротивление на краях (если вдруг без цикличности пригодится),
-  // но у нас цикличная прокрутка — оставим просто ограничение по “упругости”
-  const maxPull = (viewportPx.value || 360) * 0.35
-  dragOffsetX.value = clamp(dx, -maxPull, maxPull)
-}
-
-const finishDrag = () => {
-  if (!isDragging.value) return
-
-  const threshold = getSwipeThreshold()
-  const dx = dragOffsetX.value
-
-  isDragging.value = false
-  dragOffsetX.value = 0
-  lockedAxis = null
-  pointerId = null
-
-  if (Math.abs(dx) < threshold) return
-
-  // dx < 0 — тянем влево, значит следующий слайд
-  if (dx < 0) goNext()
-  else goPrev()
-}
-
-const onPointerUp = (e) => {
-  if (!isDragging.value) return
-  if (pointerId !== e.pointerId) return
-  finishDrag()
-}
-
-const onPointerCancel = (e) => {
-  if (!isDragging.value) return
-  if (pointerId !== e.pointerId) return
-  // просто сброс без перелистывания
-  isDragging.value = false
-  dragOffsetX.value = 0
-  lockedAxis = null
-  pointerId = null
-}
-
-// px-трансформ вместо % — чтобы во время свайпа можно было двигать на пиксели
-const trackTranslateX = computed(() => {
-  const w = viewportPx.value || 0
-  return -(currentPage.value * w) + dragOffsetX.value
-})
-
-watch(pageCount, (count) => {
-  if (count === 0) {
-    currentPage.value = 0
-    return
-  }
-
-  if (currentPage.value > count - 1) {
-    currentPage.value = count - 1
-  }
+watch([maxStartIndex, slidesPerView], () => {
+  setIndex(currentIndex.value)
 })
 
 watch(activeReview, (review) => {
@@ -417,51 +362,25 @@ watch(activeReview, (review) => {
 })
 
 onMounted(() => {
-  updateViewportWidth()
-  updateViewportPx()
-
-  window.addEventListener('resize', updateViewportWidth)
-  window.addEventListener('resize', updateViewportPx)
+  updateViewport()
+  window.addEventListener('resize', updateViewport)
   window.addEventListener('keydown', handleKeydown)
 
-  // Pointer events — свайп и на iOS/Android, и в десктопе (мышкой тоже можно)
-  const el = trackRef.value
-  if (el) {
-    el.addEventListener('pointerdown', onPointerDown, { passive: true })
-    // move НЕ passive, чтобы preventDefault работал при горизонтальном свайпе
-    el.addEventListener('pointermove', onPointerMove, { passive: false })
-    el.addEventListener('pointerup', onPointerUp, { passive: true })
-    el.addEventListener('pointercancel', onPointerCancel, { passive: true })
-  }
-
-  // на случай, если ширина меняется не только от resize (например, шрифты/контейнер)
   if ('ResizeObserver' in window && viewportRef.value) {
-    const ro = new ResizeObserver(() => updateViewportPx())
-    ro.observe(viewportRef.value)
-    // сохраним в элементе, чтобы снять позже
-    viewportRef.value.__ro = ro
+    resizeObserver = new ResizeObserver(() => {
+      viewportPx.value = viewportRef.value?.clientWidth || 0
+    })
+    resizeObserver.observe(viewportRef.value)
   }
 })
 
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', updateViewportWidth)
-  window.removeEventListener('resize', updateViewportPx)
+  window.removeEventListener('resize', updateViewport)
   window.removeEventListener('keydown', handleKeydown)
-
-  const el = trackRef.value
-  if (el) {
-    el.removeEventListener('pointerdown', onPointerDown)
-    el.removeEventListener('pointermove', onPointerMove)
-    el.removeEventListener('pointerup', onPointerUp)
-    el.removeEventListener('pointercancel', onPointerCancel)
-  }
-
-  const ro = viewportRef.value?.__ro
-  if (ro?.disconnect) ro.disconnect()
+  resizeObserver?.disconnect()
 
   if (typeof document !== 'undefined') {
     document.body.style.overflow = previousBodyOverflow
   }
 })
 </script>
-
