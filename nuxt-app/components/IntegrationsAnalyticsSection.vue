@@ -24,7 +24,7 @@ const getRowImageAlt = (row) => {
     <div aria-hidden="true" class="pointer-events-none absolute -right-12 -top-10 h-40 w-40 rounded-full bg-[rgba(111,99,255,0.10)] blur-3xl" />
     <div aria-hidden="true" class="pointer-events-none absolute -left-12 -bottom-10 h-40 w-40 rounded-full bg-[rgba(126,182,255,0.12)] blur-3xl" />
 
-    <div class="relative w-[90%] m-auto">
+    <div class="relative w-[70%] m-auto">
 
       <!-- Р—Р°РіРѕР»РѕРІРѕРє -->
       <h3 class="text-[22px] font-semibold tracking-[-0.03em] text-[#0B0D1A] sm:text-[28px]">

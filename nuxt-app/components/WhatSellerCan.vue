@@ -118,7 +118,7 @@ class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-whi
 {{ trainingData.meta.rightPill }}
 </div>
 
-<p class="text-[16px] font-medium leading-[1.4]">
+<p class="text-[20px] font-medium leading-[1.4]">
 {{ trainingData.meta.rightTitle }}
 </p>
 
@@ -127,7 +127,7 @@ class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-whi
 <div
 v-for="bullet in trainingData.meta.rightBullets"
 :key="bullet.id"
-class="flex items-start gap-2 text-[13px]"
+class="flex items-start gap-2 text-[18px]"
 >
 
 <img :src="checkIcon" class="h-3.5 w-3.5 brightness-[4] saturate-0"/>
@@ -160,7 +160,7 @@ class="flex items-start gap-2 text-[13px]"
 
 <!-- HEADER -->
 
-<div class="space-y-2 max-w-[900px]">
+<div class="space-y-2 max-w-[900px] ">
 
 <div class="text-[14px] font-semibold text-[#2F3452]">
 {{ summaryData.subtitle }}
@@ -180,9 +180,9 @@ class="flex items-start gap-2 text-[13px]"
 
 <!-- DESKTOP -->
 
-<div class="hidden lg:block">
+<div class="hidden lg:block w-[90%] m-auto">
 
-<div class="flex text-center px-6 pt-6 pb-4 text-[14px] font-semibold">
+<div class="flex text-center px-6 pt-6 pb-4 text-[20px] font-semibold">
 
 <div class="w-[30%]">
 {{ summaryData.meta.desktopStageLabel }}

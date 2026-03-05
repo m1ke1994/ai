@@ -215,7 +215,7 @@ onBeforeUnmount(() => {
           <img
             :src="siteData.assets.media.logo.src"
             :alt="siteData.meta.brandName"
-            class="h-[100px] w-auto rounded-full sm:h-[100px] lg:h-[100px]"
+            class="h-[100px] w-auto rounded-full sm:h-[100px] lg:h-[120px] xl:h-[128px]"
             draggable="false"
           />
           <span class="text-[20px] font-semibold leading-none tracking-[-0.02em] sm:text-[24px] lg:text-[26px]">
