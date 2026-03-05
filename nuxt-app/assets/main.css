@@ -10,11 +10,13 @@
     scroll-padding-top: 74px;
     scrollbar-width: thin;
     scrollbar-color: #7c3aed #f3f4f8;
+    overflow-x: hidden;
   }
 
   body {
     @apply m-0 min-w-[320px] bg-slate-950 ;
     font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
   }
 
   #app {
