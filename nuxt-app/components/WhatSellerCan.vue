@@ -25,7 +25,7 @@ id="advantages"
 class="relative z-10 bg-[#F3F4F7] py-10 sm:py-12 lg:py-16"
 >
 
-<div class="mx-auto w-full max-w-[1880px] px-4 sm:px-6 lg:px-10">
+<div class="mx-auto w-full max-w-[1720px] px-4 sm:px-6 lg:px-10">
 
 <div class="relative overflow-hidden bg-white space-y-10 lg:space-y-12">
 

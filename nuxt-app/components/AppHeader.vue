@@ -209,7 +209,7 @@ onBeforeUnmount(() => {
 <template>
   <!-- HEADER (С„РёРєСЃРёСЂРѕРІР°РЅРЅР°СЏ, РІРїРµСЂРµРґРё РІСЃРµРіРѕ) -->
   <header class="fixed left-0 top-0 z-[1000] w-full bg-[#02030A] shadow-[0_8px_28px_rgba(0,0,0,0.24)]">
-    <div class="mx-auto max-w-[1720px] px-4 sm:px-6 lg:px-10">
+    <div class="mx-auto w-full max-w-[1720px] px-4 sm:px-6 lg:px-10">
       <div class="relative flex h-[74px] items-center justify-between lg:h-[88px]">
         <a :href="navData.meta.brandHref" class="flex shrink-0 items-center gap-3 text-white" :aria-label="siteData.meta.brandName">
           <img
@@ -305,7 +305,7 @@ onBeforeUnmount(() => {
         :aria-label="navData.meta.aria.mobileDialog"
       >
         <!-- Р’РµСЂС…РЅСЏСЏ РїР°РЅРµР»СЊ (Р»РѕРіРѕС‚РёРї + РєСЂРµСЃС‚РёРє), РєР°Рє РЅР° РёР·РѕР±СЂР°Р¶РµРЅРёРё -->
-        <div class="mx-auto max-w-[1720px] px-4 sm:px-6">
+        <div class="mx-auto w-full max-w-[1720px] px-4 sm:px-6">
           <div class="flex h-[74px] items-center justify-between">
             <a
               :href="navData.meta.brandHref"

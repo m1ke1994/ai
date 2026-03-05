@@ -26,7 +26,7 @@ const valuePoints = aiValueData.items
       "
     />
 
-    <div class="relative z-10 mx-auto w-full max-w-[1760px] px-4 sm:px-6 lg:px-10">
+    <div class="relative z-10 mx-auto w-full max-w-[1720px] px-4 sm:px-6 lg:px-10">
       <!-- Title -->
       <div class="text-center">
         <h2

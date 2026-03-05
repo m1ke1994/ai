@@ -30,7 +30,7 @@
       "
     ></div>
 
-    <div class="relative z-10 mx-auto max-w-[1840px] px-4">
+    <div class="relative z-10 mx-auto w-full max-w-[1720px] px-4 sm:px-6 lg:px-10">
       <div
         class="relative min-h-[420px] overflow-hidden rounded-[36px] bg-[rgba(9,12,41,0.18)] xl:min-h-[560px]"
       >

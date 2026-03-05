@@ -13,11 +13,12 @@ const ctaTitleLines = ctaData.titleLines || []
 <template>
 <section
   id="steps"
-  class="relative isolate bg-[#F3F4F7] py-10 sm:py-12 lg:py-16"
+  class="relative isolate overflow-x-hidden bg-[#F3F4F7] py-10 sm:py-12 lg:py-16"
 >
+<div class="mx-auto w-full max-w-[1720px] px-4 sm:px-6 lg:px-10">
 
 <!-- заголовок -->
-<div class="text-center px-4">
+<div class="text-center">
 
 <h2
 class="text-[30px] font-semibold tracking-[-0.02em] !text-black sm:text-[34px] md:text-[40px] lg:text-[42px] xl:text-[48px]"
@@ -34,7 +35,7 @@ class="mt-3 text-[30px] font-semibold tracking-[-0.02em] !text-gray-400 sm:text-
 </div>
 
 
-<div class="mx-auto mt-10 max-w-[1320px] px-4 sm:mt-14 sm:px-6 lg:mt-20 lg:px-8 xl:px-4">
+<div class="mt-10 sm:mt-14 lg:mt-20">
 
 
 <!-- ========================= -->
@@ -43,88 +44,86 @@ class="mt-3 text-[30px] font-semibold tracking-[-0.02em] !text-gray-400 sm:text-
 
 <div class="flex flex-col gap-4 lg:hidden">
 
-<div
-v-for="step in integrationSteps"
-:key="step.id"
-class="fade-item relative flex min-h-[520px] flex-col rounded-[26px] bg-[#E9EBF2] p-6"
->
+  <!-- STEPS -->
+  <div
+    v-for="step in integrationSteps"
+    :key="step.id"
+    class="fade-item relative flex w-full max-w-full min-h-[520px] flex-col overflow-hidden rounded-[26px] bg-[#E9EBF2] p-6"
+  >
 
-<div>
+    <div>
 
-<p class="text-[15px] !text-gray-500 sm:text-lg">
-{{ step.day }}
-</p>
+      <p class="text-[15px] text-gray-500 sm:text-lg">
+        {{ step.day }}
+      </p>
 
-<h4 class="mt-2 text-[20px] font-semibold leading-tight !text-black sm:mt-3 sm:text-2xl">
-{{ step.title }}
-</h4>
+      <h4 class="mt-2 text-[20px] font-semibold leading-tight text-black sm:mt-3 sm:text-2xl">
+        {{ step.title }}
+      </h4>
 
-<p class="mt-3 text-[15px] leading-relaxed !text-gray-500 sm:mt-4 sm:text-base">
-{{ step.description }}
-</p>
+      <p class="mt-3 text-[15px] leading-relaxed text-gray-500 sm:mt-4 sm:text-base">
+        {{ step.description }}
+      </p>
 
-</div>
+    </div>
 
+    <div class="mt-auto flex h-[200px] items-end justify-center">
 
-<div class="mt-auto flex h-[200px] items-end justify-center">
+      <img
+        v-if="step.media.image.src"
+        :src="step.media.image.src"
+        :alt="step.media.image.alt"
+        class="max-h-[260px] w-auto max-w-full object-contain sm:max-h-[170px]"
+        loading="lazy"
+        draggable="false"
+      />
 
-<img
-v-if="step.media.image.src"
-:src="step.media.image.src"
-:alt="step.media.image.alt"
-class="max-h-[260px] sm:max-h-[170px] w-auto object-contain"
-loading="lazy"
-draggable="false"
-/>
+    </div>
 
-</div>
-
-</div>
-
-
-<!-- CTA mobile -->
-
-<div
-class="fade-item relative overflow-hidden rounded-[26px] bg-[#1B1730] p-6"
->
-
-<img
-:src="ctaData.media.background.src"
-alt=""
-class="pointer-events-none absolute inset-0 h-full w-full object-cover"
-/>
-
-<div
-class="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,16,34,0.35)_0%,rgba(44,31,85,0.52)_50%,rgba(74,56,145,0.78)_100%)]"
-></div>
+  </div>
 
 
-<div class="relative z-10 flex min-h-[520px] flex-col">
+  <!-- CTA MOBILE -->
 
-<h4
-class="text-[28px] font-semibold leading-[0.98] tracking-[-0.03em] text-white sm:text-[34px]"
->
-{{ ctaTitleLines[0] }}<br />
-{{ ctaTitleLines[1] }}
-</h4>
+  <div
+    class="fade-item relative w-full max-w-full overflow-hidden rounded-[26px] bg-[#1B1730] p-6"
+  >
 
+    <img
+      :src="ctaData.media.background.src"
+      alt=""
+      class="pointer-events-none absolute inset-0 h-full w-full object-cover"
+    />
 
-<div class="mt-auto flex h-[220px] items-end justify-center">
+    <div
+      class="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,16,34,0.35)_0%,rgba(44,31,85,0.52)_50%,rgba(74,56,145,0.78)_100%)]"
+    ></div>
 
-<img
-v-if="ctaData.media.image.src"
-:src="ctaData.media.image.src"
-:alt="ctaData.media.image.alt"
-class="max-h-[260px] sm:max-h-[170px] w-auto object-contain"
-loading="lazy"
-draggable="false"
-/>
+    <div class="relative z-10 flex min-h-[520px] flex-col">
 
-</div>
+      <h4
+        class="text-[28px] font-semibold leading-[0.98] tracking-[-0.03em] text-white sm:text-[34px]"
+      >
+        {{ ctaTitleLines[0] }}<br />
+        {{ ctaTitleLines[1] }}
+      </h4>
 
-</div>
+      <div class="mt-auto flex h-[220px] items-end justify-center">
 
-</div>
+        <img
+          v-if="ctaData.media.image.src"
+          :src="ctaData.media.image.src"
+          :alt="ctaData.media.image.alt"
+          class="max-h-[260px] w-auto max-w-full object-contain sm:max-h-[170px]"
+          loading="lazy"
+          draggable="false"
+        />
+
+      </div>
+
+    </div>
+
+  </div>
 
 </div>
 
@@ -276,6 +275,7 @@ draggable="false"
 </div>
 
 
+</div>
 </div>
 
 </section>

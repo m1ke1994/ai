@@ -27,7 +27,7 @@ const openContactFormModal = () => {
       "
     />
 
-    <div class="mx-auto w-full max-w-[1760px] px-4 sm:px-6 lg:px-10">
+    <div class="mx-auto w-full max-w-[1720px] px-4 sm:px-6 lg:px-10">
       <div class="px-2 text-center">
         <h2
           class="text-[34px] font-semibold leading-[1.06] tracking-[-0.03em] text-[#111218] sm:text-[44px] lg:text-[66px] lg:leading-[1.04]"

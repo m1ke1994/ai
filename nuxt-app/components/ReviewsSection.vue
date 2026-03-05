@@ -4,7 +4,7 @@
     class="overflow-x-hidden bg-[#020205] py-10 sm:py-12 lg:py-16"
     aria-labelledby="reviews-title"
   >
-    <div class="mx-auto max-w-[1720px] px-4 sm:px-6 lg:px-10">
+    <div class="mx-auto w-full max-w-[1720px] px-4 sm:px-6 lg:px-10">
       <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div class="max-w-[640px]">
           <h2

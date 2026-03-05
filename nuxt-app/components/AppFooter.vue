@@ -1,6 +1,6 @@
 ﻿<template>
   <footer class="w-full bg-black">
-    <div class="mx-auto max-w-[1840px] px-4 py-10 sm:py-12 lg:py-14">
+    <div class="mx-auto w-full max-w-[1720px] px-4 py-10 sm:px-6 sm:py-12 lg:px-10 lg:py-14">
 
       <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
 
