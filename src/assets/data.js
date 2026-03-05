@@ -159,7 +159,6 @@ const legacyData = {
       desktopStageLabel: 'Этап',
       desktopAiLabel: 'ИИ-отдел продаж',
       desktopHumanLabel: 'Менеджер',
-      desktopFooter: '',
       mobileTitle: 'Сравнение по этапам',
       mobileSubtitle: 'Прокрути — детали ниже.',
       mobileAiLabel: 'ИИ-отдел продаж',
@@ -610,7 +609,7 @@ const legacyData = {
       whatsapp: {
         href: 'https://wa.me/',
         icon: '/icons/whatsapp.svg',
-        phoneE164: '',
+        
         message:
           'Здравствуйте! Хочу увеличить эффективность продаж с помощью ИИ. Подскажите, что нужно для старта?',
         label: 'WhatsApp',
@@ -619,7 +618,7 @@ const legacyData = {
       telegram: {
         href: 'https://t.me/',
         icon: '/icons/telegram.svg',
-        username: '',
+        
         label: 'Telegram',
         ariaLabel: 'Написать в Telegram',
       },
@@ -697,7 +696,7 @@ const pricingItems = ensureModelItems(legacyData.pricing.plans, (plan) => ({
   slug: plan.key,
   title: plan.name,
   subtitle: plan.topBadge,
-  description: '',
+  
   channels: plan.channels,
   accentBadge: plan.accentBadge || '',
   inheritLine: plan.inheritLine || '',
@@ -726,10 +725,7 @@ const reviewItems = ensureModelItems(legacyData.reviews.items, (review) => ({
   detailsParagraphs: mapTextItems(review.detailsParagraphs || [], `${review.id}-details-paragraph`),
   results: mapTextItems(review.results || [], `${review.id}-result`),
   media: {
-    avatar: {
-      src: '',
-      alt: '',
-    },
+
   },
   meta: {
     rating: null,
@@ -828,7 +824,7 @@ export const siteData = {
   assets: {
     id: 'assets',
     title: 'Asset Registry',
-    subtitle: '',
+    
     description: 'Реестр медиа, которые используются в лендинге.',
     items: assetRegistry,
     cta: null,
@@ -854,9 +850,6 @@ export const siteData = {
 
   nav: {
     id: 'nav',
-    title: '',
-    subtitle: '',
-    description: '',
     items: navItems,
     cta: null,
     media: {
@@ -893,9 +886,7 @@ export const siteData = {
 
   heroLogos: {
     id: 'hero-logos',
-    title: '',
-    subtitle: '',
-    description: '',
+    
     items: ensureModelItems(legacyData.heroLogos.logos, (logo, index) => ({
       id: `hero-logo-${index + 1}`,
       slug: `hero-logo-${index + 1}`,
@@ -927,8 +918,7 @@ export const siteData = {
       training: {
         id: 'advantages-training',
         title: legacyData.whatSellerCan.training.badge,
-        subtitle: '',
-        description: '',
+        
         items: ensureModelItems(legacyData.whatSellerCan.training.dataSources, (text, index) => ({
           id: `training-source-${index + 1}`,
           slug: `training-source-${index + 1}`,
@@ -948,7 +938,7 @@ export const siteData = {
         id: 'advantages-summary',
         title: legacyData.whatSellerCan.summary.title,
         subtitle: legacyData.whatSellerCan.summary.kicker,
-        description: '',
+       
         items: [],
         cta: null,
         media: {},
@@ -978,7 +968,7 @@ export const siteData = {
       launch: {
         id: 'ai-value-launch',
         title: legacyData.aiValue.launch.title,
-        subtitle: '',
+        
         description: legacyData.aiValue.launch.description,
         items: [],
         cta: null,
@@ -998,7 +988,7 @@ export const siteData = {
         id: 'ai-value-integrations',
         title: legacyData.aiValue.integrations.title,
         subtitle: legacyData.aiValue.integrations.pill,
-        description: '',
+       
         items: ensureModelItems(legacyData.aiValue.integrations.rows, (row, index) => ({
           id: `integration-row-${index + 1}`,
           slug: `integration-row-${index + 1}`,
@@ -1040,7 +1030,7 @@ export const siteData = {
     id: 'steps',
     title: legacyData.integrationSteps.title,
     subtitle: legacyData.integrationSteps.subtitle,
-    description: '',
+ 
     items: ensureModelItems(integrationPrimarySteps, (step, index) => ({
       id: `step-${index + 1}`,
       slug: `step-${index + 1}`,
@@ -1087,7 +1077,7 @@ export const siteData = {
     id: 'pricing',
     title: legacyData.pricing.title,
     subtitle: legacyData.pricing.subtitle,
-    description: '',
+  
     items: pricingItems,
     cta: null,
     media: {},
@@ -1100,7 +1090,7 @@ export const siteData = {
     id: 'reviews',
     title: legacyData.reviews.titleMain,
     subtitle: legacyData.reviews.titleAccent,
-    description: '',
+   
     items: reviewItems,
     cta: null,
     media: {},
@@ -1180,19 +1170,13 @@ export const siteData = {
         href: `mailto:${legacyData.footer.supportEmail}`,
       },
     ]),
-    address: {
-      text: '',
-      mapUrl: '',
-    },
+ 
     socials: socialChannelItems,
     messengers: contactMessengers,
   },
 
   footer: {
     id: 'footer',
-    title: '',
-    subtitle: '',
-    description: '',
     items: footerColumns,
     cta: null,
     media: {
@@ -1206,7 +1190,7 @@ export const siteData = {
       brandHref: legacyData.footer.brandHref,
       supportEmail: legacyData.footer.supportEmail,
       navAriaLabel: 'Навигация в футере',
-      copyright: '',
+      
     },
   },
 }
