@@ -76,8 +76,8 @@ const legacyData = {
   footer: {
     brandName: 'Ai4Business',
     brandHref: '/',
-    supportEmail: 'support@mooonai.com',
-    navItems: navigationItems,
+
+   
     legalItems: [
       { label: 'Политика конфиденциальности', href: '#' },
       { label: 'Публичная оферта', href: '#' },

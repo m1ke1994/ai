@@ -41,7 +41,6 @@ class="mt-3 text-[30px] font-semibold tracking-[-0.02em] !text-gray-400 sm:text-
 <!-- MOBILE -->
 <!-- ========================= -->
 
-
 <div class="flex flex-col gap-4 lg:hidden">
 
 <div
@@ -73,7 +72,7 @@ class="fade-item relative flex min-h-[520px] flex-col rounded-[26px] bg-[#E9EBF2
 v-if="step.media.image.src"
 :src="step.media.image.src"
 :alt="step.media.image.alt"
-class="max-h-[170px] w-auto object-contain"
+class="max-h-[260px] sm:max-h-[170px] w-auto object-contain"
 loading="lazy"
 draggable="false"
 />
@@ -116,7 +115,7 @@ class="text-[28px] font-semibold leading-[0.98] tracking-[-0.03em] text-white sm
 v-if="ctaData.media.image.src"
 :src="ctaData.media.image.src"
 :alt="ctaData.media.image.alt"
-class="max-h-[170px] w-auto object-contain"
+class="max-h-[260px] sm:max-h-[170px] w-auto object-contain"
 loading="lazy"
 draggable="false"
 />
@@ -135,12 +134,10 @@ draggable="false"
 <!-- DESKTOP -->
 <!-- ========================= -->
 
-
 <div class="hidden lg:block">
 
 
 <!-- row 1 -->
-
 
 <div class="grid grid-cols-2 gap-6 xl:grid-cols-3 xl:gap-10">
 
@@ -188,7 +185,6 @@ draggable="false"
 
 <!-- row 2 -->
 
-
 <div class="mt-10 grid grid-cols-2 gap-6 xl:grid-cols-3 xl:gap-10">
 
 <div
@@ -232,7 +228,6 @@ draggable="false"
 
 
 <!-- CTA DESKTOP -->
-
 
 <div
 class="fade-item relative overflow-hidden rounded-[32px] bg-[#1B1730] p-8 xl:h-[520px] xl:p-10"
